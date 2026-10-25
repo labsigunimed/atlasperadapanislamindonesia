@@ -1,0 +1,1526 @@
+[
+  {
+    "id": "rul_perlak_1",
+    "kingdom_id": "kgd_perlak",
+    "name": "Sultan Alaidin Syed Maulana Abdul Aziz Shah",
+    "title": "Sultan Perlak I (Tradisi Idharul Haq)",
+    "reign_start": 840,
+    "reign_end": 864,
+    "reign_display": "840–864 M (Klaim Naskah Lokal)",
+    "certainty": "unverified",
+    "order_index": 1,
+    "highlight_achievement": "Disebut dalam naskah Idharul Haq fi Mamlakatil Ferlah wal Fasi sebagai sultan pertama Perlak pada 1 Muharram 225 H (840 M), namun belum ditemukan bukti epigrafi atau arkeologis sezaman abad ke-9 M.",
+    "source_ids": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_perlak",
+    "startYear": 840,
+    "endYear": 864,
+    "notes": "Disebut dalam naskah Idharul Haq fi Mamlakatil Ferlah wal Fasi sebagai sultan pertama Perlak pada 1 Muharram 225 H (840 M), namun belum ditemukan bukti epigrafi atau arkeologis sezaman abad ke-9 M.",
+    "sourceIds": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Belum terverifikasi"
+  },
+  {
+    "id": "rul_perlak_2",
+    "kingdom_id": "kgd_perlak",
+    "name": "Sultan Makhdum Alaiddin Malik Muhammad Amin Syah II",
+    "title": "Sultan Perlak (Masa Kunjungan Marco Polo)",
+    "reign_start": 1230,
+    "reign_end": 1267,
+    "reign_display": "c. Abad ke-13 M (Era Kesaksian Marco Polo 1292 M)",
+    "certainty": "estimated",
+    "order_index": 2,
+    "highlight_achievement": "Menjalin aliansi pernikahan politik dengan Kesultanan Samudera Pasai; keberadaan negeri Islam Ferlec (Perlak) terkonfirmasi secara historis melalui catatan perjalanan Marco Polo tahun 1292 M.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_bachtiar_pasai_epigraphy"
+    ],
+    "kingdomId": "kgd_perlak",
+    "startYear": 1230,
+    "endYear": 1267,
+    "notes": "Menjalin aliansi pernikahan politik dengan Kesultanan Samudera Pasai; keberadaan negeri Islam Ferlec (Perlak) terkonfirmasi secara historis melalui catatan perjalanan Marco Polo tahun 1292 M.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_bachtiar_pasai_epigraphy"
+    ],
+    "verificationStatus": "Perkiraan"
+  },
+  {
+    "id": "rul_pasai_1",
+    "kingdom_id": "kgd_samudera_pasai",
+    "name": "Sultan Malik as-Saleh (Meurah Silu)",
+    "title": "Sultan Samudera Pasai I",
+    "reign_start": 1267,
+    "reign_end": 1297,
+    "reign_display": "c. 1267–1297 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Pendiri Kesultanan Samudera Pasai; tahun wafatnya (Ramadhan 696 H / 1297 M) terverifikasi melalui inskripsi batu nisan di Aceh Utara.",
+    "source_ids": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_samudera_pasai",
+    "startYear": 1267,
+    "endYear": 1297,
+    "notes": "Pendiri Kesultanan Samudera Pasai; tahun wafatnya (Ramadhan 696 H / 1297 M) terverifikasi melalui inskripsi batu nisan di Aceh Utara.",
+    "sourceIds": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_pasai_2",
+    "kingdom_id": "kgd_samudera_pasai",
+    "name": "Sultan Muhammad Malik az-Zahir",
+    "title": "Sultan Samudera Pasai II",
+    "reign_start": 1297,
+    "reign_end": 1326,
+    "reign_display": "1297–1326 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Memperkenalkan koin emas dirham (Deureuham) sebagai mata uang perdagangan internasional di Selat Malaka.",
+    "source_ids": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_samudera_pasai",
+    "startYear": 1297,
+    "endYear": 1326,
+    "notes": "Memperkenalkan koin emas dirham (Deureuham) sebagai mata uang perdagangan internasional di Selat Malaka.",
+    "sourceIds": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_pasai_3",
+    "kingdom_id": "kgd_samudera_pasai",
+    "name": "Sultan Mahmud Malik az-Zahir",
+    "title": "Sultan Samudera Pasai",
+    "reign_start": 1326,
+    "reign_end": 1345,
+    "reign_display": "c. 1326–1345 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Memerintah saat musafir Maroko Ibn Battuta mengunjungi Samudera Pasai pada tahun 1345 M dan mencatat kemajuan studi fikih Syafi'i.",
+    "source_ids": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_reid_1993"
+    ],
+    "kingdomId": "kgd_samudera_pasai",
+    "startYear": 1326,
+    "endYear": 1345,
+    "notes": "Memerintah saat musafir Maroko Ibn Battuta mengunjungi Samudera Pasai pada tahun 1345 M dan mencatat kemajuan studi fikih Syafi'i.",
+    "sourceIds": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_reid_1993"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_pasai_4",
+    "kingdom_id": "kgd_samudera_pasai",
+    "name": "Sultanah Nahrasyiyah",
+    "title": "Ratu / Sultanah Samudera Pasai",
+    "reign_start": 1406,
+    "reign_end": 1428,
+    "reign_display": "1406–1428 M",
+    "certainty": "verified",
+    "order_index": 4,
+    "highlight_achievement": "Penguasa perempuan terkemuka Pasai; makam marmernya dari Cambay (Gujarat) bertahun 831 H / 1428 M menjadi bukti epigrafi penting.",
+    "source_ids": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "kingdomId": "kgd_samudera_pasai",
+    "startYear": 1406,
+    "endYear": 1428,
+    "notes": "Penguasa perempuan terkemuka Pasai; makam marmernya dari Cambay (Gujarat) bertahun 831 H / 1428 M menjadi bukti epigrafi penting.",
+    "sourceIds": [
+      "src_bachtiar_pasai_epigraphy",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_aceh_1",
+    "kingdom_id": "kgd_aceh",
+    "name": "Sultan Ali Mughayat Syah",
+    "title": "Sultan Aceh Pertama",
+    "reign_start": 1514,
+    "reign_end": 1530,
+    "reign_display": "c. 1514–1530 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Menyatukan Bandar Aceh Darussalam, Daya, Pidie, dan Samudera Pasai (1524) serta mengusir Portugis dari pesisir utara Sumatera.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_lombard_2006"
+    ],
+    "kingdomId": "kgd_aceh",
+    "startYear": 1514,
+    "endYear": 1530,
+    "notes": "Menyatukan Bandar Aceh Darussalam, Daya, Pidie, dan Samudera Pasai (1524) serta mengusir Portugis dari pesisir utara Sumatera.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_lombard_2006"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_aceh_2",
+    "kingdom_id": "kgd_aceh",
+    "name": "Sultan Alauddin Riayat Syah al-Kahar",
+    "title": "Sultan Aceh",
+    "reign_start": 1537,
+    "reign_end": 1571,
+    "reign_display": "c. 1537–1571 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Menjalin hubungan diplomatik dan bantuan artileri militer dengan Kesultanan Utsmaniyah (Turki Ottoman) pada dekade 1560-an.",
+    "source_ids": [
+      "src_reid_1993",
+      "src_lombard_2006"
+    ],
+    "kingdomId": "kgd_aceh",
+    "startYear": 1537,
+    "endYear": 1571,
+    "notes": "Menjalin hubungan diplomatik dan bantuan artileri militer dengan Kesultanan Utsmaniyah (Turki Ottoman) pada dekade 1560-an.",
+    "sourceIds": [
+      "src_reid_1993",
+      "src_lombard_2006"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_aceh_3",
+    "kingdom_id": "kgd_aceh",
+    "name": "Sultan Iskandar Muda",
+    "title": "Sri Sultan Perkasa Alam Johan Berdaulat",
+    "reign_start": 1607,
+    "reign_end": 1636,
+    "reign_display": "1607–1636 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Membawa Aceh ke puncak kejayaan militer, ekonomi lada, dan keilmuan Islam di Asia Tenggara.",
+    "source_ids": [
+      "src_lombard_2006",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_aceh",
+    "startYear": 1607,
+    "endYear": 1636,
+    "notes": "Membawa Aceh ke puncak kejayaan militer, ekonomi lada, dan keilmuan Islam di Asia Tenggara.",
+    "sourceIds": [
+      "src_lombard_2006",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_aceh_4",
+    "kingdom_id": "kgd_aceh",
+    "name": "Sultan Iskandar Thani",
+    "title": "Sultan Aceh",
+    "reign_start": 1636,
+    "reign_end": 1641,
+    "reign_display": "1636–1641 M",
+    "certainty": "verified",
+    "order_index": 4,
+    "highlight_achievement": "Pelindung ulama besar Syekh Nuruddin ar-Raniri yang menyusun kitab ensiklopedis Bustanus Salatin.",
+    "source_ids": [
+      "src_lombard_2006",
+      "src_anri_perpusnas"
+    ],
+    "kingdomId": "kgd_aceh",
+    "startYear": 1636,
+    "endYear": 1641,
+    "notes": "Pelindung ulama besar Syekh Nuruddin ar-Raniri yang menyusun kitab ensiklopedis Bustanus Salatin.",
+    "sourceIds": [
+      "src_lombard_2006",
+      "src_anri_perpusnas"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_aceh_5",
+    "kingdom_id": "kgd_aceh",
+    "name": "Sultanah Tajul Alam Safiatuddin Syah",
+    "title": "Sultanah Aceh Darussalam",
+    "reign_start": 1641,
+    "reign_end": 1675,
+    "reign_display": "1641–1675 M",
+    "certainty": "verified",
+    "order_index": 5,
+    "highlight_achievement": "Putri Sultan Iskandar Muda; memimpin Aceh selama 34 tahun dalam stabilitas hukum dan mendukung karya ulama Syekh Abdurrauf as-Singkili.",
+    "source_ids": [
+      "src_lombard_2006",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_aceh",
+    "startYear": 1641,
+    "endYear": 1675,
+    "notes": "Putri Sultan Iskandar Muda; memimpin Aceh selama 34 tahun dalam stabilitas hukum dan mendukung karya ulama Syekh Abdurrauf as-Singkili.",
+    "sourceIds": [
+      "src_lombard_2006",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_aceh_6",
+    "kingdom_id": "kgd_aceh",
+    "name": "Sultan Muhammad Daud Syah",
+    "title": "Sultan Aceh Terakhir",
+    "reign_start": 1874,
+    "reign_end": 1903,
+    "reign_display": "1874–1903 M",
+    "certainty": "verified",
+    "order_index": 6,
+    "highlight_achievement": "Memimpin perlawanan kedaulatan Aceh dalam Perang Aceh melawan ekspedisi kolonial Hindia Belanda hingga 1903.",
+    "source_ids": [
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_aceh",
+    "startYear": 1874,
+    "endYear": 1903,
+    "notes": "Memimpin perlawanan kedaulatan Aceh dalam Perang Aceh melawan ekspedisi kolonial Hindia Belanda hingga 1903.",
+    "sourceIds": [
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_siak_1",
+    "kingdom_id": "kgd_siak",
+    "name": "Sultan Abdul Jalil Rahmat Syah (Raja Kecil)",
+    "title": "Sultan Siak I",
+    "reign_start": 1723,
+    "reign_end": 1746,
+    "reign_display": "1723–1746 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Mendirikan Kesultanan Siak di Buantan setelah konflik suksesi Kesultanan Johor.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "kingdomId": "kgd_siak",
+    "startYear": 1723,
+    "endYear": 1746,
+    "notes": "Mendirikan Kesultanan Siak di Buantan setelah konflik suksesi Kesultanan Johor.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_siak_2",
+    "kingdom_id": "kgd_siak",
+    "name": "Sultan Assyaidis Syarif Hasyim Abdul Jalil Saifuddin",
+    "title": "Sultan Siak XI",
+    "reign_start": 1889,
+    "reign_end": 1908,
+    "reign_display": "1889–1908 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Membangun Istana Asserayah Hasyimiah (Istana Matahari Timur) pada tahun 1889 dan memodernisasi tata kelola hukum Siak (Babul Qawaid).",
+    "source_ids": [
+      "src_kemendikbud_cagarbudaya",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_siak",
+    "startYear": 1889,
+    "endYear": 1908,
+    "notes": "Membangun Istana Asserayah Hasyimiah (Istana Matahari Timur) pada tahun 1889 dan memodernisasi tata kelola hukum Siak (Babul Qawaid).",
+    "sourceIds": [
+      "src_kemendikbud_cagarbudaya",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_siak_3",
+    "kingdom_id": "kgd_siak",
+    "name": "Sultan Syarif Kasim II",
+    "title": "Sultan Siak XII (Pahlawan Nasional)",
+    "reign_start": 1915,
+    "reign_end": 1945,
+    "reign_display": "1915–1945 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Menyatakan Kesultanan Siak bergabung dengan Republik Indonesia segera setelah Proklamasi 1945 dan menyumbangkan kekayaan istana untuk perjuangan.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "kingdomId": "kgd_siak",
+    "startYear": 1915,
+    "endYear": 1945,
+    "notes": "Menyatakan Kesultanan Siak bergabung dengan Republik Indonesia segera setelah Proklamasi 1945 dan menyumbangkan kekayaan istana untuk perjuangan.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_plb_1",
+    "kingdom_id": "kgd_palembang",
+    "name": "Sultan Abdurrahman (Kiai Mas Endi)",
+    "title": "Susuhunan Abdurrahman Khalifatul Mukminin Sayidul Imam",
+    "reign_start": 1659,
+    "reign_end": 1706,
+    "reign_display": "1659–1706 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Memproklamasikan Kesultanan Palembang Darussalam yang berdaulat penuh dan membangun Masjid Agung Palembang.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "kingdomId": "kgd_palembang",
+    "startYear": 1659,
+    "endYear": 1706,
+    "notes": "Memproklamasikan Kesultanan Palembang Darussalam yang berdaulat penuh dan membangun Masjid Agung Palembang.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_plb_2",
+    "kingdom_id": "kgd_palembang",
+    "name": "Sultan Mahmud Badaruddin I Jayo Wikramo",
+    "title": "Sultan Palembang IV",
+    "reign_start": 1724,
+    "reign_end": 1757,
+    "reign_display": "1724–1757 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Mengembangkan perdagangan timah Bangka dan lada, serta memperluas Masjid Agung Palembang (dimulai 1738, diresmikan 1748).",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "kingdomId": "kgd_palembang",
+    "startYear": 1724,
+    "endYear": 1757,
+    "notes": "Mengembangkan perdagangan timah Bangka dan lada, serta memperluas Masjid Agung Palembang (dimulai 1738, diresmikan 1748).",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_plb_3",
+    "kingdom_id": "kgd_palembang",
+    "name": "Sultan Mahmud Badaruddin II",
+    "title": "Sultan Palembang VIII (Pahlawan Nasional)",
+    "reign_start": 1804,
+    "reign_end": 1821,
+    "reign_display": "1804–1821 M (dengan jeda intervensi kolonial)",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Memimpin pertempuran besar mempertahankan Benteng Kuto Besak melawan ekspedisi Inggris dan Belanda (1819 & 1821) sebelum diasingkan ke Ternate.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "kingdomId": "kgd_palembang",
+    "startYear": 1804,
+    "endYear": 1821,
+    "notes": "Memimpin pertempuran besar mempertahankan Benteng Kuto Besak melawan ekspedisi Inggris dan Belanda (1819 & 1821) sebelum diasingkan ke Ternate.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_demak_1",
+    "kingdom_id": "kgd_demak",
+    "name": "Raden Patah (Jin Bun / Senapati Jimbun)",
+    "title": "Sultan Demak I",
+    "reign_start": 1478,
+    "reign_end": 1518,
+    "reign_display": "c. akhir abad ke-15 – 1518 M",
+    "certainty": "estimated",
+    "order_index": 1,
+    "highlight_achievement": "Pendiri Kesultanan Demak Bintoro dan pelopor pembangunan Masjid Agung Demak bersama Wali Songo.",
+    "source_ids": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_demak",
+    "startYear": 1478,
+    "endYear": 1518,
+    "notes": "Pendiri Kesultanan Demak Bintoro dan pelopor pembangunan Masjid Agung Demak bersama Wali Songo.",
+    "sourceIds": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Perkiraan"
+  },
+  {
+    "id": "rul_demak_2",
+    "kingdom_id": "kgd_demak",
+    "name": "Pati Unus (Pangeran Sabrang Lor)",
+    "title": "Sultan Demak II",
+    "reign_start": 1518,
+    "reign_end": 1521,
+    "reign_display": "1518–1521 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Memimpin armada laut gabungan Jawa menyeberang ke Malaka untuk menghadapi Portugis pada 1512–1513 dan 1521 (tercatat dalam Suma Oriental).",
+    "source_ids": [
+      "src_suma_oriental_1515",
+      "src_pigeaud_1976"
+    ],
+    "kingdomId": "kgd_demak",
+    "startYear": 1518,
+    "endYear": 1521,
+    "notes": "Memimpin armada laut gabungan Jawa menyeberang ke Malaka untuk menghadapi Portugis pada 1512–1513 dan 1521 (tercatat dalam Suma Oriental).",
+    "sourceIds": [
+      "src_suma_oriental_1515",
+      "src_pigeaud_1976"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_demak_3",
+    "kingdom_id": "kgd_demak",
+    "name": "Sultan Trenggana",
+    "title": "Sultan Ahmad Abdul Arifin",
+    "reign_start": 1521,
+    "reign_end": 1546,
+    "reign_display": "1521–1546 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Membawa Demak ke puncak ekspansi wilayah dari Sunda Kelapa/Banten di barat hingga Pasuruan di Jawa Timur.",
+    "source_ids": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_demak",
+    "startYear": 1521,
+    "endYear": 1546,
+    "notes": "Membawa Demak ke puncak ekspansi wilayah dari Sunda Kelapa/Banten di barat hingga Pasuruan di Jawa Timur.",
+    "sourceIds": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_demak_4",
+    "kingdom_id": "kgd_demak",
+    "name": "Sunan Prawoto",
+    "title": "Penguasa Demak IV",
+    "reign_start": 1546,
+    "reign_end": 1549,
+    "reign_display": "1546–c. 1549 M",
+    "certainty": "estimated",
+    "order_index": 4,
+    "highlight_achievement": "Putra Sultan Trenggana; masa pemerintahannya berakhir akibat konflik suksesi internal dengan Arya Penangsang dari Jipang.",
+    "source_ids": [
+      "src_pigeaud_1976"
+    ],
+    "kingdomId": "kgd_demak",
+    "startYear": 1546,
+    "endYear": 1549,
+    "notes": "Putra Sultan Trenggana; masa pemerintahannya berakhir akibat konflik suksesi internal dengan Arya Penangsang dari Jipang.",
+    "sourceIds": [
+      "src_pigeaud_1976"
+    ],
+    "verificationStatus": "Perkiraan"
+  },
+  {
+    "id": "rul_crb_1",
+    "kingdom_id": "kgd_cirebon",
+    "name": "Syarif Hidayatullah (Sunan Gunung Jati)",
+    "title": "Susuhunan Jati / Sultan Cirebon",
+    "reign_start": 1479,
+    "reign_end": 1568,
+    "reign_display": "c. 1479–1568 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Anggota Wali Songo yang mengukuhkan kedaulatan Kesultanan Cirebon dan memprakarsai Islamisasi Banten serta Sunda Kelapa.",
+    "source_ids": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_cirebon",
+    "startYear": 1479,
+    "endYear": 1568,
+    "notes": "Anggota Wali Songo yang mengukuhkan kedaulatan Kesultanan Cirebon dan memprakarsai Islamisasi Banten serta Sunda Kelapa.",
+    "sourceIds": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_crb_2",
+    "kingdom_id": "kgd_cirebon",
+    "name": "Panembahan Ratu I (Pangeran Emas Zainul Arifin)",
+    "title": "Panembahan Cirebon",
+    "reign_start": 1570,
+    "reign_end": 1649,
+    "reign_display": "c. 1570–1649 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Cicit Sunan Gunung Jati yang menjaga diplomasi damai Cirebon di antara kekuatan Mataram Islam dan VOC di Batavia.",
+    "source_ids": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_cirebon",
+    "startYear": 1570,
+    "endYear": 1649,
+    "notes": "Cicit Sunan Gunung Jati yang menjaga diplomasi damai Cirebon di antara kekuatan Mataram Islam dan VOC di Batavia.",
+    "sourceIds": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_crb_3",
+    "kingdom_id": "kgd_cirebon",
+    "name": "Panembahan Ratu II (Panembahan Girilaya)",
+    "title": "Panembahan Cirebon",
+    "reign_start": 1649,
+    "reign_end": 1667,
+    "reign_display": "1649–1667 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Penguasa tunggal terakhir Cirebon sebelum kesultanan terbagi menjadi Kasepuhan dan Kanoman pada 1677.",
+    "source_ids": [
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_cirebon",
+    "startYear": 1649,
+    "endYear": 1667,
+    "notes": "Penguasa tunggal terakhir Cirebon sebelum kesultanan terbagi menjadi Kasepuhan dan Kanoman pada 1677.",
+    "sourceIds": [
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_banten_1",
+    "kingdom_id": "kgd_banten",
+    "name": "Sultan Maulana Hasanuddin",
+    "title": "Panembahan Surosowan",
+    "reign_start": 1552,
+    "reign_end": 1570,
+    "reign_display": "1552–1570 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Membangun pusat pemerintahan Surosowan, Masjid Agung Banten, dan memperluas jaringan niaga lada ke Lampung.",
+    "source_ids": [
+      "src_guillot_1990",
+      "src_pigeaud_1976"
+    ],
+    "kingdomId": "kgd_banten",
+    "startYear": 1552,
+    "endYear": 1570,
+    "notes": "Membangun pusat pemerintahan Surosowan, Masjid Agung Banten, dan memperluas jaringan niaga lada ke Lampung.",
+    "sourceIds": [
+      "src_guillot_1990",
+      "src_pigeaud_1976"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_banten_2",
+    "kingdom_id": "kgd_banten",
+    "name": "Sultan Maulana Yusuf",
+    "title": "Panembahan Pakalangan Gede",
+    "reign_start": 1570,
+    "reign_end": 1580,
+    "reign_display": "1570–1580 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Mengembangkan irigasi pertanian sawah di Banten dan menaklukkan ibu kota Pakuan Pajajaran pada 1579.",
+    "source_ids": [
+      "src_guillot_1990",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_banten",
+    "startYear": 1570,
+    "endYear": 1580,
+    "notes": "Mengembangkan irigasi pertanian sawah di Banten dan menaklukkan ibu kota Pakuan Pajajaran pada 1579.",
+    "sourceIds": [
+      "src_guillot_1990",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_banten_3",
+    "kingdom_id": "kgd_banten",
+    "name": "Sultan Abu al-Mafakhir Mahmud Abdulkadir",
+    "title": "Sultan Banten IV",
+    "reign_start": 1596,
+    "reign_end": 1651,
+    "reign_display": "1596–1651 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Penguasa Banten pertama yang menerima gelar resmi \"Sultan\" dari Syarif Mekkah pada tahun 1638 M.",
+    "source_ids": [
+      "src_guillot_1990",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_banten",
+    "startYear": 1596,
+    "endYear": 1651,
+    "notes": "Penguasa Banten pertama yang menerima gelar resmi \"Sultan\" dari Syarif Mekkah pada tahun 1638 M.",
+    "sourceIds": [
+      "src_guillot_1990",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_banten_4",
+    "kingdom_id": "kgd_banten",
+    "name": "Sultan Ageng Tirtayasa (Abu al-Fath Abdul Fattah)",
+    "title": "Sultan Banten VI (Pahlawan Nasional)",
+    "reign_start": 1651,
+    "reign_end": 1683,
+    "reign_display": "1651–1683 M",
+    "certainty": "verified",
+    "order_index": 4,
+    "highlight_achievement": "Membawa Banten menjadi bandar perdagangan bebas internasional yang menyaingi monopoli VOC di Batavia.",
+    "source_ids": [
+      "src_guillot_1990",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_banten",
+    "startYear": 1651,
+    "endYear": 1683,
+    "notes": "Membawa Banten menjadi bandar perdagangan bebas internasional yang menyaingi monopoli VOC di Batavia.",
+    "sourceIds": [
+      "src_guillot_1990",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_mataram_1",
+    "kingdom_id": "kgd_mataram",
+    "name": "Panembahan Senopati (Danang Sutawijaya)",
+    "title": "Panembahan Senopati ing Alaga Sayidin Panatagama",
+    "reign_start": 1584,
+    "reign_end": 1601,
+    "reign_display": "c. 1584–1601 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Meletakkan dasar kedaulatan Mataram Islam di Kotagede dan menyatukan Jawa Tengah serta sebagian Jawa Timur.",
+    "source_ids": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_mataram",
+    "startYear": 1584,
+    "endYear": 1601,
+    "notes": "Meletakkan dasar kedaulatan Mataram Islam di Kotagede dan menyatukan Jawa Tengah serta sebagian Jawa Timur.",
+    "sourceIds": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_mataram_2",
+    "kingdom_id": "kgd_mataram",
+    "name": "Panembahan Hanyakrawati (Raden Mas Jolang)",
+    "title": "Susuhunan Anyakrawati (Panembahan Seda ing Krapyak)",
+    "reign_start": 1601,
+    "reign_end": 1613,
+    "reign_display": "1601–1613 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Memperkuat konsolidasi wilayah Mataram dan memulai penyusunan karya kronik sejarah istana.",
+    "source_ids": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_mataram",
+    "startYear": 1601,
+    "endYear": 1613,
+    "notes": "Memperkuat konsolidasi wilayah Mataram dan memulai penyusunan karya kronik sejarah istana.",
+    "sourceIds": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_mataram_3",
+    "kingdom_id": "kgd_mataram",
+    "name": "Sultan Agung Hanyakrakusuma",
+    "title": "Sultan Agung Senapati-ing-Ngalaga Abdurrahman",
+    "reign_start": 1613,
+    "reign_end": 1645,
+    "reign_display": "1613–1645 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Puncak kejayaan Mataram Islam; menyatukan hampir seluruh Pulau Jawa, melancarkan serangan ke VOC di Batavia (1628–1629), dan menetapkan Kalender Jawa-Islam (1633 M / 1555 Jawa).",
+    "source_ids": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_mataram",
+    "startYear": 1613,
+    "endYear": 1645,
+    "notes": "Puncak kejayaan Mataram Islam; menyatukan hampir seluruh Pulau Jawa, melancarkan serangan ke VOC di Batavia (1628–1629), dan menetapkan Kalender Jawa-Islam (1633 M / 1555 Jawa).",
+    "sourceIds": [
+      "src_pigeaud_1976",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_mataram_4",
+    "kingdom_id": "kgd_mataram",
+    "name": "Susuhunan Amangkurat I",
+    "title": "Susuhunan Mataram",
+    "reign_start": 1646,
+    "reign_end": 1677,
+    "reign_display": "1646–1677 M",
+    "certainty": "verified",
+    "order_index": 4,
+    "highlight_achievement": "Memindahkan keraton ke Plered; masa pemerintahannya berakhir akibat pemberontakan besar Trunajaya (1674–1677).",
+    "source_ids": [
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_mataram",
+    "startYear": 1646,
+    "endYear": 1677,
+    "notes": "Memindahkan keraton ke Plered; masa pemerintahannya berakhir akibat pemberontakan besar Trunajaya (1674–1677).",
+    "sourceIds": [
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_mataram_5",
+    "kingdom_id": "kgd_mataram",
+    "name": "Susuhunan Pakubuwono II",
+    "title": "Susuhunan Kartasura / Surakarta",
+    "reign_start": 1726,
+    "reign_end": 1749,
+    "reign_display": "1726–1749 M",
+    "certainty": "verified",
+    "order_index": 5,
+    "highlight_achievement": "Memindahkan ibu kota dari Kartasura ke Surakarta Hadiningrat (1745) pasca Geger Pecinan.",
+    "source_ids": [
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_mataram",
+    "startYear": 1726,
+    "endYear": 1749,
+    "notes": "Memindahkan ibu kota dari Kartasura ke Surakarta Hadiningrat (1745) pasca Geger Pecinan.",
+    "sourceIds": [
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_banjar_1",
+    "kingdom_id": "kgd_banjar",
+    "name": "Sultan Suriansyah (Pangeran Samudera)",
+    "title": "Sultan Banjar I",
+    "reign_start": 1526,
+    "reign_end": 1545,
+    "reign_display": "1526–c. 1545 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Raja Banjar pertama yang memeluk Islam (24 September 1526) dengan dukungan militer Kesultanan Demak dan membangun Masjid Sultan Suriansyah.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "kingdomId": "kgd_banjar",
+    "startYear": 1526,
+    "endYear": 1545,
+    "notes": "Raja Banjar pertama yang memeluk Islam (24 September 1526) dengan dukungan militer Kesultanan Demak dan membangun Masjid Sultan Suriansyah.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_banjar_2",
+    "kingdom_id": "kgd_banjar",
+    "name": "Sultan Mustain Billah (Marhum Panembahan)",
+    "title": "Sultan Banjar IV",
+    "reign_start": 1595,
+    "reign_end": 1642,
+    "reign_display": "c. 1595–1642 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Mengembangkan perdagangan lada internasional dan memindahkan pusat keraton ke Kayu Tangi / Martapura setelah serangan VOC pada 1612.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_reid_1993"
+    ],
+    "kingdomId": "kgd_banjar",
+    "startYear": 1595,
+    "endYear": 1642,
+    "notes": "Mengembangkan perdagangan lada internasional dan memindahkan pusat keraton ke Kayu Tangi / Martapura setelah serangan VOC pada 1612.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_reid_1993"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_banjar_3",
+    "kingdom_id": "kgd_banjar",
+    "name": "Sultan Tahmidullah II",
+    "title": "Sultan Banjar",
+    "reign_start": 1761,
+    "reign_end": 1801,
+    "reign_display": "1761–1801 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Pelindung ulama besar Syekh Muhammad Arsyad al-Banjari (pengarang kitab Sabilal Muhtadin) yang memperbarui hukum Islam di Kalimantan.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "kingdomId": "kgd_banjar",
+    "startYear": 1761,
+    "endYear": 1801,
+    "notes": "Pelindung ulama besar Syekh Muhammad Arsyad al-Banjari (pengarang kitab Sabilal Muhtadin) yang memperbarui hukum Islam di Kalimantan.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_banjar_4",
+    "kingdom_id": "kgd_banjar",
+    "name": "Pangeran Antasari",
+    "title": "Panembahan Amiruddin Khalifatul Mukminin",
+    "reign_start": 1859,
+    "reign_end": 1862,
+    "reign_display": "1859–1862 M",
+    "certainty": "verified",
+    "order_index": 4,
+    "highlight_achievement": "Memimpin Perang Banjar melawan intervensi kolonial Belanda sejak 1859 dan diangkat sebagai pemimpin tertinggi umat pada 1862.",
+    "source_ids": [
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_banjar",
+    "startYear": 1859,
+    "endYear": 1862,
+    "notes": "Memimpin Perang Banjar melawan intervensi kolonial Belanda sejak 1859 dan diangkat sebagai pemimpin tertinggi umat pada 1862.",
+    "sourceIds": [
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_ptk_1",
+    "kingdom_id": "kgd_pontianak",
+    "name": "Sultan Syarif Abdurrahman Alkadrie",
+    "title": "Sultan Pontianak I",
+    "reign_start": 1771,
+    "reign_end": 1808,
+    "reign_display": "1771–1808 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Mendirikan Kesultanan Pontianak, Keraton Kadriah, dan Masjid Jami Sultan Syarif Abdurrahman di pertemuan Sungai Kapuas dan Landak (23 Oktober 1771).",
+    "source_ids": [
+      "src_kemendikbud_cagarbudaya",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_pontianak",
+    "startYear": 1771,
+    "endYear": 1808,
+    "notes": "Mendirikan Kesultanan Pontianak, Keraton Kadriah, dan Masjid Jami Sultan Syarif Abdurrahman di pertemuan Sungai Kapuas dan Landak (23 Oktober 1771).",
+    "sourceIds": [
+      "src_kemendikbud_cagarbudaya",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_ptk_2",
+    "kingdom_id": "kgd_pontianak",
+    "name": "Sultan Syarif Kasim Alkadrie",
+    "title": "Sultan Pontianak II",
+    "reign_start": 1808,
+    "reign_end": 1819,
+    "reign_display": "1808–1819 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Mengonsolidasikan pemerintahan dan perdagangan pelabuhan Pontianak di Kalimantan Barat.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "kingdomId": "kgd_pontianak",
+    "startYear": 1808,
+    "endYear": 1819,
+    "notes": "Mengonsolidasikan pemerintahan dan perdagangan pelabuhan Pontianak di Kalimantan Barat.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_ptk_3",
+    "kingdom_id": "kgd_pontianak",
+    "name": "Sultan Syarif Hamid II (Sultan Hamid II)",
+    "title": "Sultan Pontianak VII",
+    "reign_start": 1945,
+    "reign_end": 1950,
+    "reign_display": "1945–1950 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Merancang lambang negara Garuda Pancasila yang diresmikan pada tahun 1950.",
+    "source_ids": [
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_pontianak",
+    "startYear": 1945,
+    "endYear": 1950,
+    "notes": "Merancang lambang negara Garuda Pancasila yang diresmikan pada tahun 1950.",
+    "sourceIds": [
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_kutai_1",
+    "kingdom_id": "kgd_kutai",
+    "name": "Raja Makota (Aji Raja Mahkota Mulia Alam)",
+    "title": "Raja Kutai Kartanegara VI",
+    "reign_start": 1545,
+    "reign_end": 1610,
+    "reign_display": "c. 1545–1610 M",
+    "certainty": "estimated",
+    "order_index": 1,
+    "highlight_achievement": "Penguasa Kutai Kartanegara pertama yang memeluk agama Islam sekitar tahun 1575 M melalui dakwah Tuan Tunggang Parangan (ulama asal Minangkabau).",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "kingdomId": "kgd_kutai",
+    "startYear": 1545,
+    "endYear": 1610,
+    "notes": "Penguasa Kutai Kartanegara pertama yang memeluk agama Islam sekitar tahun 1575 M melalui dakwah Tuan Tunggang Parangan (ulama asal Minangkabau).",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_anri_perpusnas"
+    ],
+    "verificationStatus": "Perkiraan"
+  },
+  {
+    "id": "rul_kutai_2",
+    "kingdom_id": "kgd_kutai",
+    "name": "Sultan Aji Muhammad Idris",
+    "title": "Sultan Kutai Kartanegara XIV",
+    "reign_start": 1735,
+    "reign_end": 1778,
+    "reign_display": "1735–1778 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Penguasa pertama yang menggunakan gelar \"Sultan\" dan gugur membantu Kesultanan Wajo melawan VOC di Sulawesi Selatan.",
+    "source_ids": [
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_kutai",
+    "startYear": 1735,
+    "endYear": 1778,
+    "notes": "Penguasa pertama yang menggunakan gelar \"Sultan\" dan gugur membantu Kesultanan Wajo melawan VOC di Sulawesi Selatan.",
+    "sourceIds": [
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_kutai_3",
+    "kingdom_id": "kgd_kutai",
+    "name": "Sultan Aji Muhammad Sulaiman",
+    "title": "Sultan Kutai Kartanegara XVII",
+    "reign_start": 1845,
+    "reign_end": 1899,
+    "reign_display": "1845–1899 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Membawa kemakmuran ekonomi Kutai melalui konsesi pertambangan batu bara dan minyak bumi di Kalimantan Timur.",
+    "source_ids": [
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_kutai",
+    "startYear": 1845,
+    "endYear": 1899,
+    "notes": "Membawa kemakmuran ekonomi Kutai melalui konsesi pertambangan batu bara dan minyak bumi di Kalimantan Timur.",
+    "sourceIds": [
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_gowa_1",
+    "kingdom_id": "kgd_gowa_tallo",
+    "name": "Karaeng Matoaya (Sultan Abdullah Awalul Islam)",
+    "title": "Raja Tallo VII & Mangkubumi Gowa",
+    "reign_start": 1593,
+    "reign_end": 1623,
+    "reign_display": "1593–1623 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Tokoh pertama di istana kembar Gowa-Tallo yang memeluk Islam pada 22 September 1605 dan menjadi arsitek kebangkitan maritim Makassar.",
+    "source_ids": [
+      "src_andaya_1981",
+      "src_reid_1993"
+    ],
+    "kingdomId": "kgd_gowa_tallo",
+    "startYear": 1593,
+    "endYear": 1623,
+    "notes": "Tokoh pertama di istana kembar Gowa-Tallo yang memeluk Islam pada 22 September 1605 dan menjadi arsitek kebangkitan maritim Makassar.",
+    "sourceIds": [
+      "src_andaya_1981",
+      "src_reid_1993"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_gowa_2",
+    "kingdom_id": "kgd_gowa_tallo",
+    "name": "Sultan Alauddin (I Mangnga'rangi Daeng Manrabbia)",
+    "title": "Raja Gowa XIV / Sultan Gowa I",
+    "reign_start": 1593,
+    "reign_end": 1639,
+    "reign_display": "1593–1639 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Menetapkan Islam sebagai agama resmi Kerajaan Gowa (1605), memimpin Islamisasi Sulawesi Selatan (1608–1611), dan mempertahankan prinsip laut bebas (Mare Liberum).",
+    "source_ids": [
+      "src_andaya_1981",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_gowa_tallo",
+    "startYear": 1593,
+    "endYear": 1639,
+    "notes": "Menetapkan Islam sebagai agama resmi Kerajaan Gowa (1605), memimpin Islamisasi Sulawesi Selatan (1608–1611), dan mempertahankan prinsip laut bebas (Mare Liberum).",
+    "sourceIds": [
+      "src_andaya_1981",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_gowa_3",
+    "kingdom_id": "kgd_gowa_tallo",
+    "name": "Sultan Malikussaid",
+    "title": "Raja Gowa XV",
+    "reign_start": 1639,
+    "reign_end": 1653,
+    "reign_display": "1639–1653 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Memperluas jaringan diplomasi Makassar dengan bangsa Eropa dan kerajaan-kerajaan di Nusantara Timur.",
+    "source_ids": [
+      "src_andaya_1981"
+    ],
+    "kingdomId": "kgd_gowa_tallo",
+    "startYear": 1639,
+    "endYear": 1653,
+    "notes": "Memperluas jaringan diplomasi Makassar dengan bangsa Eropa dan kerajaan-kerajaan di Nusantara Timur.",
+    "sourceIds": [
+      "src_andaya_1981"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_gowa_4",
+    "kingdom_id": "kgd_gowa_tallo",
+    "name": "Sultan Hasanuddin (I Mallombasi Muhammad Bakir)",
+    "title": "Raja Gowa XVI — Ayam Jantan dari Timur",
+    "reign_start": 1653,
+    "reign_end": 1669,
+    "reign_display": "1653–1669 M",
+    "certainty": "verified",
+    "order_index": 4,
+    "highlight_achievement": "Memimpin perlawanan heroik mempertahankan kedaulatan perdagangan Makassar dalam Perang Makassar (1666–1669) melawan VOC.",
+    "source_ids": [
+      "src_andaya_1981",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_gowa_tallo",
+    "startYear": 1653,
+    "endYear": 1669,
+    "notes": "Memimpin perlawanan heroik mempertahankan kedaulatan perdagangan Makassar dalam Perang Makassar (1666–1669) melawan VOC.",
+    "sourceIds": [
+      "src_andaya_1981",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_bone_1",
+    "kingdom_id": "kgd_bone",
+    "name": "La Tenripale (Sultan Adam)",
+    "title": "Arumpone / Raja Bone XII",
+    "reign_start": 1611,
+    "reign_end": 1631,
+    "reign_display": "1611–1631 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Raja Bone pertama yang secara resmi memeluk Islam pada tahun 1611 M.",
+    "source_ids": [
+      "src_andaya_1981",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_bone",
+    "startYear": 1611,
+    "endYear": 1631,
+    "notes": "Raja Bone pertama yang secara resmi memeluk Islam pada tahun 1611 M.",
+    "sourceIds": [
+      "src_andaya_1981",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_bone_2",
+    "kingdom_id": "kgd_bone",
+    "name": "Arung Palakka (La Tenritatta Sultan Saaduddin)",
+    "title": "Arumpone / Raja Bone XV",
+    "reign_start": 1672,
+    "reign_end": 1696,
+    "reign_display": "1672–1696 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Mengangkat Kesultanan Bone menjadi kekuatan politik paling dominan di Sulawesi Selatan pasca Perjanjianaya 1667.",
+    "source_ids": [
+      "src_andaya_1981",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_bone",
+    "startYear": 1672,
+    "endYear": 1696,
+    "notes": "Mengangkat Kesultanan Bone menjadi kekuatan politik paling dominan di Sulawesi Selatan pasca Perjanjianaya 1667.",
+    "sourceIds": [
+      "src_andaya_1981",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_buton_1",
+    "kingdom_id": "kgd_buton",
+    "name": "Sultan Murhum (Lakilaponto / Halu Oleo)",
+    "title": "Raja Buton VI & Sultan Buton I",
+    "reign_start": 1542,
+    "reign_end": 1584,
+    "reign_display": "1542–c. 1584 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Mengubah Kerajaan Buton menjadi Kesultanan Islam pada tahun 1542 M melalui dakwah Syekh Abdul Wahid.",
+    "source_ids": [
+      "src_kemendikbud_cagarbudaya",
+      "src_anri_perpusnas"
+    ],
+    "kingdomId": "kgd_buton",
+    "startYear": 1542,
+    "endYear": 1584,
+    "notes": "Mengubah Kerajaan Buton menjadi Kesultanan Islam pada tahun 1542 M melalui dakwah Syekh Abdul Wahid.",
+    "sourceIds": [
+      "src_kemendikbud_cagarbudaya",
+      "src_anri_perpusnas"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_buton_2",
+    "kingdom_id": "kgd_buton",
+    "name": "Sultan La Elangi (Dayanu Ikhsanuddin)",
+    "title": "Sultan Buton IV",
+    "reign_start": 1597,
+    "reign_end": 1631,
+    "reign_display": "c. 1597–1631 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Menetapkan undang-undang dasar kesultanan \"Martabat Tujuh\" dan memprakarsai pembangunan Benteng Keraton Wolio.",
+    "source_ids": [
+      "src_kemendikbud_cagarbudaya",
+      "src_anri_perpusnas"
+    ],
+    "kingdomId": "kgd_buton",
+    "startYear": 1597,
+    "endYear": 1631,
+    "notes": "Menetapkan undang-undang dasar kesultanan \"Martabat Tujuh\" dan memprakarsai pembangunan Benteng Keraton Wolio.",
+    "sourceIds": [
+      "src_kemendikbud_cagarbudaya",
+      "src_anri_perpusnas"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_ternate_1",
+    "kingdom_id": "kgd_ternate",
+    "name": "Sultan Zainal Abidin",
+    "title": "Sultan Ternate I (Pengganti gelar Kolano)",
+    "reign_start": 1486,
+    "reign_end": 1500,
+    "reign_display": "1486–1500 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Belajar ilmu agama Islam ke Giri (Gresik, Jawa Timur) dan resmi mengganti gelar penguasa dari \"Kolano\" menjadi \"Sultan\".",
+    "source_ids": [
+      "src_andaya_1993",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_ternate",
+    "startYear": 1486,
+    "endYear": 1500,
+    "notes": "Belajar ilmu agama Islam ke Giri (Gresik, Jawa Timur) dan resmi mengganti gelar penguasa dari \"Kolano\" menjadi \"Sultan\".",
+    "sourceIds": [
+      "src_andaya_1993",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_ternate_2",
+    "kingdom_id": "kgd_ternate",
+    "name": "Sultan Hairun Jamilu",
+    "title": "Sultan Ternate",
+    "reign_start": 1535,
+    "reign_end": 1570,
+    "reign_display": "1535–1570 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Memperkuat armada laut Ternate; wafat dibunuh secara licik oleh Portugis di Benteng Sao Paulo pada Februari 1570.",
+    "source_ids": [
+      "src_andaya_1993",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_ternate",
+    "startYear": 1535,
+    "endYear": 1570,
+    "notes": "Memperkuat armada laut Ternate; wafat dibunuh secara licik oleh Portugis di Benteng Sao Paulo pada Februari 1570.",
+    "sourceIds": [
+      "src_andaya_1993",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_ternate_3",
+    "kingdom_id": "kgd_ternate",
+    "name": "Sultan Baabullah Datu Syah",
+    "title": "Penguasa 72 Pulau Berpenghuni",
+    "reign_start": 1570,
+    "reign_end": 1583,
+    "reign_display": "1570–1583 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Mengepung dan mengusir Portugis dari Ternate (1575) serta memperluas pengaruh maritim dari Sulawesi Utara, Ambon, hingga pesisir Papua.",
+    "source_ids": [
+      "src_andaya_1993",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_ternate",
+    "startYear": 1570,
+    "endYear": 1583,
+    "notes": "Mengepung dan mengusir Portugis dari Ternate (1575) serta memperluas pengaruh maritim dari Sulawesi Utara, Ambon, hingga pesisir Papua.",
+    "sourceIds": [
+      "src_andaya_1993",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_tidore_1",
+    "kingdom_id": "kgd_tidore",
+    "name": "Sultan Ciri Leliatu (Sultan Jamaluddin)",
+    "title": "Sultan Tidore I",
+    "reign_start": 1495,
+    "reign_end": 1512,
+    "reign_display": "c. 1495–1512 M",
+    "certainty": "estimated",
+    "order_index": 1,
+    "highlight_achievement": "Penguasa Tidore pertama yang memeluk Islam dan memakai gelar Sultan Jamaluddin.",
+    "source_ids": [
+      "src_andaya_1993"
+    ],
+    "kingdomId": "kgd_tidore",
+    "startYear": 1495,
+    "endYear": 1512,
+    "notes": "Penguasa Tidore pertama yang memeluk Islam dan memakai gelar Sultan Jamaluddin.",
+    "sourceIds": [
+      "src_andaya_1993"
+    ],
+    "verificationStatus": "Perkiraan"
+  },
+  {
+    "id": "rul_tidore_2",
+    "kingdom_id": "kgd_tidore",
+    "name": "Sultan Mansur",
+    "title": "Sultan Tidore II",
+    "reign_start": 1512,
+    "reign_end": 1526,
+    "reign_display": "1512–1526 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Menerima ekspedisi kapal Trinidad dan Victoria (sisa armada Magellan-Elcano Spanyol) di Tidore pada November 1521.",
+    "source_ids": [
+      "src_andaya_1993"
+    ],
+    "kingdomId": "kgd_tidore",
+    "startYear": 1512,
+    "endYear": 1526,
+    "notes": "Menerima ekspedisi kapal Trinidad dan Victoria (sisa armada Magellan-Elcano Spanyol) di Tidore pada November 1521.",
+    "sourceIds": [
+      "src_andaya_1993"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_tidore_3",
+    "kingdom_id": "kgd_tidore",
+    "name": "Sultan Saifuddin",
+    "title": "Sultan Tidore",
+    "reign_start": 1657,
+    "reign_end": 1687,
+    "reign_display": "1657–1687 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Memperkuat jaringan birokrasi tradisional Tidore atas kepulauan Raja Ampat dan pesisir Papua (Tanah Papua).",
+    "source_ids": [
+      "src_andaya_1993"
+    ],
+    "kingdomId": "kgd_tidore",
+    "startYear": 1657,
+    "endYear": 1687,
+    "notes": "Memperkuat jaringan birokrasi tradisional Tidore atas kepulauan Raja Ampat dan pesisir Papua (Tanah Papua).",
+    "sourceIds": [
+      "src_andaya_1993"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_tidore_4",
+    "kingdom_id": "kgd_tidore",
+    "name": "Sultan Nuku Muhammad Amiruddin",
+    "title": "Sri Paduka Maha Tuan Sultan Saidul Jehad (Pahlawan Nasional)",
+    "reign_start": 1797,
+    "reign_end": 1805,
+    "reign_display": "1797–1805 M (perjuangan sejak 1780)",
+    "certainty": "verified",
+    "order_index": 4,
+    "highlight_achievement": "Memimpin aliansi armada Maluku dan Papua (Seram, Halmahera, Raja Ampat) hingga berhasil membebaskan Tidore dari kendali VOC pada 1797.",
+    "source_ids": [
+      "src_andaya_1993",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_tidore",
+    "startYear": 1797,
+    "endYear": 1805,
+    "notes": "Memimpin aliansi armada Maluku dan Papua (Seram, Halmahera, Raja Ampat) hingga berhasil membebaskan Tidore dari kendali VOC pada 1797.",
+    "sourceIds": [
+      "src_andaya_1993",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_bima_1",
+    "kingdom_id": "kgd_bima",
+    "name": "Sultan Abdul Kahir (La Kai)",
+    "title": "Sultan Bima I",
+    "reign_start": 1620,
+    "reign_end": 1640,
+    "reign_display": "1620–1640 M",
+    "certainty": "verified",
+    "order_index": 1,
+    "highlight_achievement": "Memeluk Islam pada 15 Rabiul Awal 1030 H (7 Februari 1621 M) di Sape dengan dukungan ulama utusan Kesultanan Gowa-Tallo.",
+    "source_ids": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "kingdomId": "kgd_bima",
+    "startYear": 1620,
+    "endYear": 1640,
+    "notes": "Memeluk Islam pada 15 Rabiul Awal 1030 H (7 Februari 1621 M) di Sape dengan dukungan ulama utusan Kesultanan Gowa-Tallo.",
+    "sourceIds": [
+      "src_ricklefs_2008",
+      "src_kemendikbud_cagarbudaya"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_bima_2",
+    "kingdom_id": "kgd_bima",
+    "name": "Sultan Abdul Khair Sirajuddin (Abi'l Khair Sirajuddin)",
+    "title": "Sultan Bima II",
+    "reign_start": 1640,
+    "reign_end": 1682,
+    "reign_display": "1640–1682 M",
+    "certainty": "verified",
+    "order_index": 2,
+    "highlight_achievement": "Sekutu setia Kesultanan Gowa-Tallo dan pelindung tradisi penulisan naskah sejarah istana Bima (Bo' Sangaji Kai).",
+    "source_ids": [
+      "src_andaya_1981",
+      "src_anri_perpusnas"
+    ],
+    "kingdomId": "kgd_bima",
+    "startYear": 1640,
+    "endYear": 1682,
+    "notes": "Sekutu setia Kesultanan Gowa-Tallo dan pelindung tradisi penulisan naskah sejarah istana Bima (Bo' Sangaji Kai).",
+    "sourceIds": [
+      "src_andaya_1981",
+      "src_anri_perpusnas"
+    ],
+    "verificationStatus": "Terverifikasi"
+  },
+  {
+    "id": "rul_bima_3",
+    "kingdom_id": "kgd_bima",
+    "name": "Sultan Muhammad Salahuddin",
+    "title": "Sultan Bima XIV",
+    "reign_start": 1915,
+    "reign_end": 1951,
+    "reign_display": "1915–1951 M",
+    "certainty": "verified",
+    "order_index": 3,
+    "highlight_achievement": "Mendirikan sekolah-sekolah Islam modern di Bima, menyelesaikan pembangunan Asi Mbojo (1927–1929), dan menyatakan integrasi ke NKRI pada 1945.",
+    "source_ids": [
+      "src_kemendikbud_cagarbudaya",
+      "src_ricklefs_2008"
+    ],
+    "kingdomId": "kgd_bima",
+    "startYear": 1915,
+    "endYear": 1951,
+    "notes": "Mendirikan sekolah-sekolah Islam modern di Bima, menyelesaikan pembangunan Asi Mbojo (1927–1929), dan menyatakan integrasi ke NKRI pada 1945.",
+    "sourceIds": [
+      "src_kemendikbud_cagarbudaya",
+      "src_ricklefs_2008"
+    ],
+    "verificationStatus": "Terverifikasi"
+  }
+]
