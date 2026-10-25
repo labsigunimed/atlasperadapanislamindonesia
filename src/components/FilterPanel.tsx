@@ -10,6 +10,7 @@ interface FilterPanelProps {
   setIsOpen: (open: boolean) => void;
   filteredKingdomsCount: number;
   filteredSitesCount: number;
+  onYearRangeSelect?: () => void;
 }
 
 const ALL_REGIONS: Region[] = [
@@ -23,11 +24,11 @@ const ALL_REGIONS: Region[] = [
 const ALL_SITE_TYPES: SiteType[] = ['mosque', 'palace', 'tomb', 'fortress'];
 
 const ERA_PRESETS: { label: string; range: [number, number] }[] = [
-  { label: 'Semua Periode (800 – 1950 M)', range: [800, 1950] },
+  { label: 'Semua Periode (840 – 1960 M)', range: [840, 1960] },
   { label: 'Abad XIII–XV (Pondasi Awal & Samudera Pasai)', range: [1200, 1500] },
   { label: 'Abad XVI (Kebangkitan Demak, Banten & Ternate)', range: [1500, 1600] },
   { label: 'Abad XVII (Puncak Kejayaan Mataram, Aceh & Gowa)', range: [1600, 1700] },
-  { label: 'Abad XVIII–XX (Ketahanan & Integrasi NKRI)', range: [1700, 1950] },
+  { label: 'Abad XVIII–XX (Ketahanan & Integrasi NKRI)', range: [1700, 1960] },
 ];
 
 export const FilterPanel: React.FC<FilterPanelProps> = ({
@@ -37,6 +38,7 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
   setIsOpen,
   filteredKingdomsCount,
   filteredSitesCount,
+  onYearRangeSelect,
 }) => {
   const toggleRegion = (region: Region) => {
     setFilter((prev) => {
@@ -71,9 +73,10 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
   };
 
   const resetAllFilters = () => {
+    if (onYearRangeSelect) onYearRangeSelect();
     setFilter({
       regions: [],
-      yearRange: [800, 1950],
+      yearRange: [840, 1960],
       siteTypes: [],
       certaintyLevels: [],
       searchQuery: '',
@@ -86,7 +89,7 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
     filter.regions.length +
     filter.siteTypes.length +
     filter.certaintyLevels.length +
-    (filter.yearRange[0] !== 800 || filter.yearRange[1] !== 1950 ? 1 : 0) +
+    (filter.yearRange[0] !== 840 || filter.yearRange[1] !== 1960 ? 1 : 0) +
     (filter.entityType && filter.entityType !== 'all' ? 1 : 0) +
     (filter.searchQuery ? 1 : 0);
 
@@ -204,7 +207,10 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
                   return (
                     <button
                       key={era.label}
-                      onClick={() => setFilter((prev) => ({ ...prev, yearRange: era.range }))}
+                      onClick={() => {
+                        if (onYearRangeSelect) onYearRangeSelect();
+                        setFilter((prev) => ({ ...prev, yearRange: era.range }));
+                      }}
                       className={`w-full text-left px-2.5 py-1.5 rounded text-[11px] transition-colors border ${
                         isSelected
                           ? 'bg-[#172B36] text-[#F4F0E6] border-[#172B36] font-medium'
@@ -229,13 +235,14 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
                     <label className="text-[10px] text-gray-500 block mb-1">Mulai Tahun</label>
                     <input
                       type="range"
-                      min="800"
+                      min="840"
                       max="1900"
-                      step="25"
+                      step="10"
                       value={filter.yearRange[0]}
                       onChange={(e) => {
                         const val = Number(e.target.value);
                         if (val <= filter.yearRange[1]) {
+                          if (onYearRangeSelect) onYearRangeSelect();
                           setFilter((prev) => ({ ...prev, yearRange: [val, prev.yearRange[1]] }));
                         }
                       }}
@@ -247,12 +254,13 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
                     <input
                       type="range"
                       min="1200"
-                      max="1950"
-                      step="25"
+                      max="1960"
+                      step="10"
                       value={filter.yearRange[1]}
                       onChange={(e) => {
                         const val = Number(e.target.value);
                         if (val >= filter.yearRange[0]) {
+                          if (onYearRangeSelect) onYearRangeSelect();
                           setFilter((prev) => ({ ...prev, yearRange: [prev.yearRange[0], val] }));
                         }
                       }}

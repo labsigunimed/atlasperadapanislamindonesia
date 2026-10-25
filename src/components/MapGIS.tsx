@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import { Layers, RotateCcw, AlertCircle, Crown } from 'lucide-react';
 import { Kingdom, HeritageSite, TerritoryFeature } from '../types/atlas';
-import { SITE_TYPE_LABELS } from '../utils/historyLogic';
+import { SITE_TYPE_LABELS, getActiveRulersInYear } from '../utils/historyLogic';
 import { CompassRose } from './CompassRose';
 
 interface MapGISProps {
@@ -274,13 +274,27 @@ export const MapGIS: React.FC<MapGISProps> = ({
         zIndexOffset: isSelected ? 2000 : 1000,
       });
 
+      const activeRulers =
+        activeTimeSeriesYear !== null
+          ? getActiveRulersInYear(kd.rulers || [], kd.id, activeTimeSeriesYear)
+          : [];
+
       marker.bindTooltip(
         `<div style="font-family:'Plus Jakarta Sans',sans-serif; text-align:center; padding:3px 6px;">
           <strong style="color:#172B36; font-size:12px;">${kd.name}</strong>
-          <div style="font-size:10px; color:#8e6d38; font-weight:600;">${kd.capital} (${kd.founded_year} – ${kd.ended_year || 'kini'} M)</div>
+          <div style="font-size:10px; color:#8e6d38; font-weight:600;">${kd.capital} &bull; Aktif: ${kd.founded_year}–${kd.ended_year || 'kini'} M</div>
+          ${
+            activeRulers.length > 0
+              ? `<div style="font-size:9.5px; color:#172B36; font-weight:700;">👑 Sultan (${activeTimeSeriesYear} M): ${activeRulers[0].name}</div>`
+              : ''
+          }
           ${
             isGoldenAge
-              ? '<div style="font-size:9.5px; color:#b45309; font-weight:700;">★ Sedang dalam Masa Kejayaan</div>'
+              ? '<div style="font-size:9.5px; color:#b45309; font-weight:700;">★ Sedang dalam Masa Kejayaan (' +
+                kd.golden_age_start +
+                '–' +
+                kd.golden_age_end +
+                ' M)</div>'
               : `<div style="font-size:9px; color:#426B60; font-weight:600;">Status: ${kd.verificationStatus}</div>`
           }
         </div>`,
@@ -350,6 +364,7 @@ export const MapGIS: React.FC<MapGISProps> = ({
       marker.bindTooltip(
         `<div style="font-family:'Plus Jakarta Sans',sans-serif; padding:2px 4px;">
           <strong style="color:#172B36; font-size:11px;">${site.name}</strong>
+          <div style="font-size:10px; color:#8e6d38; font-weight:700;">Didirikan: ${site.built_year} M</div>
           <div style="font-size:10px; color:#426B60; font-weight:600;">${typeLabel} &bull; ${site.verificationStatus}</div>
           <div style="font-size:9px; color:#666;">${site.modern_location}</div>
         </div>`,
@@ -393,15 +408,27 @@ export const MapGIS: React.FC<MapGISProps> = ({
 
       {/* Active Time-Series Floating Year Watermark Badge (Top Center of Map) */}
       {activeTimeSeriesYear !== null && (
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none hidden md:flex items-center gap-2.5 bg-[#172B36]/90 backdrop-blur-md text-[#F4F0E6] px-4 py-1.5 rounded-full shadow-xl border border-[#B58B4D]/60">
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none hidden md:flex items-center gap-2.5 bg-[#172B36]/92 backdrop-blur-md text-[#F4F0E6] px-4 py-1.5 rounded-full shadow-xl border border-[#B58B4D]/60">
           <Crown className="w-4 h-4 text-[#B58B4D]" />
           <span className="font-serif font-bold text-base text-[#B58B4D]">
             Tahun {activeTimeSeriesYear} M
           </span>
           <span className="text-gray-400">&bull;</span>
           <span className="text-xs font-medium text-emerald-300">
-            {kingdoms.length} Kesultanan Berdaulat
+            {kingdoms.length} Kesultanan
           </span>
+          <span className="text-gray-400">&bull;</span>
+          <span className="text-xs font-medium text-amber-200">
+            {sites.length} Situs
+          </span>
+          {territories.length > 0 && (
+            <>
+              <span className="text-gray-400">&bull;</span>
+              <span className="text-xs font-medium text-[#B58B4D]">
+                {territories.length} Zona Wilayah
+              </span>
+            </>
+          )}
         </div>
       )}
 

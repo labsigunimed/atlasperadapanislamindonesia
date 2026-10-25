@@ -3,8 +3,12 @@ import assert from 'node:assert/strict';
 import {
   isKingdomActiveInYear,
   isKingdomInYearRange,
+  isSiteActiveInYear,
+  isTerritoryActiveInYear,
+  getActiveRulersInYear,
   filterKingdoms,
   filterSites,
+  filterTerritories,
   formatReignYear,
   getAtlasStats,
 } from './historyLogic';
@@ -186,4 +190,99 @@ test('formatReignYear formats historical dates accurately', () => {
   assert.equal(formatReignYear(1267, 1297), '1267 — 1297 M');
   assert.equal(formatReignYear(1915, null), '1915 M — masa kini');
   assert.equal(formatReignYear(null, null), 'Tarikh tidak tercatat');
+});
+
+test('time-series synchronization: kingdoms, sites, territories, and rulers appear on their exact historical years', () => {
+  const baseFilter: FilterState = {
+    regions: [],
+    yearRange: [840, 1960],
+    siteTypes: [],
+    certaintyLevels: [],
+    searchQuery: '',
+    activeKingdomId: null,
+    entityType: 'all',
+  };
+
+  // 1. Every kingdom appears on its exact founded_year and not on founded_year - 1
+  for (const k of kingdomsData) {
+    assert.equal(
+      isKingdomActiveInYear(k, k.founded_year - 1),
+      false,
+      `${k.id} should not be active before ${k.founded_year}`
+    );
+    assert.equal(
+      isKingdomActiveInYear(k, k.founded_year),
+      true,
+      `${k.id} must be active on its founded_year ${k.founded_year}`
+    );
+    if (k.ended_year !== null) {
+      assert.equal(
+        isKingdomActiveInYear(k, k.ended_year),
+        true,
+        `${k.id} must be active on its ended_year ${k.ended_year}`
+      );
+      assert.equal(
+        isKingdomActiveInYear(k, k.ended_year + 1),
+        false,
+        `${k.id} must not be active after ${k.ended_year}`
+      );
+    }
+  }
+
+  // 2. Every site appears on its exact built_year and not on built_year - 1
+  for (const s of sitesData) {
+    assert.equal(
+      isSiteActiveInYear(s, s.built_year - 1),
+      false,
+      `Site ${s.id} should not appear before ${s.built_year}`
+    );
+    assert.equal(
+      isSiteActiveInYear(s, s.built_year),
+      true,
+      `Site ${s.id} must appear on its built_year ${s.built_year}`
+    );
+
+    const activeKdsAtBuiltYear = new Set(
+      kingdomsData.filter((k) => isKingdomActiveInYear(k, s.built_year)).map((k) => k.id)
+    );
+    const visibleAtBuiltYear = filterSites(sitesData, baseFilter, activeKdsAtBuiltYear, s.built_year);
+    assert.ok(
+      visibleAtBuiltYear.some((v) => v.id === s.id),
+      `Site ${s.id} must be visible in filterSites at its built_year ${s.built_year}`
+    );
+
+    const activeKdsBeforeBuiltYear = new Set(
+      kingdomsData.filter((k) => isKingdomActiveInYear(k, s.built_year - 1)).map((k) => k.id)
+    );
+    const visibleBeforeBuiltYear = filterSites(
+      sitesData,
+      baseFilter,
+      activeKdsBeforeBuiltYear,
+      s.built_year - 1
+    );
+    assert.equal(
+      visibleBeforeBuiltYear.some((v) => v.id === s.id),
+      false,
+      `Site ${s.id} must not be visible in filterSites at year ${s.built_year - 1}`
+    );
+  }
+
+  // 3. Every territory polygon appears only within [year_start, year_end]
+  for (const t of territoriesData) {
+    const { year_start, year_end, id } = t.properties;
+    assert.equal(isTerritoryActiveInYear(t, year_start - 1), false, `${id} inactive before ${year_start}`);
+    assert.equal(isTerritoryActiveInYear(t, year_start), true, `${id} active at ${year_start}`);
+    assert.equal(isTerritoryActiveInYear(t, year_end), true, `${id} active at ${year_end}`);
+    assert.equal(isTerritoryActiveInYear(t, year_end + 1), false, `${id} inactive after ${year_end}`);
+
+    const activeKdsAtStart = new Set(
+      kingdomsData.filter((k) => isKingdomActiveInYear(k, year_start)).map((k) => k.id)
+    );
+    const visibleTerr = filterTerritories(territoriesData, activeKdsAtStart, baseFilter, year_start);
+    assert.ok(visibleTerr.some((v) => v.properties.id === id));
+  }
+
+  // 4. Rulers synchronization check (e.g., Sultan Iskandar Muda in 1620)
+  const acehRulers1620 = getActiveRulersInYear(rulersData, 'kgd_aceh', 1620);
+  assert.ok(acehRulers1620.some((r) => r.name.includes('Iskandar Muda')));
 });

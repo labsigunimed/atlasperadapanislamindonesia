@@ -7,7 +7,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Header } from './components/Header';
 import { MapGIS } from './components/MapGIS';
 import { FilterPanel } from './components/FilterPanel';
-import { MapTimeSeriesBar } from './components/MapTimeSeriesBar';
+import { MapTimeSeriesBar, MIN_YEAR, MAX_YEAR } from './components/MapTimeSeriesBar';
 import { KingdomSummaryDrawer } from './components/KingdomSummaryDrawer';
 import { KingdomDetailModal } from './components/KingdomDetailModal';
 import { SiteDetailModal } from './components/SiteDetailModal';
@@ -26,8 +26,10 @@ import { Kingdom, HeritageSite, FilterState } from './types/atlas';
 import {
   filterKingdoms,
   filterSites,
+  filterTerritories,
   getAtlasStats,
   isKingdomActiveInYear,
+  isSiteActiveInYear,
 } from './utils/historyLogic';
 import { Compass, BookOpen, ShieldCheck } from 'lucide-react';
 
@@ -79,7 +81,7 @@ export default function App() {
   // Filter State
   const [filter, setFilter] = useState<FilterState>({
     regions: [],
-    yearRange: [800, 1950],
+    yearRange: [MIN_YEAR, MAX_YEAR],
     siteTypes: [],
     certaintyLevels: [],
     searchQuery: '',
@@ -91,7 +93,7 @@ export default function App() {
 
   // Interactive Time-Series & Auto-Play State on Map
   const [isTimeSeriesActive, setIsTimeSeriesActive] = useState<boolean>(false);
-  const [currentYear, setCurrentYear] = useState<number>(1550);
+  const [currentYear, setCurrentYear] = useState<number>(1267);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [playSpeed, setPlaySpeed] = useState<1 | 2 | 4>(1);
 
@@ -107,41 +109,88 @@ export default function App() {
     zoom?: number;
   } | null>(null);
 
-  // Base Filtered Kingdoms (before single-year time-series scrubber)
+  // Base Filtered Kingdoms (filtered by region, certainty, search, and yearRange)
   const baseFilteredKingdoms = useMemo(() => {
     return filterKingdoms(kingdomsData, filter);
   }, [filter]);
 
-  // Final Kingdoms shown on Map (filtered by currentYear if Time-Series mode is active)
+  // Final Kingdoms shown on Map (strictly synchronized with currentYear when Time-Series is active)
   const filteredKingdoms = useMemo(() => {
     if (!isTimeSeriesActive) return baseFilteredKingdoms;
     return baseFilteredKingdoms.filter((k) => isKingdomActiveInYear(k, currentYear));
   }, [baseFilteredKingdoms, isTimeSeriesActive, currentYear]);
 
-  const visibleKingdomIds = useMemo(() => {
-    return new Set(filteredKingdoms.map((k) => k.id));
-  }, [filteredKingdoms]);
+  // Active Kingdom IDs for synchronizing sites and territories
+  // Note: Even if entityType === 'site', we still compute which kingdoms are active in the current year/range
+  const activeKingdomIdsForTime = useMemo(() => {
+    const kds = filterKingdoms(kingdomsData, { ...filter, entityType: 'all' });
+    const timeFiltered = isTimeSeriesActive
+      ? kds.filter((k) => isKingdomActiveInYear(k, currentYear))
+      : kds;
+    return new Set(timeFiltered.map((k) => k.id));
+  }, [filter, isTimeSeriesActive, currentYear]);
 
+  // Final Heritage Sites shown on Map (strictly synchronized with site.built_year and active kingdoms)
   const filteredSites = useMemo(() => {
-    if (isTimeSeriesActive && visibleKingdomIds.size === 0) {
-      return [];
-    }
-    return filterSites(sitesData, filter, visibleKingdomIds);
-  }, [filter, visibleKingdomIds, isTimeSeriesActive]);
+    return filterSites(
+      sitesData,
+      filter,
+      activeKingdomIdsForTime,
+      isTimeSeriesActive ? currentYear : null
+    );
+  }, [filter, activeKingdomIdsForTime, isTimeSeriesActive, currentYear]);
 
+  // Final Territory Polygons shown on Map (strictly synchronized with territory year_start..year_end)
   const filteredTerritories = useMemo(() => {
-    return territoriesData.filter((t) => visibleKingdomIds.has(t.properties.kingdom_id));
-  }, [visibleKingdomIds]);
+    return filterTerritories(
+      territoriesData,
+      activeKingdomIdsForTime,
+      filter,
+      isTimeSeriesActive ? currentYear : null
+    );
+  }, [activeKingdomIdsForTime, filter, isTimeSeriesActive, currentYear]);
+
+  // Automatically close selectedKingdom drawer if Time-Series moves to a year where that kingdom is not active
+  useEffect(() => {
+    if (isTimeSeriesActive && selectedKingdom && !isKingdomActiveInYear(selectedKingdom, currentYear)) {
+      setSelectedKingdom(null);
+    }
+  }, [isTimeSeriesActive, currentYear, selectedKingdom]);
 
   // Overall Statistics from authentic database
   const stats = useMemo(() => {
     return getAtlasStats(kingdomsData, sitesData, territoriesData);
   }, []);
 
+  // Activate a specific single year on the Time-Series bar and synchronize filters
+  const handleActivateTimeSeriesYear = (year: number) => {
+    setIsTimeSeriesActive(true);
+    setCurrentYear(year);
+    setFilter((prev) => ({
+      ...prev,
+      yearRange: [MIN_YEAR, MAX_YEAR],
+      activeKingdomId: null,
+    }));
+  };
+
+  // Switch back to showing all eras (840–1960 M)
+  const handleShowAllEras = () => {
+    setIsPlaying(false);
+    setIsTimeSeriesActive(false);
+    setFilter((prev) => ({
+      ...prev,
+      yearRange: [MIN_YEAR, MAX_YEAR],
+      activeKingdomId: null,
+    }));
+  };
+
   // Handlers
   const handleSelectKingdom = (kingdom: Kingdom) => {
     setSelectedKingdom(kingdom);
-    setFilter((prev) => ({ ...prev, activeKingdomId: kingdom.id }));
+    // If Time-Series mode is active and the clicked kingdom isn't active in currentYear, jump to its founded_year
+    if (isTimeSeriesActive && !isKingdomActiveInYear(kingdom, currentYear)) {
+      setCurrentYear(kingdom.founded_year);
+    }
     setFocusLocation({ lat: kingdom.latitude, lng: kingdom.longitude, zoom: 7 });
   };
 
@@ -152,12 +201,18 @@ export default function App() {
   const handleViewSiteOnMap = (site: HeritageSite) => {
     setActiveTab('map');
     setSelectedSite(site);
+    if (isTimeSeriesActive && !isSiteActiveInYear(site, currentYear)) {
+      setCurrentYear(site.built_year);
+    }
     setFocusLocation({ lat: site.latitude, lng: site.longitude, zoom: 11 });
   };
 
   const handleFocusKingdomSites = (kingdom: Kingdom) => {
     const kingdomSites = sitesData.filter((s) => s.kingdom_ids.includes(kingdom.id));
     if (kingdomSites.length > 0) {
+      if (isTimeSeriesActive && currentYear < kingdomSites[0].built_year) {
+        setCurrentYear(kingdomSites[0].built_year);
+      }
       setFocusLocation({
         lat: kingdomSites[0].latitude,
         lng: kingdomSites[0].longitude,
@@ -169,11 +224,12 @@ export default function App() {
   const handleResetMap = () => {
     setIsPlaying(false);
     setIsTimeSeriesActive(false);
+    setCurrentYear(1267);
     setSelectedKingdom(null);
     setSelectedSite(null);
     setFilter({
       regions: [],
-      yearRange: [800, 1950],
+      yearRange: [MIN_YEAR, MAX_YEAR],
       siteTypes: [],
       certaintyLevels: [],
       searchQuery: '',
@@ -219,9 +275,13 @@ export default function App() {
                 </span>
               </div>
               <div className="flex items-center gap-2.5 text-[11px] font-medium text-[#B58B4D] shrink-0">
-                <span>Data Terkurasi: {stats.totalKingdoms} Kesultanan</span>
+                <span>
+                  Tampil di Peta: {filteredKingdoms.length}/{stats.totalKingdoms} Kesultanan
+                </span>
                 <span>&bull;</span>
-                <span>{stats.totalSites} Situs Peninggalan</span>
+                <span>
+                  {filteredSites.length}/{stats.totalSites} Situs Peninggalan
+                </span>
                 <span>&bull;</span>
                 <span>{sourcesData.length} Korpus Referensi</span>
               </div>
@@ -237,6 +297,10 @@ export default function App() {
                 setIsOpen={setIsFilterPanelOpen}
                 filteredKingdomsCount={filteredKingdoms.length}
                 filteredSitesCount={filteredSites.length}
+                onYearRangeSelect={() => {
+                  setIsPlaying(false);
+                  setIsTimeSeriesActive(false);
+                }}
               />
 
               {/* Leaflet WebGIS Map Component */}
@@ -260,7 +324,10 @@ export default function App() {
                   onOpenFullDetail={(kd) => setDeepDiveKingdom(kd)}
                   onFocusSites={handleFocusKingdomSites}
                   rulers={rulersData}
-                  sites={sitesData}
+                  sites={sitesData.filter((s) =>
+                    isTimeSeriesActive ? isSiteActiveInYear(s, currentYear) : true
+                  )}
+                  activeTimeSeriesYear={isTimeSeriesActive ? currentYear : null}
                 />
               )}
             </div>
@@ -275,8 +342,15 @@ export default function App() {
               setIsPlaying={setIsPlaying}
               playSpeed={playSpeed}
               setPlaySpeed={setPlaySpeed}
-              kingdoms={baseFilteredKingdoms}
+              activeKingdoms={filteredKingdoms}
+              activeSites={filteredSites}
+              activeTerritories={filteredTerritories}
+              allKingdoms={baseFilteredKingdoms}
+              allSites={sitesData}
               events={eventsData}
+              yearRange={filter.yearRange}
+              onActivateTimeSeriesYear={handleActivateTimeSeriesYear}
+              onShowAllEras={handleShowAllEras}
               onSelectKingdom={handleSelectKingdom}
             />
           </div>

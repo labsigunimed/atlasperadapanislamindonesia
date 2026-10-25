@@ -92,6 +92,7 @@ export interface HeritageSite {
   latitude: number;
   longitude: number;
   coordinates: Coordinates;
+  built_year: number;
   built_year_display: string;
   historicalPeriod: string;
   condition_status: string;

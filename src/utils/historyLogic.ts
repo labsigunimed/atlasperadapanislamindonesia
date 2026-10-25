@@ -1,4 +1,11 @@
-import { Kingdom, HeritageSite, FilterState, TerritoryFeature, SiteType } from '../types/atlas';
+import {
+  Kingdom,
+  HeritageSite,
+  FilterState,
+  TerritoryFeature,
+  SiteType,
+  Ruler,
+} from '../types/atlas';
 import { rulersData } from '../data/rulersData';
 import { sitesData } from '../data/sitesData';
 
@@ -7,18 +14,49 @@ export const SITE_TYPE_LABELS: Record<SiteType, string> = {
   palace: 'Keraton & Istana',
   tomb: 'Kompleks Makam',
   fortress: 'Benteng Pertahanan',
-  complex: 'Kompleks Situs'
+  complex: 'Kompleks Situs',
 };
 
 /**
  * Checks if a kingdom was politically or historically active during the specified year.
- * An empty ended year is treated as ongoing cultural/swapraja continuity up to 1950/2026.
+ * An empty ended year is treated as ongoing cultural/swapraja continuity up to 1960/2026.
  */
 export function isKingdomActiveInYear(kingdom: Kingdom, year: number): boolean {
   const start = kingdom.founded ?? kingdom.founded_year;
   if (start === null || start === undefined) return false;
   const end = kingdom.ended ?? kingdom.ended_year ?? 2026;
   return year >= start && year <= end;
+}
+
+/**
+ * Checks if a heritage site had been built by the specified year.
+ */
+export function isSiteActiveInYear(site: HeritageSite, year: number): boolean {
+  return year >= site.built_year;
+}
+
+/**
+ * Checks if a historical territory polygon was active in the specified year.
+ */
+export function isTerritoryActiveInYear(territory: TerritoryFeature, year: number): boolean {
+  return year >= territory.properties.year_start && year <= territory.properties.year_end;
+}
+
+/**
+ * Returns the ruler(s) / sultan(s) reigning in a given kingdom during the specified year.
+ */
+export function getActiveRulersInYear(
+  rulers: Ruler[],
+  kingdomId: string,
+  year: number
+): Ruler[] {
+  return rulers.filter(
+    (r) =>
+      r.kingdom_id === kingdomId &&
+      r.reign_start !== null &&
+      year >= r.reign_start &&
+      (r.reign_end === null || year <= r.reign_end)
+  );
 }
 
 /**
@@ -53,7 +91,10 @@ export function filterKingdoms(kingdoms: Kingdom[], filter: FilterState): Kingdo
     }
 
     // 3. Certainty filter (Terverifikasi / Perkiraan / Belum terverifikasi)
-    if (filter.certaintyLevels.length > 0 && !filter.certaintyLevels.includes(kd.founded_certainty)) {
+    if (
+      filter.certaintyLevels.length > 0 &&
+      !filter.certaintyLevels.includes(kd.founded_certainty)
+    ) {
       return false;
     }
 
@@ -107,12 +148,14 @@ export function filterKingdoms(kingdoms: Kingdom[], filter: FilterState): Kingdo
 }
 
 /**
- * Filters heritage sites based on entityType, site types, region, certainty, active kingdom, and search query.
+ * Filters heritage sites based on entityType, site types, region, certainty, active kingdom,
+ * chronological construction year (built_year), and search query.
  */
 export function filterSites(
   sites: HeritageSite[],
   filter: FilterState,
-  visibleKingdomIds?: Set<string>
+  visibleKingdomIds?: Set<string>,
+  activeTimeSeriesYear?: number | null
 ): HeritageSite[] {
   if (filter.entityType === 'kingdom') {
     return [];
@@ -134,19 +177,43 @@ export function filterSites(
       return false;
     }
 
-    // 4. Specific Kingdom filter or visible kingdoms
+    // 4. Chronological & Time-Series synchronization:
+    // A site only appears on or after its historical construction year (built_year).
+    if (activeTimeSeriesYear !== undefined && activeTimeSeriesYear !== null) {
+      if (!isSiteActiveInYear(site, activeTimeSeriesYear)) {
+        return false;
+      }
+    } else {
+      // In era range mode [minYear, maxYear], site must have been built by maxYear
+      if (site.built_year > filter.yearRange[1]) {
+        return false;
+      }
+    }
+
+    // 5. Specific Kingdom filter or visible kingdoms synchronization
     if (filter.activeKingdomId) {
       if (!site.kingdom_ids.includes(filter.activeKingdomId)) {
         return false;
       }
-    } else if (visibleKingdomIds && visibleKingdomIds.size > 0 && filter.searchQuery.trim().length === 0) {
+      if (
+        visibleKingdomIds !== undefined &&
+        filter.entityType !== 'site' &&
+        !site.kingdom_ids.some((id) => visibleKingdomIds.has(id))
+      ) {
+        return false;
+      }
+    } else if (
+      visibleKingdomIds !== undefined &&
+      filter.entityType !== 'site' &&
+      filter.searchQuery.trim().length === 0
+    ) {
       const matchesVisibleKingdom = site.kingdom_ids.some((id) => visibleKingdomIds.has(id));
       if (!matchesVisibleKingdom) {
         return false;
       }
     }
 
-    // 5. Search query (nama situs, lokasi, deskripsi, atau nama kerajaan/sultan terkait)
+    // 6. Search query (nama situs, lokasi, deskripsi, atau nama kerajaan/sultan terkait)
     if (filter.searchQuery.trim().length > 0) {
       const q = filter.searchQuery.toLowerCase().trim();
       const matchName = site.name.toLowerCase().includes(q);
@@ -163,6 +230,30 @@ export function filterSites(
     }
 
     return true;
+  });
+}
+
+/**
+ * Filters territory polygons so they only appear when their parent kingdom is visible
+ * AND the active year (or year range) matches the territory's historical period [year_start, year_end].
+ */
+export function filterTerritories(
+  territories: TerritoryFeature[],
+  visibleKingdomIds: Set<string>,
+  filter: FilterState,
+  activeTimeSeriesYear?: number | null
+): TerritoryFeature[] {
+  return territories.filter((t) => {
+    if (!visibleKingdomIds.has(t.properties.kingdom_id)) {
+      return false;
+    }
+    if (activeTimeSeriesYear !== undefined && activeTimeSeriesYear !== null) {
+      return isTerritoryActiveInYear(t, activeTimeSeriesYear);
+    }
+    return (
+      t.properties.year_start <= filter.yearRange[1] &&
+      t.properties.year_end >= filter.yearRange[0]
+    );
   });
 }
 

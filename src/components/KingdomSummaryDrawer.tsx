@@ -21,6 +21,7 @@ interface KingdomSummaryDrawerProps {
   onFocusSites: (kingdom: Kingdom) => void;
   rulers: Ruler[];
   sites: HeritageSite[];
+  activeTimeSeriesYear?: number | null;
 }
 
 export const KingdomSummaryDrawer: React.FC<KingdomSummaryDrawerProps> = ({
@@ -30,6 +31,7 @@ export const KingdomSummaryDrawer: React.FC<KingdomSummaryDrawerProps> = ({
   onFocusSites,
   rulers,
   sites,
+  activeTimeSeriesYear = null,
 }) => {
   if (!kingdom) return null;
 
@@ -186,24 +188,39 @@ export const KingdomSummaryDrawer: React.FC<KingdomSummaryDrawerProps> = ({
               <span className="text-[10px] text-gray-500">{kingdomRulers.length} Tokoh</span>
             </div>
             <div className="space-y-1.5">
-              {kingdomRulers.slice(0, 3).map((r) => (
-                <div key={r.id} className="p-2 bg-white/70 rounded border border-[#B58B4D]/25">
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="font-semibold text-[11px] text-[#172B36]">{r.name}</span>
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#eae3d2] text-[#172B36] font-medium shrink-0">
-                      {r.verificationStatus}
-                    </span>
+              {kingdomRulers.map((r) => {
+                const isReigningNow =
+                  activeTimeSeriesYear !== null &&
+                  r.reign_start !== null &&
+                  activeTimeSeriesYear >= r.reign_start &&
+                  (r.reign_end === null || activeTimeSeriesYear <= r.reign_end);
+                return (
+                  <div
+                    key={r.id}
+                    className={`p-2 rounded border ${
+                      isReigningNow
+                        ? 'bg-amber-50 border-[#B58B4D] ring-1 ring-[#B58B4D]'
+                        : 'bg-white/70 border-[#B58B4D]/25'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="font-semibold text-[11px] text-[#172B36]">{r.name}</span>
+                      {isReigningNow ? (
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#B58B4D] text-[#172B36] font-bold shrink-0">
+                          Aktif {activeTimeSeriesYear} M
+                        </span>
+                      ) : (
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#eae3d2] text-[#172B36] font-medium shrink-0">
+                          {r.verificationStatus}
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-[10px] text-[#8e6d38] font-medium">
+                      {r.reign_display} &bull; {r.title}
+                    </div>
                   </div>
-                  <div className="text-[10px] text-[#8e6d38] font-medium">
-                    {r.reign_display} &bull; {r.title}
-                  </div>
-                </div>
-              ))}
-              {kingdomRulers.length > 3 && (
-                <div className="text-[10px] text-gray-500 italic text-center">
-                  +{kingdomRulers.length - 3} sultan lainnya di halaman detail
-                </div>
-              )}
+                );
+              })}
             </div>
           </div>
         )}
@@ -237,6 +254,9 @@ export const KingdomSummaryDrawer: React.FC<KingdomSummaryDrawerProps> = ({
                   <div className="min-w-0 flex-1">
                     <div className="font-semibold text-[11px] text-[#172B36] truncate">
                       {site.name}
+                    </div>
+                    <div className="text-[10px] text-[#8e6d38] font-semibold">
+                      Didirikan: {site.built_year} M
                     </div>
                     <div className="text-[10px] text-gray-500 truncate">{site.modern_location}</div>
                   </div>
