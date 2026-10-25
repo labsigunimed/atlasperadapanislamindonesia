@@ -7,6 +7,9 @@ Aplikasi peta sejarah interaktif (*Modern Historical Digital Atlas*) untuk menel
 ## 1. Nama Proyek
 **Atlas Islam Nusantara — WebGIS Persebaran Kerajaan Islam di Indonesia**
 
+- **URL Publikasi GitHub Pages:** [https://labsigunimed.github.io/atlasperadapanislamindonesia/](https://labsigunimed.github.io/atlasperadapanislamindonesia/)
+- **Repository GitHub:** [https://github.com/labsigunimed/atlasperadapanislamindonesia](https://github.com/labsigunimed/atlasperadapanislamindonesia)
+
 ## 2. Deskripsi Singkat
 **Atlas Islam Nusantara** adalah aplikasi WebGIS berbasis web statis yang memadukan estetika atlas kartografi arsip Nusantara dengan teknologi Sistem Informasi Geografis (SIG/GIS) modern. Setiap informasi sejarah dilengkapi dengan rujukan akademik, bukti epigrafi, atau nomor registrasi Cagar Budaya Nasional serta indikator tingkat verifikasi sumber secara transparan.
 
@@ -178,21 +181,30 @@ Setiap data sejarah wajib diklasifikasikan ke dalam salah satu dari tiga tingkat
 - Jika menambahkan poligon di `src/data/territoriesData.ts`, wajib mencantumkan `historicalMapSource`, `cartographer`, `mapYear`, `reconstruction_method`, dan `uncertaintyNote`.
 
 ## 17. Cara Deployment ke GitHub Pages
-Proyek ini sudah dikonfigurasi dengan `.github/workflows/deploy.yml` dan `base: './'` di `vite.config.ts`.
-Langkah-langkah publikasi:
-1. Buat repository baru di GitHub.
-2. Hubungkan repository lokal dan *push* ke branch `main`:
+Proyek ini dikonfigurasi dengan `base: './'` di `vite.config.ts` dan dipublikasikan melalui branch **`gh-pages`** ke alamat:
+**https://labsigunimed.github.io/atlasperadapanislamindonesia/**
+
+Langkah-langkah memperbarui halaman GitHub Pages setelah Anda mengubah kode atau menambah data:
+1. Simpan dan *commit* perubahan Anda ke branch `main`:
    ```bash
-   git init
    git add .
-   git commit -m "Inisialisasi WebGIS Atlas Islam Nusantara"
-   git branch -M main
-   git remote add origin https://github.com/<username>/<nama-repo>.git
-   git push -u origin main
+   git commit -m "Memperbarui data sejarah"
+   git push origin main
    ```
-3. Buka halaman repository Anda di GitHub -> klik tab **Settings** -> pilih menu **Pages** di bilah kiri.
-4. Pada bagian **Build and deployment > Source**, ubah pilihan menjadi **GitHub Actions**.
-5. Buka tab **Actions** di GitHub untuk memantau jalannya workflow **Deploy Atlas Islam Nusantara ke GitHub Pages**. Setelah berstatus centang hijau, situs dapat diakses di `https://<username>.github.io/<nama-repo>/`.
+2. Bangun ulang folder `dist/` dan kirimkan ke branch `gh-pages`:
+   ```bash
+   bun run build
+   # Lalu publikasikan isi folder dist/ ke branch gh-pages:
+   cd dist
+   git init
+   git checkout -b gh-pages
+   git add -A
+   git commit -m "deploy: perbarui GitHub Pages"
+   git remote add origin https://github.com/labsigunimed/atlasperadapanislamindonesia.git
+   git push -f origin gh-pages
+   cd ..
+   ```
+3. Pada menu **Settings > Pages** di GitHub, pastikan **Source** diatur ke **Deploy from a branch** dan pilih branch **`gh-pages` / `(root)`**.
 
 ## 18. Pemecahan Masalah Umum (Troubleshooting)
 - **Peta terlihat abu-abu atau terpotong saat pertama kali dibuka:** Pastikan koneksi internet aktif agar ubin peta (*tiles*) OpenStreetMap dapat dimuat. Klik tombol **Reset Pandangan** atau ikon **Mata Angin** untuk memicu perhitungan ulang ukuran kontainer peta (`invalidateSize`).
