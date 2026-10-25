@@ -1,0 +1,220 @@
+import { TimelineEvent, CertaintyLevel, VerificationStatusLabel } from '../types/atlas';
+
+interface RawEvent {
+  id: string;
+  year: number;
+  year_display: string;
+  title: string;
+  description: string;
+  kingdom_ids: string[];
+  category: 'founding' | 'golden_age' | 'treaty_conflict' | 'cultural_milestone' | 'decline';
+  certainty: CertaintyLevel;
+  isEstimatedYear?: boolean;
+  source_ids: string[];
+}
+
+const certaintyToLabel = (c: CertaintyLevel): VerificationStatusLabel => {
+  if (c === 'verified') return 'Terverifikasi';
+  if (c === 'estimated') return 'Perkiraan';
+  return 'Belum terverifikasi';
+};
+
+const rawEvents: RawEvent[] = [
+  {
+    id: 'evt_840_perlak_claim',
+    year: 840,
+    year_display: '225 H / 840 M (Klaim Naskah Lokal)',
+    title: 'Klaim Tradisional Berdirinya Kesultanan Perlak (Peureulak)',
+    description: 'Naskah lokal Idharul Haq menyebut berdirinya Kesultanan Perlak pada 1 Muharram 225 H (840 M). Klaim tahun abad ke-9 ini berstatus belum terverifikasi karena ketiadaan bukti epigrafi/arkeologis sezaman; bukti historis terkuat Perlak baru tercatat saat kunjungan Marco Polo tahun 1292 M.',
+    kingdom_ids: ['kgd_perlak'],
+    category: 'founding',
+    certainty: 'unverified',
+    isEstimatedYear: true,
+    source_ids: ['src_bachtiar_pasai_epigraphy', 'src_ricklefs_2008']
+  },
+  {
+    id: 'evt_1292_marcopolo_perlak',
+    year: 1292,
+    year_display: '1292 M',
+    title: 'Kesaksian Marco Polo di Kerajaan Ferlec (Perlak) & Basman (Pasai)',
+    description: 'Musafir Venesia Marco Polo singgah di pesisir timur laut Sumatera selama lima bulan dan mencatat bahwa penduduk kota pelabuhan Ferlec (Perlak) telah memeluk agama Islam melalui interaksi intensif dengan pedagang Muslim.',
+    kingdom_ids: ['kgd_perlak', 'kgd_samudera_pasai'],
+    category: 'cultural_milestone',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_ricklefs_2008', 'src_bachtiar_pasai_epigraphy']
+  },
+  {
+    id: 'evt_1297_pasai_nisan',
+    year: 1297,
+    year_display: 'Ramadhan 696 H / 1297 M',
+    title: 'Wafatnya Sultan Malik as-Saleh (Bukti Epigrafi Samudera Pasai)',
+    description: 'Inskripsi batu nisan Sultan Malik as-Saleh di Aceh Utara menjadi tonggak epigrafi paling kokoh yang membuktikan keberadaan institusi kesultanan Islam di Sumatera.',
+    kingdom_ids: ['kgd_samudera_pasai'],
+    category: 'founding',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_bachtiar_pasai_epigraphy']
+  },
+  {
+    id: 'evt_1345_ibnbattuta',
+    year: 1345,
+    year_display: '1345–1346 M',
+    title: 'Kunjungan Musafir Ibn Battuta ke Istana Samudera Pasai',
+    description: 'Ibn Battuta mencatat kemakmuran pelabuhan Samudera Pasai di bawah Sultan Mahmud Malik az-Zahir serta tradisi diskusi ilmu fikih mazhab Syafi\'i di keraton.',
+    kingdom_ids: ['kgd_samudera_pasai'],
+    category: 'cultural_milestone',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_bachtiar_pasai_epigraphy', 'src_reid_1993']
+  },
+  {
+    id: 'evt_1479_demak_masjid',
+    year: 1479,
+    year_display: 'c. 1478–1479 M',
+    title: 'Berdirinya Kesultanan Demak, Cirebon & Pembangunan Masjid Agung Demak',
+    description: 'Raden Patah di Demak dan Syarif Hidayatullah (Sunan Gunung Jati) di Cirebon menegakkan pusat kekuasaan politik dan dakwah Islam di pesisir utara Pulau Jawa.',
+    kingdom_ids: ['kgd_demak', 'kgd_cirebon'],
+    category: 'founding',
+    certainty: 'estimated',
+    isEstimatedYear: true,
+    source_ids: ['src_pigeaud_1976', 'src_kemendikbud_cagarbudaya']
+  },
+  {
+    id: 'evt_1486_ternate_sultan',
+    year: 1486,
+    year_display: 'c. 1486 M',
+    title: 'Zainal Abidin Mengadopsi Gelar Sultan di Ternate',
+    description: 'Sekembalinya dari pusat pendidikan Islam Sunan Giri di Gresik, Zainal Abidin mengganti gelar Kolano menjadi Sultan dan melembagakan hukum Islam di Maluku Utara.',
+    kingdom_ids: ['kgd_ternate', 'kgd_tidore'],
+    category: 'cultural_milestone',
+    certainty: 'verified',
+    isEstimatedYear: true,
+    source_ids: ['src_andaya_1993']
+  },
+  {
+    id: 'evt_1526_banjar_banten',
+    year: 1526,
+    year_display: '1526–1527 M',
+    title: 'Islamisasi Kesultanan Banjar & Penguasaan Pelabuhan Banten-Sunda Kelapa',
+    description: 'Pangeran Samudera memeluk Islam dengan gelar Sultan Suriansyah di Kalimantan Selatan (1526), sementara gabungan Demak-Cirebon mengamankan pelabuhan Banten dan Sunda Kelapa (1527).',
+    kingdom_ids: ['kgd_banjar', 'kgd_demak', 'kgd_cirebon', 'kgd_banten'],
+    category: 'founding',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_pigeaud_1976', 'src_ricklefs_2008']
+  },
+  {
+    id: 'evt_1542_buton_sultanate',
+    year: 1542,
+    year_display: '948 H / 1542 M',
+    title: 'Transformasi Kerajaan Buton Menjadi Kesultanan di Bawah Sultan Murhum',
+    description: 'Lakilaponto dilantik menjadi Sultan Murhum Kaimuddin Khalifatul Khamis, menandai integrasi Sulawesi Tenggara ke dalam jaringan kesultanan Nusantara.',
+    kingdom_ids: ['kgd_buton'],
+    category: 'founding',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_kemendikbud_cagarbudaya']
+  },
+  {
+    id: 'evt_1575_baabullah_ternate',
+    year: 1575,
+    year_display: '1575 M',
+    title: 'Kemenangan Sultan Baabullah & Pengusiran Portugis dari Ternate',
+    description: 'Setelah pengepungan Benteng Sao Paulo selama lima tahun pasca wafatnya Sultan Hairun, Sultan Baabullah berhasil mengusir Portugis dan membawa Ternate ke puncak kejayaan.',
+    kingdom_ids: ['kgd_ternate'],
+    category: 'golden_age',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_andaya_1993', 'src_ricklefs_2008']
+  },
+  {
+    id: 'evt_1605_gowa_islam',
+    year: 1605,
+    year_display: '22 September 1605 M',
+    title: 'Kerajaan Kembar Gowa-Tallo Resmi Memeluk Agama Islam',
+    description: 'Raja Tallo Karaeng Matoaya dan Raja Gowa Sultan Alauddin memeluk Islam, disusul penyebaran Islam ke Bone (1611) dan Bima (1621).',
+    kingdom_ids: ['kgd_gowa_tallo', 'kgd_bone', 'kgd_bima'],
+    category: 'founding',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_andaya_1981']
+  },
+  {
+    id: 'evt_1613_sultan_agung_iskandar_muda',
+    year: 1613,
+    year_display: '1607–1645 M',
+    title: 'Era Keemasan Sultan Iskandar Muda di Aceh & Sultan Agung di Mataram',
+    description: 'Dua kesultanan terbesar di barat Nusantara mencapai puncak kekuatan militer, ekonomi, serta sintesis sastra dan kalender Islam-Nusantara.',
+    kingdom_ids: ['kgd_aceh', 'kgd_mataram'],
+    category: 'golden_age',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_lombard_2006', 'src_pigeaud_1976']
+  },
+  {
+    id: 'evt_1667_bongaya',
+    year: 1667,
+    year_display: '18 November 1667 M',
+    title: 'Perjanjianaya (Bongaya) & Pergeseran Hegemoni Sulawesi Selatan',
+    description: 'Perang Makassar berakhir dengan Perjanjianaya yang membatasi perdagangan maritim Gowa-Tallo dan mengukuhkan posisi Kesultanan Bone di bawah Arung Palakka.',
+    kingdom_ids: ['kgd_gowa_tallo', 'kgd_bone'],
+    category: 'treaty_conflict',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_andaya_1981', 'src_ricklefs_2008']
+  },
+  {
+    id: 'evt_1755_giyanti',
+    year: 1755,
+    year_display: '13 Februari 1755 M',
+    title: 'Perjanjian Giyanti (Palihan Nagari Mataram)',
+    description: 'Kesultanan Mataram dibagi secara administratif menjadi Kasunanan Surakarta Hadiningrat dan Kasultanan Ngayogyakarta Hadiningrat.',
+    kingdom_ids: ['kgd_mataram'],
+    category: 'treaty_conflict',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_ricklefs_2008']
+  },
+  {
+    id: 'evt_1771_pontianak_siak',
+    year: 1771,
+    year_display: '23 Oktober 1771 M',
+    title: 'Berdirinya Kesultanan Pontianak & Perkembangan Jalur Niaga Kalimantan-Riau',
+    description: 'Syarif Abdurrahman Alkadrie mendirikan Kesultanan Pontianak di muara Sungai Kapuas, memperkuat jaringan bandar Melayu-Islam bersama Siak dan Palembang.',
+    kingdom_ids: ['kgd_pontianak', 'kgd_siak', 'kgd_palembang'],
+    category: 'founding',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_ricklefs_2008', 'src_kemendikbud_cagarbudaya']
+  },
+  {
+    id: 'evt_1797_nuku_tidore',
+    year: 1797,
+    year_display: '12 April 1797 M',
+    title: 'Sultan Nuku Merebut Kembali Soasio Tidore',
+    description: 'Armada gabungan Maluku dan Raja Ampat (Papua) di bawah pimpinan Pangeran Nuku berhasil memulihkan kedaulatan Kesultanan Tidore.',
+    kingdom_ids: ['kgd_tidore'],
+    category: 'golden_age',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_andaya_1993', 'src_ricklefs_2008']
+  },
+  {
+    id: 'evt_1945_integrasi_nkri',
+    year: 1945,
+    year_display: '1945–1950 M',
+    title: 'Integrasi Kesultanan Nusantara ke dalam Negara Kesatuan Republik Indonesia',
+    description: 'Para sultan dari Siak, Yogyakarta, Surakarta, Cirebon, Pontianak, Kutai, Buton, Ternate, Tidore, dan Bima menyatakan dukungan dan bergabung dengan Republik Indonesia.',
+    kingdom_ids: ['kgd_siak', 'kgd_mataram', 'kgd_cirebon', 'kgd_pontianak', 'kgd_kutai', 'kgd_buton', 'kgd_ternate', 'kgd_tidore', 'kgd_bima'],
+    category: 'cultural_milestone',
+    certainty: 'verified',
+    isEstimatedYear: false,
+    source_ids: ['src_ricklefs_2008']
+  }
+];
+
+export const eventsData: TimelineEvent[] = rawEvents.map((e) => ({
+  ...e,
+  verificationStatus: certaintyToLabel(e.certainty)
+}));
