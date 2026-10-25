@@ -19,6 +19,11 @@
       "src_bachtiar_pasai_epigraphy",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_makam_malik_assaleh.jpg",
+    "imageCaption": "Kompleks nisan makam Sultan Malik as-Saleh (wafat Ramadhan 696 H / 1297 M) di Gampong Beuringen, Samudera, Aceh Utara.",
+    "imageAttribution": "Foto oleh Iqbalhafidh — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Makam_Sultan_Malik_As-Shalih_(Malikussaleh).jpg",
     "siteType": "tomb",
     "coordinates": {
       "lat": 5.1408,
@@ -33,8 +38,7 @@
       "src_bachtiar_pasai_epigraphy",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_makam_sultan_perlak",
@@ -70,8 +74,7 @@
       "src_bachtiar_pasai_epigraphy",
       "src_ricklefs_2008"
     ],
-    "verificationStatus": "Belum terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Belum terverifikasi"
   },
   {
     "id": "site_masjid_baiturrahman",
@@ -93,6 +96,11 @@
       "src_lombard_2006",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_masjid_baiturrahman.jpg",
+    "imageCaption": "Fasad utama dan kubah Masjid Raya Baiturrahman di pusat Kota Banda Aceh.",
+    "imageAttribution": "Foto oleh Felianiwiki — Wikimedia Commons",
+    "imageLicense": "CC BY 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Masjid_Raya_Baiturrahman_di_Banda_Aceh.jpg",
     "siteType": "mosque",
     "coordinates": {
       "lat": 5.5536,
@@ -107,8 +115,7 @@
       "src_lombard_2006",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_istana_siak",
@@ -130,6 +137,11 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
+    "imageUrl": "./images/atlas/site_istana_siak.jpg",
+    "imageCaption": "Bangunan utama Istana Asserayah Hasyimiah (Istana Matahari Timur) peninggalan Kesultanan Siak Sri Indrapura (1889 M).",
+    "imageAttribution": "Foto oleh Wagino 20100516 — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 3.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Istana_Kerajaan_Siak_(2).jpg",
     "siteType": "palace",
     "coordinates": {
       "lat": 0.795,
@@ -144,8 +156,7 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_kuto_besak_palembang",
@@ -167,6 +178,11 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
+    "imageUrl": "./images/atlas/site_kuto_besak_palembang.jpg",
+    "imageCaption": "Dinding pertahanan dan gerbang utama Benteng Kuto Besak di tepi Sungai Musi, Palembang.",
+    "imageAttribution": "Foto oleh Fitri Agung — Wikimedia Commons",
+    "imageLicense": "CC BY 2.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Benteng_Kuto_Besak.jpg",
     "siteType": "fortress",
     "coordinates": {
       "lat": -2.9914,
@@ -181,8 +197,7 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_masjid_agung_demak",
@@ -204,6 +219,11 @@
       "src_pigeaud_1976",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_masjid_agung_demak.jpg",
+    "imageCaption": "Masjid Agung Demak dengan atap tajug tumpang tiga khas arsitektur Islam Jawa awal abad ke-15 M.",
+    "imageAttribution": "Foto oleh Hastosuprayogo — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Masjid_Agung_Demak.jpg",
     "siteType": "mosque",
     "coordinates": {
       "lat": -6.8946,
@@ -218,8 +238,7 @@
       "src_pigeaud_1976",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_keraton_kasepuhan",
@@ -241,6 +260,11 @@
       "src_pigeaud_1976",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_keraton_kasepuhan.jpg",
+    "imageCaption": "Kawasan Siti Inggil dan gapura bata merah Keraton Kasepuhan Cirebon.",
+    "imageAttribution": "Foto oleh Mokhammad Misdianto — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 3.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Keraton_Kasepuhan,_Cirebon_-_panoramio.jpg",
     "siteType": "palace",
     "coordinates": {
       "lat": -6.7258,
@@ -255,8 +279,7 @@
       "src_pigeaud_1976",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_banten_lama",
@@ -278,6 +301,11 @@
       "src_guillot_1990",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_banten_lama.jpg",
+    "imageCaption": "Masjid Agung Banten dengan atap tumpang lima, bangunan Tiyamah, dan menara mercusuar abad ke-16.",
+    "imageAttribution": "Foto oleh Arif Permana Putra — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Masjid_Agung_Banten_Tampak_Depan.jpg",
     "siteType": "mosque",
     "coordinates": {
       "lat": -6.0361,
@@ -292,8 +320,7 @@
       "src_guillot_1990",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_kotagede_imogiri",
@@ -315,6 +342,11 @@
       "src_pigeaud_1976",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_kotagede_imogiri.jpg",
+    "imageCaption": "Bangunan utama Masjid Gedhe Mataram Kotagede dengan arsitektur limasan-tajug Jawa dan gapura Paduraksa.",
+    "imageAttribution": "Foto oleh Arry Gunawan — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Masjid_Gedhe_Mataram_Kotagede.jpg",
     "siteType": "mosque",
     "coordinates": {
       "lat": -7.8294,
@@ -329,8 +361,7 @@
       "src_pigeaud_1976",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_masjid_suriansyah",
@@ -352,6 +383,11 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
+    "imageUrl": "./images/atlas/site_masjid_suriansyah.jpg",
+    "imageCaption": "Masjid Sultan Suriansyah berkonstruksi kayu ulin dan beratap tumpang tiga di Kuin Utara, Banjarmasin.",
+    "imageAttribution": "Dokumentasi Arsip Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Masjid_Sultan_Suriansyah_Sebelum_Direnovasi.jpg",
     "siteType": "mosque",
     "coordinates": {
       "lat": -3.2942,
@@ -366,8 +402,7 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_keraton_kadriah",
@@ -389,6 +424,11 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
+    "imageUrl": "./images/atlas/site_keraton_kadriah.jpg",
+    "imageCaption": "Fasad Keraton Kadriah Kesultanan Pontianak yang dibangun dengan kayu belian (ulin) pada 1771 M.",
+    "imageAttribution": "Foto oleh Zhilal Darma — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Keraton_Kadariah_01.jpg",
     "siteType": "palace",
     "coordinates": {
       "lat": -0.0258,
@@ -403,8 +443,7 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_kedaton_kutai",
@@ -426,6 +465,11 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
+    "imageUrl": "./images/atlas/site_kedaton_kutai.jpg",
+    "imageCaption": "Gedung eks Keraton Kesultanan Kutai Kartanegara ing Martadipura (kini Museum Mulawarman) di Tenggarong.",
+    "imageAttribution": "Foto oleh Ezagren — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Museum_Mulawarman.jpg",
     "siteType": "palace",
     "coordinates": {
       "lat": -0.4135,
@@ -440,8 +484,7 @@
       "src_kemendikbud_cagarbudaya",
       "src_ricklefs_2008"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_somba_opu_katangka",
@@ -463,6 +506,11 @@
       "src_andaya_1981",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_somba_opu_katangka.jpg",
+    "imageCaption": "Struktur bastion dan tembok bata merah Benteng Somba Opu, pusat pertahanan maritim Kesultanan Gowa-Tallo.",
+    "imageAttribution": "Foto oleh Si Gam — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Benteng_Somba_Opu.jpg",
     "siteType": "fortress",
     "coordinates": {
       "lat": -5.1903,
@@ -477,8 +525,7 @@
       "src_andaya_1981",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_bola_soba_bone",
@@ -500,6 +547,11 @@
       "src_andaya_1981",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_bola_soba_bone.jpg",
+    "imageCaption": "Dokumentasi arsip historis Istana Raja/Ratu Bone (Saoraja Bone) dengan atap timpa laja bertingkat di Sulawesi Selatan.",
+    "imageAttribution": "Koleksi Tropenmuseum (TMnr 60015648) — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 3.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:COLLECTIE_TROPENMUSEUM_Paleis_van_de_vorstin_van_Bone_op_Celebes_TMnr_60015648.jpg",
     "siteType": "palace",
     "coordinates": {
       "lat": -4.5386,
@@ -514,8 +566,7 @@
       "src_andaya_1981",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_benteng_wolio",
@@ -537,6 +588,11 @@
       "src_kemendikbud_cagarbudaya",
       "src_anri_perpusnas"
     ],
+    "imageUrl": "./images/atlas/site_benteng_wolio.jpg",
+    "imageCaption": "Tembok batu karang dan bastion Benteng Keraton Buton (Benteng Wolio) di Kota Baubau, Sulawesi Tenggara.",
+    "imageAttribution": "Foto oleh Marwan Mohamad — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Sisi_luar_tembok_Benteng_Keraton_Buton.jpg",
     "siteType": "fortress",
     "coordinates": {
       "lat": -5.4744,
@@ -551,8 +607,7 @@
       "src_kemendikbud_cagarbudaya",
       "src_anri_perpusnas"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_kadato_kie_ternate",
@@ -574,6 +629,11 @@
       "src_andaya_1993",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_kadato_kie_ternate.jpg",
+    "imageCaption": "Kedaton Kesultanan Ternate (Kadato Kie) di kaki Gunung Gamalama, Kota Ternate.",
+    "imageAttribution": "Foto oleh Ana Ainina — Wikimedia Commons",
+    "imageLicense": "CC BY 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Museum_Sultan_Iskandar_Muhammad_Djabir_Sjah_di_Ternate.jpg",
     "siteType": "palace",
     "coordinates": {
       "lat": 0.8011,
@@ -588,8 +648,7 @@
       "src_andaya_1993",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_kadato_kie_tidore",
@@ -611,6 +670,11 @@
       "src_andaya_1993",
       "src_kemendikbud_cagarbudaya"
     ],
+    "imageUrl": "./images/atlas/site_kadato_kie_tidore.jpg",
+    "imageCaption": "Benteng Tahula di bukit karang Soasio, saksi sejarah pertahanan maritim Kesultanan Tidore.",
+    "imageAttribution": "Foto oleh Ana Ainina — Wikimedia Commons",
+    "imageLicense": "CC BY 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Benteng_Tahula_di_Tidore_1.jpg",
     "siteType": "palace",
     "coordinates": {
       "lat": 0.6594,
@@ -625,8 +689,7 @@
       "src_andaya_1993",
       "src_kemendikbud_cagarbudaya"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   },
   {
     "id": "site_masjid_wapauwe",
@@ -648,6 +711,11 @@
       "src_kemendikbud_cagarbudaya",
       "src_andaya_1993"
     ],
+    "imageUrl": "./images/atlas/site_masjid_wapauwe.jpg",
+    "imageCaption": "Masjid Tua Wapauwe di Desa Kaitetu, Leihitu, Pulau Ambon — konstruksi kayu dan atap rumbia tradisional tanpa paku besi.",
+    "imageAttribution": "Foto oleh Si Gam — Wikimedia Commons",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Masjid_Tua_Wapauwe_Kaitetu.jpg",
     "siteType": "mosque",
     "coordinates": {
       "lat": -3.5829,
@@ -662,8 +730,7 @@
       "src_kemendikbud_cagarbudaya",
       "src_andaya_1993"
     ],
-    "verificationStatus": "Perkiraan",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Perkiraan"
   },
   {
     "id": "site_asi_mbojo_bima",
@@ -685,6 +752,11 @@
       "src_kemendikbud_cagarbudaya",
       "src_anri_perpusnas"
     ],
+    "imageUrl": "./images/atlas/site_asi_mbojo_bima.jpg",
+    "imageCaption": "Istana Kesultanan Bima (Asi Mbojo) di Kota Bima, Pulau Sumbawa, Nusa Tenggara Barat.",
+    "imageAttribution": "Domain Publik — Wikimedia Commons",
+    "imageLicense": "Public Domain",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File:Museum_Asi_Mbojo_01.jpg",
     "siteType": "palace",
     "coordinates": {
       "lat": -8.4547,
@@ -699,7 +771,6 @@
       "src_kemendikbud_cagarbudaya",
       "src_anri_perpusnas"
     ],
-    "verificationStatus": "Terverifikasi",
-    "imageAttribution": "Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI"
+    "verificationStatus": "Terverifikasi"
   }
 ]

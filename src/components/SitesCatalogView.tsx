@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { Landmark, MapPin, LayoutGrid, List, Search, ShieldCheck, Calendar } from 'lucide-react';
+import {
+  Landmark,
+  MapPin,
+  LayoutGrid,
+  List,
+  Search,
+  ShieldCheck,
+  Calendar,
+  Camera,
+} from 'lucide-react';
 import { HeritageSite, Kingdom, SiteType } from '../types/atlas';
 import { SITE_TYPE_LABELS } from '../utils/historyLogic';
 
@@ -169,6 +178,30 @@ export const SitesCatalogView: React.FC<SitesCatalogViewProps> = ({
               key={site.id}
               className="bg-white rounded-2xl border border-[#B58B4D]/30 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow group"
             >
+              {/* Verified Documentary Photo (if available) */}
+              {site.imageUrl && (
+                <div
+                  onClick={() => onOpenSiteDetail(site)}
+                  className="relative h-48 w-full bg-[#172B36] overflow-hidden cursor-pointer border-b border-[#B58B4D]/30"
+                >
+                  <img
+                    src={site.imageUrl}
+                    alt={site.imageCaption || site.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {site.imageLicense && (
+                    <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/70 text-[#F4F0E6] text-[10px] font-medium backdrop-blur-xs border border-white/15">
+                      {site.imageLicense}
+                    </span>
+                  )}
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent px-3 py-1.5 flex items-center gap-1.5 text-[10px] text-[#F4F0E6]/90">
+                    <Camera className="w-3 h-3 text-[#B58B4D] shrink-0" />
+                    <span className="truncate">{site.imageAttribution}</span>
+                  </div>
+                </div>
+              )}
+
               {/* Archival Architectural Card Banner */}
               <div className="relative p-4 bg-gradient-to-br from-[#172B36] to-[#233f4d] text-[#F4F0E6] border-b border-[#B58B4D]/40">
                 <div className="flex items-center justify-between gap-2 mb-2">
@@ -235,9 +268,18 @@ export const SitesCatalogView: React.FC<SitesCatalogViewProps> = ({
               className="p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:bg-[#F4F0E6]/50 transition-colors"
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#172B36] text-[#B58B4D] flex items-center justify-center text-2xl shrink-0 border border-[#B58B4D]/40">
-                  {SITE_TYPE_EMOJIS[site.type] || '🕌'}
-                </div>
+                {site.imageUrl ? (
+                  <img
+                    src={site.imageUrl}
+                    alt={site.name}
+                    loading="lazy"
+                    className="w-20 h-16 rounded-xl object-cover shrink-0 border border-[#B58B4D]/40 bg-[#172B36]"
+                  />
+                ) : (
+                  <div className="w-20 h-16 rounded-xl bg-[#172B36] text-[#B58B4D] flex items-center justify-center text-2xl shrink-0 border border-[#B58B4D]/40">
+                    {SITE_TYPE_EMOJIS[site.type] || '🕌'}
+                  </div>
+                )}
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#426B60] text-white">

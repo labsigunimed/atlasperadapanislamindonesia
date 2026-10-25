@@ -10,6 +10,7 @@ import {
   Copy,
   Check,
   Sparkles,
+  Camera,
 } from 'lucide-react';
 import { HeritageSite, Kingdom, HistoricalSource } from '../types/atlas';
 import { SITE_TYPE_LABELS } from '../utils/historyLogic';
@@ -100,6 +101,46 @@ export const SiteDetailModal: React.FC<SiteDetailModalProps> = ({
 
         {/* Content Body */}
         <div className="p-6 space-y-5 overflow-y-auto max-h-[calc(92vh-250px)] text-xs sm:text-sm">
+          {/* Verified Documentary / Archival Photograph (if available) */}
+          {site.imageUrl && (
+            <figure className="bg-[#172B36] rounded-xl overflow-hidden border-2 border-[#B58B4D]/50 shadow-md">
+              <div className="relative h-56 sm:h-64 w-full bg-[#0f1e26] overflow-hidden">
+                <img
+                  src={site.imageUrl}
+                  alt={site.imageCaption || site.name}
+                  className="w-full h-full object-cover object-center"
+                />
+                {site.imageLicense && (
+                  <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/75 text-[#F4F0E6] text-[10px] font-semibold backdrop-blur-xs border border-[#B58B4D]/40">
+                    Lisensi: {site.imageLicense}
+                  </span>
+                )}
+              </div>
+              <figcaption className="p-3.5 bg-[#172B36] text-[#F4F0E6] border-t border-[#B58B4D]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                <div className="space-y-0.5">
+                  {site.imageCaption && (
+                    <p className="font-medium text-[#F4F0E6] leading-snug">{site.imageCaption}</p>
+                  )}
+                  <p className="text-[11px] text-[#B58B4D] flex items-center gap-1.5">
+                    <Camera className="w-3.5 h-3.5 shrink-0" />
+                    <span>{site.imageAttribution}</span>
+                  </p>
+                </div>
+                {site.imageSourceUrl && (
+                  <a
+                    href={site.imageSourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-lg bg-[#B58B4D]/20 hover:bg-[#B58B4D]/30 text-[#B58B4D] border border-[#B58B4D]/40 text-[11px] font-semibold flex items-center gap-1.5 shrink-0 self-start sm:self-center transition-colors"
+                  >
+                    <span>Sumber Wikimedia Commons</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+              </figcaption>
+            </figure>
+          )}
+
           {/* Location & Period Bar */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-white p-3.5 rounded-xl border border-[#B58B4D]/30">
             <div className="space-y-1">

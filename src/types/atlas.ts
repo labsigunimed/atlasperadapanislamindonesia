@@ -102,7 +102,10 @@ export interface HeritageSite {
   source_ids: string[];
   sourceIds: string[];
   imageUrl?: string;
+  imageCaption?: string;
   imageAttribution?: string;
+  imageLicense?: string;
+  imageSourceUrl?: string;
 }
 
 export interface TerritoryFeature {
@@ -189,6 +192,11 @@ export interface Kingdom {
   sourceIds: string[];
   disputedClaims: DisputedClaim[];
   verificationStatus: VerificationStatusLabel;
+  imageUrl?: string;
+  imageCaption?: string;
+  imageAttribution?: string;
+  imageLicense?: string;
+  imageSourceUrl?: string;
 }
 
 export interface FilterState {

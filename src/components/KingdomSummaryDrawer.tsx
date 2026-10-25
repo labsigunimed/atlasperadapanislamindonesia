@@ -1,5 +1,16 @@
 import React from 'react';
-import { X, Calendar, MapPin, Crown, Landmark, ShieldCheck, ArrowRight, AlertTriangle } from 'lucide-react';
+import {
+  X,
+  Calendar,
+  MapPin,
+  Crown,
+  Landmark,
+  ShieldCheck,
+  ArrowRight,
+  AlertTriangle,
+  Camera,
+  ExternalLink,
+} from 'lucide-react';
 import { Kingdom, Ruler, HeritageSite } from '../types/atlas';
 import { SITE_TYPE_LABELS } from '../utils/historyLogic';
 
@@ -35,10 +46,10 @@ export const KingdomSummaryDrawer: React.FC<KingdomSummaryDrawerProps> = ({
   return (
     <aside
       aria-label={`Ringkasan ${kingdom.name}`}
-      className="absolute top-4 right-4 z-20 w-[calc(100vw-32px)] sm:w-96 max-h-[88vh] bg-[#F4F0E6] text-[#172B36] rounded-xl shadow-2xl border-2 border-[#B58B4D]/60 flex flex-col overflow-hidden backdrop-blur-sm animate-in slide-in-from-right duration-300"
+      className="absolute top-4 right-4 z-20 w-[calc(100vw-32px)] sm:w-96 max-h-[84vh] bg-[#F4F0E6] text-[#172B36] rounded-xl shadow-2xl border-2 border-[#B58B4D]/60 flex flex-col overflow-hidden backdrop-blur-sm animate-in slide-in-from-right duration-300"
     >
       {/* Drawer Header */}
-      <div className="relative bg-[#172B36] text-[#F4F0E6] p-4 border-b border-[#B58B4D]/40">
+      <div className="relative bg-[#172B36] text-[#F4F0E6] p-4 border-b border-[#B58B4D]/40 shrink-0">
         <div className="flex items-start justify-between">
           <div className="pr-6">
             <div className="flex flex-wrap items-center gap-2 mb-1">
@@ -77,7 +88,48 @@ export const KingdomSummaryDrawer: React.FC<KingdomSummaryDrawerProps> = ({
       </div>
 
       {/* Content Area */}
-      <div className="p-4 space-y-4 overflow-y-auto max-h-[calc(88vh-140px)] text-xs">
+      <div className="p-4 space-y-4 overflow-y-auto flex-1 text-xs">
+        {/* Verified Historical / Documentary Photo (only if verified image exists) */}
+        {kingdom.imageUrl && (
+          <figure className="rounded-xl overflow-hidden border border-[#B58B4D]/40 bg-[#172B36] shadow-sm">
+            <div className="relative h-40 w-full overflow-hidden bg-[#12222b]">
+              <img
+                src={kingdom.imageUrl}
+                alt={kingdom.imageCaption || kingdom.name}
+                loading="lazy"
+                className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+              />
+              {kingdom.imageLicense && (
+                <span className="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/70 text-[#F4F0E6] text-[9px] font-medium backdrop-blur-xs border border-white/15">
+                  {kingdom.imageLicense}
+                </span>
+              )}
+            </div>
+            <figcaption className="p-2.5 bg-[#172B36] text-[#F4F0E6]/90 text-[10px] space-y-1">
+              {kingdom.imageCaption && (
+                <p className="leading-snug text-[#F4F0E6] font-medium">{kingdom.imageCaption}</p>
+              )}
+              <div className="flex items-center justify-between gap-2 text-[9px] text-[#B58B4D]">
+                <span className="flex items-center gap-1 truncate">
+                  <Camera className="w-2.5 h-2.5 shrink-0" />
+                  <span className="truncate">{kingdom.imageAttribution}</span>
+                </span>
+                {kingdom.imageSourceUrl && (
+                  <a
+                    href={kingdom.imageSourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline flex items-center gap-0.5 shrink-0 text-emerald-300"
+                  >
+                    <span>Arsip</span>
+                    <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                )}
+              </div>
+            </figcaption>
+          </figure>
+        )}
+
         {/* Core Quick Facts Grid */}
         <div className="grid grid-cols-2 gap-2.5 bg-white/80 p-3 rounded-lg border border-[#B58B4D]/30">
           <div>
@@ -172,11 +224,21 @@ export const KingdomSummaryDrawer: React.FC<KingdomSummaryDrawerProps> = ({
               {kingdomSites.map((site) => (
                 <div
                   key={site.id}
-                  className="p-2 bg-white/70 rounded border border-[#426B60]/25 flex items-center justify-between gap-2"
+                  className="p-2 bg-white/70 rounded-lg border border-[#426B60]/25 flex items-center justify-between gap-2.5"
                 >
-                  <div>
-                    <div className="font-semibold text-[11px] text-[#172B36]">{site.name}</div>
-                    <div className="text-[10px] text-gray-500">{site.modern_location}</div>
+                  {site.imageUrl && (
+                    <img
+                      src={site.imageUrl}
+                      alt={site.name}
+                      loading="lazy"
+                      className="w-12 h-12 rounded-md object-cover border border-[#B58B4D]/30 shrink-0 bg-[#172B36]"
+                    />
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <div className="font-semibold text-[11px] text-[#172B36] truncate">
+                      {site.name}
+                    </div>
+                    <div className="text-[10px] text-gray-500 truncate">{site.modern_location}</div>
                   </div>
                   <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 font-medium shrink-0">
                     {SITE_TYPE_LABELS[site.type] || site.type}
@@ -193,7 +255,7 @@ export const KingdomSummaryDrawer: React.FC<KingdomSummaryDrawerProps> = ({
       </div>
 
       {/* Drawer Action Buttons */}
-      <div className="p-3 bg-[#eae3d2] border-t border-[#B58B4D]/30 flex flex-col gap-2">
+      <div className="p-3 bg-[#eae3d2] border-t border-[#B58B4D]/30 flex flex-col gap-2 shrink-0">
         <button
           onClick={() => onOpenFullDetail(kingdom)}
           className="w-full py-2 px-3 bg-[#172B36] hover:bg-[#12222b] text-[#F4F0E6] rounded-md font-medium text-xs flex items-center justify-center gap-2 transition-colors shadow-sm"

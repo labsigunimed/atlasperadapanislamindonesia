@@ -15,6 +15,11 @@ interface RawSite {
   architectural_features: string;
   certainty: CertaintyLevel;
   source_ids: string[];
+  imageUrl?: string;
+  imageCaption?: string;
+  imageAttribution?: string;
+  imageLicense?: string;
+  imageSourceUrl?: string;
 }
 
 const certaintyToLabel = (c: CertaintyLevel): VerificationStatusLabel => {
@@ -38,7 +43,12 @@ const rawSites: RawSite[] = [
     description: 'Kompleks pemakaman raja-raja Kesultanan Samudera Pasai yang memuat bukti epigrafi Islam tertua dari suatu kesultanan di Sumatera. Di lokasi yang berdekatan juga terdapat makam marmer Sultanah Nahrasyiyah (wafat 1428 M) yang diimpor dari Cambay, Gujarat.',
     architectural_features: 'Batu nisan tipe Aceh awal dan pualam putih berukir kaligrafi Arab petikan Surah Al-Hasyr, Surah Ali Imran, dan Ayat Kursi.',
     certainty: 'verified',
-    source_ids: ['src_bachtiar_pasai_epigraphy', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_bachtiar_pasai_epigraphy', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Makam_Sultan_Malik_As-Shalih_%28Malikussaleh%29.jpg/960px-Makam_Sultan_Malik_As-Shalih_%28Malikussaleh%29.jpg',
+    imageCaption: 'Kompleks nisan makam Sultan Malik as-Saleh (wafat Ramadhan 696 H / 1297 M) di Gampong Beuringen, Samudera, Aceh Utara.',
+    imageAttribution: 'Foto oleh Iqbalhafidh — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Makam_Sultan_Malik_As-Shalih_(Malikussaleh).jpg'
   },
   {
     id: 'site_makam_sultan_perlak',
@@ -55,6 +65,7 @@ const rawSites: RawSite[] = [
     architectural_features: 'Kompleks makam yang telah mengalami pemugaran modern di kawasan pesisir timur Aceh (Peureulak).',
     certainty: 'unverified',
     source_ids: ['src_bachtiar_pasai_epigraphy', 'src_ricklefs_2008']
+    // Tidak ada foto dokumentasi arkeologis/epigrafi berlisensi terbuka yang terverifikasi untuk situs ini.
   },
   {
     id: 'site_masjid_baiturrahman',
@@ -70,7 +81,12 @@ const rawSites: RawSite[] = [
     description: 'Pusat keagamaan dan simbol ketahanan spiritual Kesultanan Aceh Darussalam. Bangunan kayu aslinya terbakar saat agresi kolonial Belanda tahun 1873 dan dibangun kembali pada 1879. Tak jauh di selatannya berdiri Gunongan dan Kandang XII (makam Sultan Iskandar Muda).',
     architectural_features: 'Masjid berkubah hitam dengan kolam refleksi bergaya Mughal-Kolonial, berdampingan dengan struktur taman keraton Gunongan berbentuk bunga segi delapan dari masa Sultan Iskandar Muda.',
     certainty: 'verified',
-    source_ids: ['src_lombard_2006', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_lombard_2006', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Masjid_Raya_Baiturrahman_di_Banda_Aceh.jpg/960px-Masjid_Raya_Baiturrahman_di_Banda_Aceh.jpg',
+    imageCaption: 'Fasad utama dan kubah Masjid Raya Baiturrahman di pusat Kota Banda Aceh.',
+    imageAttribution: 'Foto oleh Felianiwiki — Wikimedia Commons',
+    imageLicense: 'CC BY 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Masjid_Raya_Baiturrahman_di_Banda_Aceh.jpg'
   },
   {
     id: 'site_istana_siak',
@@ -86,7 +102,12 @@ const rawSites: RawSite[] = [
     description: 'Kediaman resmi Sultan Siak yang dibangun pada tahun 1889 oleh Sultan Syarif Hasyim. Dijuluki "Istana Matahari Timur", bangunan ini menyimpan koleksi artefak kerajaan termasuk alat musik mekanik Komet dan singgasana bersepuh emas.',
     architectural_features: 'Perpaduan harmonis arsitektur Melayu, Arab (lengkungan Moorish), dan Eropa klasik berlantai dua di tepi Sungai Siak.',
     certainty: 'verified',
-    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008']
+    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Istana_Kerajaan_Siak_%282%29.jpg/960px-Istana_Kerajaan_Siak_%282%29.jpg',
+    imageCaption: 'Bangunan utama Istana Asserayah Hasyimiah (Istana Matahari Timur) peninggalan Kesultanan Siak Sri Indrapura (1889 M).',
+    imageAttribution: 'Foto oleh Wagino 20100516 — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 3.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Istana_Kerajaan_Siak_(2).jpg'
   },
   {
     id: 'site_kuto_besak_palembang',
@@ -102,7 +123,12 @@ const rawSites: RawSite[] = [
     description: 'Pusat pertahanan dan spiritual Kesultanan Palembang Darussalam di tepi Sungai Musi. Benteng Kuto Besak merupakan satu-satunya benteng batu kapur besar di Nusantara yang dibangun oleh kesultanan pribumi dengan biaya sendiri.',
     architectural_features: 'Masjid beratap tumpang tiga berornamen limas Palembang-Tionghoa-Eropa, serta benteng batu berdinding tebal 1,99 meter yang menghadap langsung ke Sungai Musi.',
     certainty: 'verified',
-    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008']
+    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Benteng_Kuto_Besak.jpg/960px-Benteng_Kuto_Besak.jpg',
+    imageCaption: 'Dinding pertahanan dan gerbang utama Benteng Kuto Besak di tepi Sungai Musi, Palembang.',
+    imageAttribution: 'Foto oleh Fitri Agung — Wikimedia Commons',
+    imageLicense: 'CC BY 2.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Benteng_Kuto_Besak.jpg'
   },
   {
     id: 'site_masjid_agung_demak',
@@ -118,7 +144,12 @@ const rawSites: RawSite[] = [
     description: 'Masjid kuno yang didirikan oleh Raden Patah bersama para Wali Songo sebagai pusat dakwah dan pemerintahan Kesultanan Demak. Di sisi barat masjid terdapat kompleks makam Raden Patah, Pati Unus, dan Sultan Trenggana.',
     architectural_features: 'Atap tumpang tiga (tajug) kayu jati tanpa kubah yang melambangkan Iman, Islam, dan Ihsan, ditopang empat tiang utama Saka Guru serta dihiasi piring porselen Campa/Vietnam dan Majapahit.',
     certainty: 'verified',
-    source_ids: ['src_pigeaud_1976', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_pigeaud_1976', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Masjid_Agung_Demak.jpg/960px-Masjid_Agung_Demak.jpg',
+    imageCaption: 'Masjid Agung Demak dengan atap tajug tumpang tiga khas arsitektur Islam Jawa awal abad ke-15 M.',
+    imageAttribution: 'Foto oleh Hastosuprayogo — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Masjid_Agung_Demak.jpg'
   },
   {
     id: 'site_keraton_kasepuhan',
@@ -134,7 +165,12 @@ const rawSites: RawSite[] = [
     description: 'Kompleks keraton pusat Kesultanan Cirebon yang berkembang dari Dalem Agung Pakungwati. Di sisi barat alun-alun Sangkala Buana berdiri Masjid Agung Sang Cipta Rasa yang dibangun masa Sunan Gunung Jati.',
     architectural_features: 'Gapura Candi Bentar dan Paduraksa bata merah bergaya Majapahit-Pesisir, Siti Inggil berhiaskan keramik porselen Tiongkok dan Delft Belanda, serta Kereta Singa Barong.',
     certainty: 'verified',
-    source_ids: ['src_pigeaud_1976', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_pigeaud_1976', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Keraton_Kasepuhan%2C_Cirebon_-_panoramio.jpg/960px-Keraton_Kasepuhan%2C_Cirebon_-_panoramio.jpg',
+    imageCaption: 'Kawasan Siti Inggil dan gapura bata merah Keraton Kasepuhan Cirebon.',
+    imageAttribution: 'Foto oleh Mokhammad Misdianto — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 3.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Keraton_Kasepuhan,_Cirebon_-_panoramio.jpg'
   },
   {
     id: 'site_banten_lama',
@@ -150,7 +186,12 @@ const rawSites: RawSite[] = [
     description: 'Jantung ibu kota maritim Kesultanan Banten. Mencakup Masjid Agung Banten yang masih utuh, menara mercusuar segi delapan karya Hendrick Lucasz Cardeel, bangunan Tiyamah, serta reruntuhan benteng dan kolam pemandian Keraton Surosowan.',
     architectural_features: 'Atap tajug bertumpuk lima khas Jawa-Banten, menara bata putih setinggi 24 meter menyerupai mercusuar, dan fondasi benteng bastion karang/bata di Surosowan.',
     certainty: 'verified',
-    source_ids: ['src_guillot_1990', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_guillot_1990', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Masjid_Agung_Banten_Tampak_Depan.jpg/960px-Masjid_Agung_Banten_Tampak_Depan.jpg',
+    imageCaption: 'Masjid Agung Banten dengan atap tumpang lima, bangunan Tiyamah, dan menara mercusuar abad ke-16.',
+    imageAttribution: 'Foto oleh Arif Permana Putra — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Masjid_Agung_Banten_Tampak_Depan.jpg'
   },
   {
     id: 'site_kotagede_imogiri',
@@ -166,7 +207,12 @@ const rawSites: RawSite[] = [
     description: 'Masjid tertua di Yogyakarta yang menjadi saksi berdirinya Kesultanan Mataram Islam di ibu kota pertama Kotagede. Di belakang mihrab terdapat makam pendiri Mataram, Panembahan Senopati, dan Ki Ageng Pemanahan.',
     architectural_features: 'Akulturasi kental Jawa-Hindu dan Islam: pagar keliling bata merah berornamen kala, gapura Paduraksa, parit keliling (jagang), dan bangunan utama limasan/tajug Jawa.',
     certainty: 'verified',
-    source_ids: ['src_pigeaud_1976', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_pigeaud_1976', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Masjid_Gedhe_Mataram_Kotagede.jpg/960px-Masjid_Gedhe_Mataram_Kotagede.jpg',
+    imageCaption: 'Bangunan utama Masjid Gedhe Mataram Kotagede dengan arsitektur limasan-tajug Jawa dan gapura Paduraksa.',
+    imageAttribution: 'Foto oleh Arry Gunawan — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Masjid_Gedhe_Mataram_Kotagede.jpg'
   },
   {
     id: 'site_masjid_suriansyah',
@@ -182,7 +228,12 @@ const rawSites: RawSite[] = [
     description: 'Masjid tertua di Kalimantan Selatan yang dibangun di tepi Sungai Kuin pada masa raja Islam pertama Banjar, Sultan Suriansyah. Tidak jauh dari masjid terdapat kompleks makam Sultan Suriansyah.',
     architectural_features: 'Konstruksi panggung berbahan kayu ulin (kayu besi) dengan atap tumpang tiga khas Banjar-Demak dan ukiran kaligrafi serta sulur flora pada mimbar kayu ulin.',
     certainty: 'verified',
-    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008']
+    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Masjid_Sultan_Suriansyah_Sebelum_Direnovasi.jpg',
+    imageCaption: 'Masjid Sultan Suriansyah berkonstruksi kayu ulin dan beratap tumpang tiga di Kuin Utara, Banjarmasin.',
+    imageAttribution: 'Dokumentasi Arsip Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Masjid_Sultan_Suriansyah_Sebelum_Direnovasi.jpg'
   },
   {
     id: 'site_keraton_kadriah',
@@ -198,7 +249,12 @@ const rawSites: RawSite[] = [
     description: 'Pusat pemerintahan Kesultanan Pontianak yang didirikan tepat di persimpangan tiga sungai (Kapuas Kecil, Kapuas Besar, dan Sungai Landak). Masjid Jami berdiri sekitar 200 meter di sebelah barat keraton.',
     architectural_features: 'Seluruh struktur utama dibangun dari kayu belian (ulin) Kalimantan dengan dominasi warna kuning keemasan Melayu, anjungan menghadap sungai, dan meriam kuno di halaman depan.',
     certainty: 'verified',
-    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008']
+    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Keraton_Kadariah_01.jpg/960px-Keraton_Kadariah_01.jpg',
+    imageCaption: 'Fasad Keraton Kadriah Kesultanan Pontianak yang dibangun dengan kayu belian (ulin) pada 1771 M.',
+    imageAttribution: 'Foto oleh Zhilal Darma — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Keraton_Kadariah_01.jpg'
   },
   {
     id: 'site_kedaton_kutai',
@@ -214,7 +270,12 @@ const rawSites: RawSite[] = [
     description: 'Kompleks istana Kesultanan Kutai Kartanegara ing Martadipura di tepi Sungai Mahakam dan kompleks pemakaman raja-raja serta ulama penyebar Islam di Kutai.',
     architectural_features: 'Bangunan istana bergaya arsitektur kolonial Belanda (Art Deco/Indische Empire) yang di halaman sampingnya terdapat nisan-nisan kayu ulin berukir indah khas bangsawan Kutai.',
     certainty: 'verified',
-    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008']
+    source_ids: ['src_kemendikbud_cagarbudaya', 'src_ricklefs_2008'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Museum_Mulawarman.jpg/960px-Museum_Mulawarman.jpg',
+    imageCaption: 'Gedung eks Keraton Kesultanan Kutai Kartanegara ing Martadipura (kini Museum Mulawarman) di Tenggarong.',
+    imageAttribution: 'Foto oleh Ezagren — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Museum_Mulawarman.jpg'
   },
   {
     id: 'site_somba_opu_katangka',
@@ -230,7 +291,12 @@ const rawSites: RawSite[] = [
     description: 'Benteng Somba Opu adalah jantung pertahanan dan perdagangan maritim Kesultanan Gowa sebelum dihancurkan VOC pada 1669. Di dekatnya terdapat Masjid Tua Al-Hilal Katangka dan Kompleks Makam Sultan Hasanuddin.',
     architectural_features: 'Dinding benteng bata merah tebal di delta Sungai Jeneberang, serta kompleks makam bangsawan Gowa dengan konstruksi batu cadas berundak menyerupai punden megalitik yang berakulturasi dengan nisan Islam.',
     certainty: 'verified',
-    source_ids: ['src_andaya_1981', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_andaya_1981', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Benteng_Somba_Opu.jpg/960px-Benteng_Somba_Opu.jpg',
+    imageCaption: 'Struktur bastion dan tembok bata merah Benteng Somba Opu, pusat pertahanan maritim Kesultanan Gowa-Tallo.',
+    imageAttribution: 'Foto oleh Si Gam — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Benteng_Somba_Opu.jpg'
   },
   {
     id: 'site_bola_soba_bone',
@@ -246,7 +312,12 @@ const rawSites: RawSite[] = [
     description: 'Kompleks istana panggung tradisional Bugis tempat kediaman para Arumpone (Raja Bone) serta penyimpanan benda pusaka kerajaan (Arajang) Kesultanan Bone.',
     architectural_features: 'Rumah panggung kayu besar khas bangsawan tertinggi Bugis dengan timpa laja (susunan atap bertingkat lima) yang menandakan strata kebangsawanan raja.',
     certainty: 'verified',
-    source_ids: ['src_andaya_1981', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_andaya_1981', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/85/COLLECTIE_TROPENMUSEUM_Paleis_van_de_vorstin_van_Bone_op_Celebes_TMnr_60015648.jpg',
+    imageCaption: 'Dokumentasi arsip historis Istana Raja/Ratu Bone (Saoraja Bone) dengan atap timpa laja bertingkat di Sulawesi Selatan.',
+    imageAttribution: 'Koleksi Tropenmuseum (TMnr 60015648) — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 3.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:COLLECTIE_TROPENMUSEUM_Paleis_van_de_vorstin_van_Bone_op_Celebes_TMnr_60015648.jpg'
   },
   {
     id: 'site_benteng_wolio',
@@ -262,7 +333,12 @@ const rawSites: RawSite[] = [
     description: 'Benteng keraton terluas di dunia dengan keliling tembok batu sepanjang 2.740 meter dan luas sekitar 23,375 hektare. Di dalamnya terdapat Masjid Agung Keraton Buton, Makam Sultan Murhum, dan Kamali Baadia.',
     architectural_features: 'Susunan batu gunung/karang yang direkatkan dengan campuran kapur dan putih telur/rumput laut, dilengkapi 12 pintu gerbang (Lawa) dan 16 bastion meriam (Baluara) di puncak bukit menghadap Selat Buton.',
     certainty: 'verified',
-    source_ids: ['src_kemendikbud_cagarbudaya', 'src_anri_perpusnas']
+    source_ids: ['src_kemendikbud_cagarbudaya', 'src_anri_perpusnas'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Sisi_luar_tembok_Benteng_Keraton_Buton.jpg/960px-Sisi_luar_tembok_Benteng_Keraton_Buton.jpg',
+    imageCaption: 'Tembok batu karang dan bastion Benteng Keraton Buton (Benteng Wolio) di Kota Baubau, Sulawesi Tenggara.',
+    imageAttribution: 'Foto oleh Marwan Mohamad — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Sisi_luar_tembok_Benteng_Keraton_Buton.jpg'
   },
   {
     id: 'site_kadato_kie_ternate',
@@ -278,7 +354,12 @@ const rawSites: RawSite[] = [
     description: 'Kediaman resmi Sultan Ternate yang terletak di kaki Gunung Gamalama menghadap ke laut dan Pulau Halmahera. Di dekatnya berdiri Masjid Sultan Ternate (Sigi Lamo) yang masih menjalankan ritual adat Kolano Uci Sabea.',
     architectural_features: 'Kedaton berbentuk segi delapan (oktagonal) berlantai dua di atas bukit, dipadukan dengan Masjid Sigi Lamo beratap tumpang limas dari daun sagu/rumbia.',
     certainty: 'verified',
-    source_ids: ['src_andaya_1993', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_andaya_1993', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Museum_Sultan_Iskandar_Muhammad_Djabir_Sjah_di_Ternate.jpg/960px-Museum_Sultan_Iskandar_Muhammad_Djabir_Sjah_di_Ternate.jpg',
+    imageCaption: 'Kedaton Kesultanan Ternate (Kadato Kie) di kaki Gunung Gamalama, Kota Ternate.',
+    imageAttribution: 'Foto oleh Ana Ainina — Wikimedia Commons',
+    imageLicense: 'CC BY 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Museum_Sultan_Iskandar_Muhammad_Djabir_Sjah_di_Ternate.jpg'
   },
   {
     id: 'site_kadato_kie_tidore',
@@ -294,7 +375,12 @@ const rawSites: RawSite[] = [
     description: 'Pusat pemerintahan Kesultanan Tidore di Kelurahan Soasio serta Benteng Tahula di atas tebing batu karang yang menjadi saksi diplomasi dan perlawanan Sultan Nuku.',
     architectural_features: 'Kedaton megah dengan tangga kembar menghadap pesisir timur Pulau Tidore dan benteng batu berarsitektur Iberia di puncak bukit Soasio.',
     certainty: 'verified',
-    source_ids: ['src_andaya_1993', 'src_kemendikbud_cagarbudaya']
+    source_ids: ['src_andaya_1993', 'src_kemendikbud_cagarbudaya'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Benteng_Tahula_di_Tidore_1.jpg/960px-Benteng_Tahula_di_Tidore_1.jpg',
+    imageCaption: 'Benteng Tahula di bukit karang Soasio, saksi sejarah pertahanan maritim Kesultanan Tidore.',
+    imageAttribution: 'Foto oleh Ana Ainina — Wikimedia Commons',
+    imageLicense: 'CC BY 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Benteng_Tahula_di_Tidore_1.jpg'
   },
   {
     id: 'site_masjid_wapauwe',
@@ -310,7 +396,12 @@ const rawSites: RawSite[] = [
     description: 'Salah satu masjid tertua di Indonesia timur yang berdiri di pesisir utara Pulau Ambon (Jazirah Leihitu), wilayah yang secara historis berada dalam jaringan dakwah dan aliansi maritim Kesultanan Ternate. Menyimpan mushaf Al-Qur\'an tulis tangan kuno Imam Muhammad Arikulapessy (1550 M).',
     architectural_features: 'Konstruksi kayu tradisional Maluku berukuran 10x10 meter tanpa paku besi (menggunakan pasak kayu), beratap tumpang dari pelepah sagu (gaba-gaba) dan daun rumbia.',
     certainty: 'estimated',
-    source_ids: ['src_kemendikbud_cagarbudaya', 'src_andaya_1993']
+    source_ids: ['src_kemendikbud_cagarbudaya', 'src_andaya_1993'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Masjid_Tua_Wapauwe_Kaitetu.jpg/960px-Masjid_Tua_Wapauwe_Kaitetu.jpg',
+    imageCaption: 'Masjid Tua Wapauwe di Desa Kaitetu, Leihitu, Pulau Ambon — konstruksi kayu dan atap rumbia tradisional tanpa paku besi.',
+    imageAttribution: 'Foto oleh Si Gam — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Masjid_Tua_Wapauwe_Kaitetu.jpg'
   },
   {
     id: 'site_asi_mbojo_bima',
@@ -326,12 +417,20 @@ const rawSites: RawSite[] = [
     description: 'Kediaman resmi Sultan Bima yang menyimpan mahkota kerajaan, senjata pusaka, dan naskah kuno Bo\' Sangaji Kai (catatan harian istana Bima beraksara Arab-Melayu/Jawi).',
     architectural_features: 'Bangunan istana bergaya gabungan Eropa-Tropis dan arsitektur tradisional Mbojo dengan gerbang Lare-lare yang ikonik.',
     certainty: 'verified',
-    source_ids: ['src_kemendikbud_cagarbudaya', 'src_anri_perpusnas']
+    source_ids: ['src_kemendikbud_cagarbudaya', 'src_anri_perpusnas'],
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Museum_Asi_Mbojo_01.jpg/960px-Museum_Asi_Mbojo_01.jpg',
+    imageCaption: 'Istana Kesultanan Bima (Asi Mbojo) di Kota Bima, Pulau Sumbawa, Nusa Tenggara Barat.',
+    imageAttribution: 'Domain Publik — Wikimedia Commons',
+    imageLicense: 'Public Domain',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Museum_Asi_Mbojo_01.jpg'
   }
 ];
 
 export const sitesData: HeritageSite[] = rawSites.map((s) => ({
   ...s,
+  imageUrl: s.imageUrl
+    ? `./images/atlas/${s.id}.${s.imageUrl.toLowerCase().endsWith('.png') ? 'png' : 'jpg'}`
+    : undefined,
   siteType: s.type,
   coordinates: {
     lat: s.latitude,
@@ -341,6 +440,5 @@ export const sitesData: HeritageSite[] = rawSites.map((s) => ({
   historicalPeriod: s.built_year_display,
   relatedKingdomIds: s.kingdom_ids,
   sourceIds: s.source_ids,
-  verificationStatus: certaintyToLabel(s.certainty),
-  imageAttribution: 'Dokumentasi Arkeologi & Registrasi Cagar Budaya Kemendikbudristek RI'
+  verificationStatus: certaintyToLabel(s.certainty)
 }));

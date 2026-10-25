@@ -734,13 +734,199 @@ const rawKingdoms: RawKingdom[] = [
   }
 ];
 
+const kingdomImageMetadata: Record<
+  string,
+  {
+    imageUrl: string;
+    imageCaption: string;
+    imageAttribution: string;
+    imageLicense: string;
+    imageSourceUrl: string;
+  }
+> = {
+  // kgd_perlak: sengaja tidak disertakan karena tidak adanya dokumentasi foto epigrafis/arsip abad ke-9/13 M yang terverifikasi.
+  kgd_samudera_pasai: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Makam_Sultan_Malik_As-Shalih_%28Malikussaleh%29.jpg/960px-Makam_Sultan_Malik_As-Shalih_%28Malikussaleh%29.jpg',
+    imageCaption:
+      'Batu nisan berkaligrafi Arab pada makam pendiri Kesultanan Samudera Pasai, Sultan Malik as-Saleh (wafat Ramadhan 696 H / 1297 M) di Aceh Utara.',
+    imageAttribution: 'Foto oleh Iqbalhafidh — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Makam_Sultan_Malik_As-Shalih_(Malikussaleh).jpg',
+  },
+  kgd_aceh: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/9/96/COLLECTIE_TROPENMUSEUM_De_kraton_van_de_Sultan_van_Atjeh_in_Kota-Pecut_met_de_Gunungan_TMnr_60001940.jpg',
+    imageCaption:
+      'Dokumentasi arsip abad ke-19 kawasan Keraton Kesultanan Aceh Darussalam dan Taman Sari Gunongan di Kutaraja (Banda Aceh).',
+    imageAttribution: 'Woodbury & Page — Koleksi Tropenmuseum (TMnr 60001940)',
+    imageLicense: 'CC BY-SA 3.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:COLLECTIE_TROPENMUSEUM_De_kraton_van_de_Sultan_van_Atjeh_in_Kota-Pecut_met_de_Gunungan_TMnr_60001940.jpg',
+  },
+  kgd_siak: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Istana_Siak_malam.jpg/960px-Istana_Siak_malam.jpg',
+    imageCaption:
+      'Istana Asserayah Hasyimiah (1889 M), kediaman resmi Sultan Siak Sri Indrapura di tepi Sungai Siak, Riau.',
+    imageAttribution: 'Foto oleh Hazen Lel — Wikimedia Commons',
+    imageLicense: 'CC0 1.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Istana_Siak_malam.jpg',
+  },
+  kgd_palembang: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Great_Mosque_of_Palembang_20230808_174444.jpg/960px-Great_Mosque_of_Palembang_20230808_174444.jpg',
+    imageCaption:
+      'Masjid Agung Sultan Mahmud Badaruddin I Jayo Wikramo (1738–1748 M), pusat keagamaan Kesultanan Palembang Darussalam.',
+    imageAttribution: 'Foto oleh Swarabakti — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Great_Mosque_of_Palembang_20230808_174444.jpg',
+  },
+  kgd_demak: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Sisi_Depan_Serambi_Masjid_Agung_Demak_Kab.Demak_Prop.Jateng_Indonesia.jpg/960px-Sisi_Depan_Serambi_Masjid_Agung_Demak_Kab.Demak_Prop.Jateng_Indonesia.jpg',
+    imageCaption:
+      'Serambi Majapahit dan atap tumpang tiga Masjid Agung Demak, pusat pemerintahan dan dakwah Wali Songo di Kesultanan Demak.',
+    imageAttribution: 'Foto oleh DARMAS BS 9 — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Sisi_Depan_Serambi_Masjid_Agung_Demak_Kab.Demak_Prop.Jateng_Indonesia.jpg',
+  },
+  kgd_cirebon: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Animal_statue_at_Keraton_Kasepuhan_of_Cirebon%3B_2017.jpg/960px-Animal_statue_at_Keraton_Kasepuhan_of_Cirebon%3B_2017.jpg',
+    imageCaption:
+      'Gerbang bata merah dan patung Macan Putih di kompleks Keraton Kasepuhan, pusat Kesultanan Cirebon.',
+    imageAttribution: 'Foto oleh Rachmat04 — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 3.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Animal_statue_at_Keraton_Kasepuhan_of_Cirebon;_2017.jpg',
+  },
+  kgd_banten: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Tampilan_Pintu_Utara_Benteng_Keraton_Surosowan_dari_Arah_Atas.jpg/960px-Tampilan_Pintu_Utara_Benteng_Keraton_Surosowan_dari_Arah_Atas.jpg',
+    imageCaption:
+      'Benteng dan pintu gerbang utara Keraton Surosowan, pusat kedaulatan maritim Kesultanan Banten di Banten Lama.',
+    imageAttribution: 'Foto oleh Arif Permana Putra — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Tampilan_Pintu_Utara_Benteng_Keraton_Surosowan_dari_Arah_Atas.jpg',
+  },
+  kgd_mataram: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Pelataran_Depan_Masjid_Gedhe_Mataram_Kotagede.jpg/960px-Pelataran_Depan_Masjid_Gedhe_Mataram_Kotagede.jpg',
+    imageCaption:
+      'Pelataran dan pagar bata merah berornamen Hindu-Jawa pada kompleks Masjid Gedhe Mataram di ibu kota awal Kotagede.',
+    imageAttribution: 'Foto oleh Dyahartiyana — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Pelataran_Depan_Masjid_Gedhe_Mataram_Kotagede.jpg',
+  },
+  kgd_banjar: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/9/97/Masjid_Sultan_Suriansyah_1900.png',
+    imageCaption:
+      'Arsip fotografi tahun 1900 Masjid Sultan Suriansyah di Kuin Utara, Banjarmasin — peninggalan raja Islam pertama Kesultanan Banjar.',
+    imageAttribution: 'Arsip Rob Hennemann (c. 1900) — Wikimedia Commons',
+    imageLicense: 'Public Domain',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Masjid_Sultan_Suriansyah_1900.png',
+  },
+  kgd_pontianak: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Masjid_Kesultanan_Syarif_Abdurrahman.jpg/960px-Masjid_Kesultanan_Syarif_Abdurrahman.jpg',
+    imageCaption:
+      'Masjid Jami Sultan Syarif Abdurrahman di tepian Sungai Kapuas, tonggak awal pendirian Kesultanan Kadriah Pontianak (1771 M).',
+    imageAttribution: 'Foto oleh Aliff12 — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Masjid_Kesultanan_Syarif_Abdurrahman.jpg',
+  },
+  kgd_kutai: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Museum_Mulawarman_02.jpg/960px-Museum_Mulawarman_02.jpg',
+    imageCaption:
+      'Kompleks Kedaton Kesultanan Kutai Kartanegara ing Martadipura (kini Museum Mulawarman) di tepi Sungai Mahakam, Tenggarong.',
+    imageAttribution: 'Risyhal Ramadhani Simanjuntak & Muhammad Firza Akbar — Wikimedia Commons',
+    imageLicense: 'Public Domain',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Museum_Mulawarman_02.jpg',
+  },
+  kgd_gowa_tallo: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Makam_Sultan_Hasanuddin.jpg/960px-Makam_Sultan_Hasanuddin.jpg',
+    imageCaption:
+      'Kompleks Makam Sultan Hasanuddin ("Ayam Jantan dari Timur") di Katangka, Kabupaten Gowa, Sulawesi Selatan.',
+    imageAttribution: 'Foto oleh Si Gam — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Makam_Sultan_Hasanuddin.jpg',
+  },
+  kgd_bone: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/8/85/COLLECTIE_TROPENMUSEUM_Paleis_van_de_vorstin_van_Bone_op_Celebes_TMnr_60015648.jpg',
+    imageCaption:
+      'Dokumentasi arsip historis Istana Raja/Ratu Bone (Saoraja Bone) dengan atap timpa laja di Sulawesi Selatan.',
+    imageAttribution: 'Koleksi Tropenmuseum (TMnr 60015648) — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 3.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:COLLECTIE_TROPENMUSEUM_Paleis_van_de_vorstin_van_Bone_op_Celebes_TMnr_60015648.jpg',
+  },
+  kgd_buton: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Masjid_Agung_Keraton_Buton.jpg/960px-Masjid_Agung_Keraton_Buton.jpg',
+    imageCaption:
+      'Masjid Agung Keraton Buton (Masigi Ogena) di dalam kawasan Benteng Wolio, pusat spiritual Kesultanan Buton.',
+    imageAttribution: 'Foto oleh Marwan Mohamad — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Masjid_Agung_Keraton_Buton.jpg',
+  },
+  kgd_ternate: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/b/b0/COLLECTIE_TROPENMUSEUM_Het_Museum_Kedaton_voormalige_paleis_van_de_sultan_van_Ternate_TMnr_10016840.jpg',
+    imageCaption:
+      'Arsip historis Kedaton Sultan Ternate (Kadato Kie) berlatar Gunung Gamalama, pusat konfederasi Uli Lima di Maluku Utara.',
+    imageAttribution: 'Koleksi Tropenmuseum (TMnr 10016840) — Wikimedia Commons',
+    imageLicense: 'CC BY-SA 3.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:COLLECTIE_TROPENMUSEUM_Het_Museum_Kedaton_voormalige_paleis_van_de_sultan_van_Ternate_TMnr_10016840.jpg',
+  },
+  kgd_tidore: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Benteng_Tahula_di_Tidore_9.jpg/960px-Benteng_Tahula_di_Tidore_9.jpg',
+    imageCaption:
+      'Benteng Tahula dan pesisir Soasio di Pulau Tidore, pusat kedaulatan maritim Kesultanan Tidore (Uli Siwa).',
+    imageAttribution: 'Foto oleh Ana Ainina — Wikimedia Commons',
+    imageLicense: 'CC BY 4.0',
+    imageSourceUrl: 'https://commons.wikimedia.org/wiki/File:Benteng_Tahula_di_Tidore_9.jpg',
+  },
+  kgd_bima: {
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/0/0d/Sultan_Muhammad_Salahuddin_bersama_Tentara_BKR_Bima_depan_Istana_ASI_Mbojo.jpg',
+    imageCaption:
+      'Arsip sejarah Sultan Muhammad Salahuddin bersama pejuang BKR Bima di depan Istana Asi Mbojo (1945).',
+    imageAttribution: 'Koleksi Museum Samparaja Bima — Wikimedia Commons',
+    imageLicense: 'CC0 1.0',
+    imageSourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Sultan_Muhammad_Salahuddin_bersama_Tentara_BKR_Bima_depan_Istana_ASI_Mbojo.jpg',
+  },
+};
+
 export const kingdomsData: Kingdom[] = rawKingdoms.map((k) => {
   const kingdomRulers = rulersData.filter((r) => r.kingdom_id === k.id);
   const kingdomSites = sitesData.filter((s) => s.kingdom_ids.includes(k.id));
   const territoryFeat = territoriesData.find((t) => t.properties.kingdom_id === k.id);
+  const imgMeta = kingdomImageMetadata[k.id];
 
   return {
     ...k,
+    ...(imgMeta
+      ? {
+          ...imgMeta,
+          imageUrl: `./images/atlas/${k.id}.${
+            imgMeta.imageUrl.toLowerCase().endsWith('.png') ? 'png' : 'jpg'
+          }`,
+        }
+      : {}),
     alternateNames: k.alternate_names,
     centerLocation: `${k.capital} (${k.modern_province})`,
     coordinates: {

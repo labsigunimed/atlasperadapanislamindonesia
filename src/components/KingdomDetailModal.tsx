@@ -15,6 +15,7 @@ import {
   Anchor,
   Coins,
   ScrollText,
+  Camera,
 } from 'lucide-react';
 import {
   Kingdom,
@@ -217,6 +218,48 @@ export const KingdomDetailModal: React.FC<KingdomDetailModalProps> = ({
           {/* TAB 1: OVERVIEW & HISTORICAL CONTEXT */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
+              {/* Verified Historical / Archival Photo Figure */}
+              {kingdom.imageUrl && (
+                <figure className="bg-[#172B36] rounded-xl overflow-hidden border-2 border-[#B58B4D]/50 shadow-md">
+                  <div className="relative h-56 sm:h-72 w-full bg-[#0f1e26] overflow-hidden">
+                    <img
+                      src={kingdom.imageUrl}
+                      alt={kingdom.imageCaption || kingdom.name}
+                      className="w-full h-full object-cover object-center"
+                    />
+                    {kingdom.imageLicense && (
+                      <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/75 text-[#F4F0E6] text-[10px] font-semibold backdrop-blur-xs border border-[#B58B4D]/40">
+                        Lisensi: {kingdom.imageLicense}
+                      </span>
+                    )}
+                  </div>
+                  <figcaption className="p-3.5 sm:p-4 bg-[#172B36] text-[#F4F0E6] border-t border-[#B58B4D]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                    <div className="space-y-0.5">
+                      {kingdom.imageCaption && (
+                        <p className="font-medium text-[#F4F0E6] leading-snug">
+                          {kingdom.imageCaption}
+                        </p>
+                      )}
+                      <p className="text-[11px] text-[#B58B4D] flex items-center gap-1.5">
+                        <Camera className="w-3.5 h-3.5 shrink-0" />
+                        <span>{kingdom.imageAttribution}</span>
+                      </p>
+                    </div>
+                    {kingdom.imageSourceUrl && (
+                      <a
+                        href={kingdom.imageSourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1.5 rounded-lg bg-[#B58B4D]/20 hover:bg-[#B58B4D]/30 text-[#B58B4D] border border-[#B58B4D]/40 text-[11px] font-semibold flex items-center gap-1.5 shrink-0 self-start sm:self-center transition-colors"
+                      >
+                        <span>Sumber Dokumentasi</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
+                  </figcaption>
+                </figure>
+              )}
+
               {/* Summary & Political History */}
               <div className="bg-white/90 p-5 rounded-xl border border-[#B58B4D]/30 space-y-3">
                 <h3 className="font-serif text-xl font-bold text-[#172B36]">
@@ -505,45 +548,79 @@ export const KingdomDetailModal: React.FC<KingdomDetailModalProps> = ({
                   {kingdomSites.map((site) => (
                     <div
                       key={site.id}
-                      className="bg-white rounded-xl border border-[#B58B4D]/30 p-4 shadow-sm flex flex-col justify-between space-y-3"
+                      className="bg-white rounded-xl border border-[#B58B4D]/30 overflow-hidden shadow-sm flex flex-col justify-between"
                     >
-                      <div className="space-y-1.5">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#172B36] text-[#F4F0E6]">
-                            {SITE_TYPE_LABELS[site.type] || site.type}
-                          </span>
-                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
-                            {site.verificationStatus}
-                          </span>
+                      {site.imageUrl && (
+                        <div className="relative h-44 w-full bg-[#172B36] overflow-hidden border-b border-[#B58B4D]/30">
+                          <img
+                            src={site.imageUrl}
+                            alt={site.imageCaption || site.name}
+                            loading="lazy"
+                            className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+                          />
+                          {site.imageLicense && (
+                            <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-black/70 text-[#F4F0E6] text-[10px] font-medium backdrop-blur-xs border border-white/15">
+                              {site.imageLicense}
+                            </span>
+                          )}
+                          <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-3 py-1.5 flex items-center justify-between text-[10px] text-[#F4F0E6]/90">
+                            <span className="truncate flex items-center gap-1">
+                              <Camera className="w-3 h-3 text-[#B58B4D] shrink-0" />
+                              <span className="truncate">{site.imageAttribution}</span>
+                            </span>
+                            {site.imageSourceUrl && (
+                              <a
+                                href={site.imageSourceUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#B58B4D] hover:underline shrink-0 ml-2 flex items-center gap-0.5 font-semibold"
+                              >
+                                <span>Sumber</span>
+                                <ExternalLink className="w-2.5 h-2.5" />
+                              </a>
+                            )}
+                          </div>
                         </div>
-                        <h4 className="font-serif font-bold text-base text-[#172B36]">
-                          {site.name}
-                        </h4>
-                        <p className="text-[11px] text-[#426B60] font-medium flex items-center gap-1">
-                          <MapPin className="w-3 h-3 shrink-0" />
-                          <span>{site.modern_location}</span>
-                        </p>
-                        <p className="text-[11px] text-[#8e6d38] font-medium">
-                          Era Pembangunan: {site.built_year_display}
-                        </p>
-                        <p className="text-xs text-gray-700 leading-relaxed pt-1">
-                          {site.description}
-                        </p>
-                      </div>
-                      <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
-                        <span className="text-[10px] text-gray-500 truncate max-w-[60%]">
-                          {site.condition_status}
-                        </span>
-                        <button
-                          onClick={() => {
-                            onClose();
-                            onSelectSiteOnMap(site);
-                          }}
-                          className="text-xs font-semibold text-[#B58B4D] hover:underline flex items-center gap-1"
-                        >
-                          <span>Fokus di Peta</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </button>
+                      )}
+                      <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+                        <div className="space-y-1.5">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#172B36] text-[#F4F0E6]">
+                              {SITE_TYPE_LABELS[site.type] || site.type}
+                            </span>
+                            <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                              {site.verificationStatus}
+                            </span>
+                          </div>
+                          <h4 className="font-serif font-bold text-base text-[#172B36]">
+                            {site.name}
+                          </h4>
+                          <p className="text-[11px] text-[#426B60] font-medium flex items-center gap-1">
+                            <MapPin className="w-3 h-3 shrink-0" />
+                            <span>{site.modern_location}</span>
+                          </p>
+                          <p className="text-[11px] text-[#8e6d38] font-medium">
+                            Era Pembangunan: {site.built_year_display}
+                          </p>
+                          <p className="text-xs text-gray-700 leading-relaxed pt-1">
+                            {site.description}
+                          </p>
+                        </div>
+                        <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
+                          <span className="text-[10px] text-gray-500 truncate max-w-[60%]">
+                            {site.condition_status}
+                          </span>
+                          <button
+                            onClick={() => {
+                              onClose();
+                              onSelectSiteOnMap(site);
+                            }}
+                            className="text-xs font-semibold text-[#B58B4D] hover:underline flex items-center gap-1"
+                          >
+                            <span>Fokus di Peta</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}
