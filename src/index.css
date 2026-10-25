@@ -53,7 +53,7 @@
 .leaflet-container {
   width: 100% !important;
   height: 100% !important;
-  min-height: 500px !important;
+  min-height: 320px;
   background-color: #eae3d2 !important;
   z-index: 1;
 }

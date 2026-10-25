@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Crown, Clock, ArrowRight, MapPin, Sparkles, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Crown, Clock, ArrowRight, MapPin, Sparkles, ShieldCheck, Play, Pause } from 'lucide-react';
 import { Kingdom, TimelineEvent } from '../types/atlas';
 import { isKingdomActiveInYear } from '../utils/historyLogic';
 
@@ -17,6 +17,21 @@ export const TimelineView: React.FC<TimelineViewProps> = ({
   onOpenKingdomDetail,
 }) => {
   const [selectedYear, setSelectedYear] = useState<number>(1550);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+    const timer = window.setInterval(() => {
+      setSelectedYear((prev) => {
+        if (prev >= 1950) {
+          setIsPlaying(false);
+          return 1950;
+        }
+        return Math.min(1950, prev + 3);
+      });
+    }, 250);
+    return () => window.clearInterval(timer);
+  }, [isPlaying]);
 
   const activeKingdomsAtYear = kingdoms.filter((kd) => isKingdomActiveInYear(kd, selectedYear));
   const nearbyEvents = events
@@ -58,8 +73,34 @@ export const TimelineView: React.FC<TimelineViewProps> = ({
             <div className="text-xs text-[#B58B4D] uppercase tracking-wider font-semibold">
               Tahun Terpilih pada Garis Waktu
             </div>
-            <div className="font-serif text-4xl sm:text-5xl font-bold text-[#F4F0E6]">
-              Tahun {selectedYear} Masehi
+            <div className="flex items-center gap-3 mt-1">
+              <div className="font-serif text-4xl sm:text-5xl font-bold text-[#F4F0E6]">
+                Tahun {selectedYear} Masehi
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (selectedYear >= 1950) setSelectedYear(1250);
+                  setIsPlaying((p) => !p);
+                }}
+                className={`px-3.5 py-1.5 rounded-lg font-bold text-xs flex items-center gap-1.5 transition-all shadow cursor-pointer ${
+                  isPlaying
+                    ? 'bg-amber-500 text-[#172B36]'
+                    : 'bg-[#B58B4D] text-[#172B36] hover:bg-[#c99b56]'
+                }`}
+              >
+                {isPlaying ? (
+                  <>
+                    <Pause className="w-3.5 h-3.5 fill-current" />
+                    <span>Jeda</span>
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    <span>Auto-Play</span>
+                  </>
+                )}
+              </button>
             </div>
             <p className="text-xs text-[#F4F0E6]/75 mt-1">
               Menampilkan <strong>{activeKingdomsAtYear.length}</strong> kerajaan/kesultanan yang
