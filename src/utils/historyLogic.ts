@@ -18,6 +18,89 @@ export const SITE_TYPE_LABELS: Record<SiteType, string> = {
 };
 
 /**
+ * Exact chronological founding years (Tahun Hadirnya Kerajaan) across the 17 Islamic Kingdoms in Nusantara.
+ */
+export const KINGDOM_FOUNDING_YEARS: readonly number[] = [
+  840, 1267, 1478, 1479, 1486, 1495, 1496, 1526, 1542, 1575, 1584, 1605, 1611, 1621, 1659, 1723,
+  1771,
+];
+
+export interface FoundingPhaseInfo {
+  id: 'phase_1' | 'phase_2' | 'phase_3' | 'phase_4';
+  label: string;
+  shortLabel: string;
+  rangeLabel: string;
+  bgColor: string;
+  borderColor: string;
+  badgeTextColor: string;
+}
+
+/**
+ * Returns cartographic visual styling based on the kingdom's founding year (Tahun Hadirnya Kerajaan).
+ */
+export function getKingdomFoundingPhase(foundedYear: number): FoundingPhaseInfo {
+  if (foundedYear <= 1300) {
+    return {
+      id: 'phase_1',
+      label: 'Fase I: Awal Islamisasi Pesisir',
+      shortLabel: 'Abad 9–13 M',
+      rangeLabel: '840–1300 M',
+      bgColor: '#b45309',
+      borderColor: '#fbbf24',
+      badgeTextColor: '#fde68a',
+    };
+  }
+  if (foundedYear <= 1500) {
+    return {
+      id: 'phase_2',
+      label: 'Fase II: Bandar Pasisir & Rempah',
+      shortLabel: 'Abad 15 M',
+      rangeLabel: '1475–1500 M',
+      bgColor: '#047857',
+      borderColor: '#34d399',
+      badgeTextColor: '#a7f3d0',
+    };
+  }
+  if (foundedYear <= 1600) {
+    return {
+      id: 'phase_3',
+      label: 'Fase III: Ekspansi Kesultanan Maritim',
+      shortLabel: 'Abad 16 M',
+      rangeLabel: '1501–1600 M',
+      bgColor: '#0369a1',
+      borderColor: '#38bdf8',
+      badgeTextColor: '#bae6fd',
+    };
+  }
+  return {
+    id: 'phase_4',
+    label: 'Fase IV: Konsolidasi Kesultanan Nusantara',
+    shortLabel: 'Abad 17–18 M',
+    rangeLabel: '1601–1771 M',
+    bgColor: '#6d28d9',
+    borderColor: '#c084fc',
+    badgeTextColor: '#ddd6fe',
+  };
+}
+
+/**
+ * Checks if a kingdom has already appeared / been founded by the specified year (year >= founded_year).
+ */
+export function isKingdomPresentByYear(kingdom: Kingdom, year: number): boolean {
+  const start = kingdom.founded ?? kingdom.founded_year;
+  if (start === null || start === undefined) return false;
+  return year >= start;
+}
+
+/**
+ * Checks if a kingdom was founded in the exact specified year (founded_year === year).
+ */
+export function isKingdomFoundedInYear(kingdom: Kingdom, year: number): boolean {
+  const start = kingdom.founded ?? kingdom.founded_year;
+  return start === year;
+}
+
+/**
  * Checks if a kingdom was politically or historically active during the specified year.
  * An empty ended year is treated as ongoing cultural/swapraja continuity up to 1960/2026.
  */

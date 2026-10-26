@@ -7,7 +7,12 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Header } from './components/Header';
 import { MapGIS } from './components/MapGIS';
 import { FilterPanel } from './components/FilterPanel';
-import { MapTimeSeriesBar, MIN_YEAR, MAX_YEAR } from './components/MapTimeSeriesBar';
+import {
+   MapTimeSeriesBar,
+  MIN_YEAR,
+  MAX_YEAR,
+  TimeSeriesDisplayMode,
+} from './components/MapTimeSeriesBar';
 import { KingdomSummaryDrawer } from './components/KingdomSummaryDrawer';
 import { KingdomDetailModal } from './components/KingdomDetailModal';
 import { SiteDetailModal } from './components/SiteDetailModal';
@@ -28,8 +33,9 @@ import {
   filterSites,
   filterTerritories,
   getAtlasStats,
-  isKingdomActiveInYear,
-  isSiteActiveInYear,
+  isKingdomPresentByYear,
+  isKingdomFoundedInYear,
+  KINGDOM_FOUNDING_YEARS,
 } from './utils/historyLogic';
 import { Compass, BookOpen, ShieldCheck } from 'lucide-react';
 
@@ -91,11 +97,14 @@ export default function App() {
 
   const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
 
-  // Interactive Time-Series & Auto-Play State on Map
-  const [isTimeSeriesActive, setIsTimeSeriesActive] = useState<boolean>(false);
-  const [currentYear, setCurrentYear] = useState<number>(1267);
+  // Interactive Time-Series & Auto-Play State on Map (synchronized with Kingdom Founding Years)
+  const [isTimeSeriesActive, setIsTimeSeriesActive] = useState<boolean>(true);
+  const [currentYear, setCurrentYear] = useState<number>(KINGDOM_FOUNDING_YEARS[0]);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [playSpeed, setPlaySpeed] = useState<1 | 2 | 4>(1);
+  const [timeSeriesDisplayMode, setTimeSeriesDisplayMode] =
+    useState<TimeSeriesDisplayMode>('cumulative');
+  const [autoFollowNewKingdom, setAutoFollowNewKingdom] = useState<boolean>(false);
 
   // Selected Entities
   const [selectedKingdom, setSelectedKingdom] = useState<Kingdom | null>(null);
@@ -114,55 +123,58 @@ export default function App() {
     return filterKingdoms(kingdomsData, filter);
   }, [filter]);
 
-  // Final Kingdoms shown on Map (strictly synchronized with currentYear when Time-Series is active)
+  // Final Kingdoms shown on Map (synchronized with Kingdom Founding Year / Tahun Hadirnya Kerajaan)
   const filteredKingdoms = useMemo(() => {
     if (!isTimeSeriesActive) return baseFilteredKingdoms;
-    return baseFilteredKingdoms.filter((k) => isKingdomActiveInYear(k, currentYear));
-  }, [baseFilteredKingdoms, isTimeSeriesActive, currentYear]);
+    return baseFilteredKingdoms.filter((k) =>
+      timeSeriesDisplayMode === 'exact'
+        ? isKingdomFoundedInYear(k, currentYear)
+        : isKingdomPresentByYear(k, currentYear)
+    );
+  }, [baseFilteredKingdoms, isTimeSeriesActive, currentYear, timeSeriesDisplayMode]);
 
-  // Active Kingdom IDs for synchronizing sites and territories
-  // Note: Even if entityType === 'site', we still compute which kingdoms are active in the current year/range
+  // Active Kingdom IDs for synchronizing sites and territories with the kingdoms that have appeared
   const activeKingdomIdsForTime = useMemo(() => {
     const kds = filterKingdoms(kingdomsData, { ...filter, entityType: 'all' });
     const timeFiltered = isTimeSeriesActive
-      ? kds.filter((k) => isKingdomActiveInYear(k, currentYear))
+      ? kds.filter((k) =>
+          timeSeriesDisplayMode === 'exact'
+            ? isKingdomFoundedInYear(k, currentYear)
+            : isKingdomPresentByYear(k, currentYear)
+        )
       : kds;
     return new Set(timeFiltered.map((k) => k.id));
-  }, [filter, isTimeSeriesActive, currentYear]);
+  }, [filter, isTimeSeriesActive, currentYear, timeSeriesDisplayMode]);
 
-  // Final Heritage Sites shown on Map (strictly synchronized with site.built_year and active kingdoms)
+  // Final Heritage Sites shown on Map (appear together with their parent kingdom's founding year)
   const filteredSites = useMemo(() => {
-    return filterSites(
-      sitesData,
-      filter,
-      activeKingdomIdsForTime,
-      isTimeSeriesActive ? currentYear : null
-    );
-  }, [filter, activeKingdomIdsForTime, isTimeSeriesActive, currentYear]);
+    return filterSites(sitesData, filter, activeKingdomIdsForTime, null);
+  }, [filter, activeKingdomIdsForTime]);
 
-  // Final Territory Polygons shown on Map (strictly synchronized with territory year_start..year_end)
+  // Final Territory Polygons shown on Map (appear together with their parent kingdom's founding year)
   const filteredTerritories = useMemo(() => {
-    return filterTerritories(
-      territoriesData,
-      activeKingdomIdsForTime,
-      filter,
-      isTimeSeriesActive ? currentYear : null
-    );
-  }, [activeKingdomIdsForTime, filter, isTimeSeriesActive, currentYear]);
+    return filterTerritories(territoriesData, activeKingdomIdsForTime, filter, null);
+  }, [activeKingdomIdsForTime, filter]);
 
-  // Automatically close selectedKingdom drawer if Time-Series moves to a year where that kingdom is not active
+  // Automatically close selectedKingdom drawer if Time-Series moves to a year before that kingdom's founding year
   useEffect(() => {
-    if (isTimeSeriesActive && selectedKingdom && !isKingdomActiveInYear(selectedKingdom, currentYear)) {
-      setSelectedKingdom(null);
+    if (isTimeSeriesActive && selectedKingdom) {
+      const stillVisible =
+        timeSeriesDisplayMode === 'exact'
+          ? isKingdomFoundedInYear(selectedKingdom, currentYear)
+          : isKingdomPresentByYear(selectedKingdom, currentYear);
+      if (!stillVisible) {
+        setSelectedKingdom(null);
+      }
     }
-  }, [isTimeSeriesActive, currentYear, selectedKingdom]);
+  }, [isTimeSeriesActive, currentYear, selectedKingdom, timeSeriesDisplayMode]);
 
   // Overall Statistics from authentic database
   const stats = useMemo(() => {
     return getAtlasStats(kingdomsData, sitesData, territoriesData);
   }, []);
 
-  // Activate a specific single year on the Time-Series bar and synchronize filters
+  // Activate a specific founding year on the Time-Series bar and synchronize filters
   const handleActivateTimeSeriesYear = (year: number) => {
     setIsTimeSeriesActive(true);
     setCurrentYear(year);
@@ -171,9 +183,15 @@ export default function App() {
       yearRange: [MIN_YEAR, MAX_YEAR],
       activeKingdomId: null,
     }));
+    if (autoFollowNewKingdom) {
+      const newlyFounded = kingdomsData.find((k) => k.founded_year === year);
+      if (newlyFounded) {
+        setFocusLocation({ lat: newlyFounded.latitude, lng: newlyFounded.longitude, zoom: 6 });
+      }
+    }
   };
 
-  // Switch back to showing all eras (840–1960 M)
+  // Switch back to showing all 17 kingdoms across all eras (840–1771 M)
   const handleShowAllEras = () => {
     setIsPlaying(false);
     setIsTimeSeriesActive(false);
@@ -187,9 +205,15 @@ export default function App() {
   // Handlers
   const handleSelectKingdom = (kingdom: Kingdom) => {
     setSelectedKingdom(kingdom);
-    // If Time-Series mode is active and the clicked kingdom isn't active in currentYear, jump to its founded_year
-    if (isTimeSeriesActive && !isKingdomActiveInYear(kingdom, currentYear)) {
-      setCurrentYear(kingdom.founded_year);
+    // If Time-Series mode is active and the clicked kingdom hasn't appeared yet, jump to its founded_year
+    if (isTimeSeriesActive) {
+      const isVisible =
+        timeSeriesDisplayMode === 'exact'
+          ? isKingdomFoundedInYear(kingdom, currentYear)
+          : isKingdomPresentByYear(kingdom, currentYear);
+      if (!isVisible) {
+        setCurrentYear(kingdom.founded_year);
+      }
     }
     setFocusLocation({ lat: kingdom.latitude, lng: kingdom.longitude, zoom: 7 });
   };
@@ -201,8 +225,15 @@ export default function App() {
   const handleViewSiteOnMap = (site: HeritageSite) => {
     setActiveTab('map');
     setSelectedSite(site);
-    if (isTimeSeriesActive && !isSiteActiveInYear(site, currentYear)) {
-      setCurrentYear(site.built_year);
+    const parentKd = kingdomsData.find((k) => site.kingdom_ids.includes(k.id));
+    if (isTimeSeriesActive && parentKd) {
+      const isVisible =
+        timeSeriesDisplayMode === 'exact'
+          ? isKingdomFoundedInYear(parentKd, currentYear)
+          : isKingdomPresentByYear(parentKd, currentYear);
+      if (!isVisible) {
+        setCurrentYear(parentKd.founded_year);
+      }
     }
     setFocusLocation({ lat: site.latitude, lng: site.longitude, zoom: 11 });
   };
@@ -210,9 +241,6 @@ export default function App() {
   const handleFocusKingdomSites = (kingdom: Kingdom) => {
     const kingdomSites = sitesData.filter((s) => s.kingdom_ids.includes(kingdom.id));
     if (kingdomSites.length > 0) {
-      if (isTimeSeriesActive && currentYear < kingdomSites[0].built_year) {
-        setCurrentYear(kingdomSites[0].built_year);
-      }
       setFocusLocation({
         lat: kingdomSites[0].latitude,
         lng: kingdomSites[0].longitude,
@@ -223,8 +251,9 @@ export default function App() {
 
   const handleResetMap = () => {
     setIsPlaying(false);
-    setIsTimeSeriesActive(false);
-    setCurrentYear(1267);
+    setIsTimeSeriesActive(true);
+    setTimeSeriesDisplayMode('cumulative');
+    setCurrentYear(KINGDOM_FOUNDING_YEARS[0]);
     setSelectedKingdom(null);
     setSelectedSite(null);
     setFilter({
@@ -314,6 +343,7 @@ export default function App() {
                 focusLocation={focusLocation}
                 onResetFocus={() => setFocusLocation(null)}
                 activeTimeSeriesYear={isTimeSeriesActive ? currentYear : null}
+                timeSeriesDisplayMode={timeSeriesDisplayMode}
               />
 
               {/* Kingdom Summary Floating Drawer */}
@@ -324,9 +354,7 @@ export default function App() {
                   onOpenFullDetail={(kd) => setDeepDiveKingdom(kd)}
                   onFocusSites={handleFocusKingdomSites}
                   rulers={rulersData}
-                  sites={sitesData.filter((s) =>
-                    isTimeSeriesActive ? isSiteActiveInYear(s, currentYear) : true
-                  )}
+                  sites={sitesData}
                   activeTimeSeriesYear={isTimeSeriesActive ? currentYear : null}
                 />
               )}
@@ -342,6 +370,10 @@ export default function App() {
               setIsPlaying={setIsPlaying}
               playSpeed={playSpeed}
               setPlaySpeed={setPlaySpeed}
+              timeSeriesDisplayMode={timeSeriesDisplayMode}
+              setTimeSeriesDisplayMode={setTimeSeriesDisplayMode}
+              autoFollowNewKingdom={autoFollowNewKingdom}
+              setAutoFollowNewKingdom={setAutoFollowNewKingdom}
               activeKingdoms={filteredKingdoms}
               activeSites={filteredSites}
               activeTerritories={filteredTerritories}

@@ -10,8 +10,12 @@ import {
   Layers,
   Crown,
   Landmark,
+  Compass,
 } from 'lucide-react';
 import { Kingdom, HeritageSite, TerritoryFeature, TimelineEvent } from '../types/atlas';
+import { KINGDOM_FOUNDING_YEARS } from '../utils/historyLogic';
+
+export type TimeSeriesDisplayMode = 'cumulative' | 'exact';
 
 interface MapTimeSeriesBarProps {
   isTimeSeriesActive: boolean;
@@ -22,6 +26,10 @@ interface MapTimeSeriesBarProps {
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   playSpeed: 1 | 2 | 4;
   setPlaySpeed: React.Dispatch<React.SetStateAction<1 | 2 | 4>>;
+  timeSeriesDisplayMode: TimeSeriesDisplayMode;
+  setTimeSeriesDisplayMode: React.Dispatch<React.SetStateAction<TimeSeriesDisplayMode>>;
+  autoFollowNewKingdom: boolean;
+  setAutoFollowNewKingdom: React.Dispatch<React.SetStateAction<boolean>>;
   activeKingdoms: Kingdom[];
   activeSites: HeritageSite[];
   activeTerritories: TerritoryFeature[];
@@ -37,183 +45,142 @@ interface MapTimeSeriesBarProps {
 export const MIN_YEAR = 840;
 export const MAX_YEAR = 1960;
 
-const KEY_MOMENTS = [
-  { year: 840, label: '840 M • Perlak' },
-  { year: 1267, label: '1267 M • Samudera Pasai' },
-  { year: 1297, label: '1297 M • Makam Malik as-Saleh' },
-  { year: 1478, label: '1478 M • Demak' },
-  { year: 1479, label: '1479 M • Cirebon & Masjid Demak' },
-  { year: 1486, label: '1486 M • Ternate' },
-  { year: 1496, label: '1496 M • Tidore & Aceh' },
-  { year: 1526, label: '1526 M • Banten & Banjar' },
-  { year: 1542, label: '1542 M • Buton' },
-  { year: 1575, label: '1575 M • Kutai' },
-  { year: 1584, label: '1584 M • Mataram Islam' },
-  { year: 1605, label: '1605 M • Gowa-Tallo' },
-  { year: 1611, label: '1611 M • Bone & Baiturrahman' },
-  { year: 1621, label: '1621 M • Bima' },
-  { year: 1659, label: '1659 M • Palembang' },
-  { year: 1723, label: '1723 M • Siak' },
-  { year: 1771, label: '1771 M • Pontianak' },
-  { year: 1889, label: '1889 M • Istana Siak & Bola Soba' },
-  { year: 1945, label: '1945 M • Integrasi NKRI' },
+export const FOUNDING_MILESTONES: ReadonlyArray<{
+  year: number;
+  shortLabel: string;
+  fullLabel: string;
+}> = [
+  { year: 840, shortLabel: '840 • Perlak', fullLabel: '840 M • Kesultanan Perlak' },
+  { year: 1267, shortLabel: '1267 • Pasai', fullLabel: '1267 M • Kesultanan Samudera Pasai' },
+  { year: 1478, shortLabel: '1478 • Demak', fullLabel: '1478 M • Kesultanan Demak' },
+  { year: 1479, shortLabel: '1479 • Cirebon', fullLabel: '1479 M • Kesultanan Cirebon' },
+  { year: 1486, shortLabel: '1486 • Ternate', fullLabel: '1486 M • Kesultanan Ternate' },
+  { year: 1495, shortLabel: '1495 • Tidore', fullLabel: '1495 M • Kesultanan Tidore' },
+  { year: 1496, shortLabel: '1496 • Aceh', fullLabel: '1496 M • Kesultanan Aceh Darussalam' },
+  {
+    year: 1526,
+    shortLabel: '1526 • Banten & Banjar',
+    fullLabel: '1526 M • Kesultanan Banten & Kesultanan Banjar',
+  },
+  { year: 1542, shortLabel: '1542 • Buton', fullLabel: '1542 M • Kesultanan Buton (Wolio)' },
+  { year: 1575, shortLabel: '1575 • Kutai', fullLabel: '1575 M • Kesultanan Kutai Kartanegara' },
+  { year: 1584, shortLabel: '1584 • Mataram', fullLabel: '1584 M • Kesultanan Mataram Islam' },
+  {
+    year: 1605,
+    shortLabel: '1605 • Gowa-Tallo',
+    fullLabel: '1605 M • Kesultanan Gowa-Tallo (Makassar)',
+  },
+  { year: 1611, shortLabel: '1611 • Bone', fullLabel: '1611 M • Kesultanan Bone' },
+  { year: 1621, shortLabel: '1621 • Bima', fullLabel: '1621 M • Kesultanan Bima' },
+  {
+    year: 1659,
+    shortLabel: '1659 • Palembang',
+    fullLabel: '1659 M • Kesultanan Palembang Darussalam',
+  },
+  { year: 1723, shortLabel: '1723 • Siak', fullLabel: '1723 M • Kesultanan Siak Sri Indrapura' },
+  { year: 1771, shortLabel: '1771 • Pontianak', fullLabel: '1771 M • Kesultanan Pontianak' },
 ];
 
 export const MapTimeSeriesBar: React.FC<MapTimeSeriesBarProps> = ({
   isTimeSeriesActive,
-  setIsTimeSeriesActive,
   currentYear,
-  setCurrentYear,
   isPlaying,
   setIsPlaying,
   playSpeed,
   setPlaySpeed,
+  timeSeriesDisplayMode,
+  setTimeSeriesDisplayMode,
+  autoFollowNewKingdom,
+  setAutoFollowNewKingdom,
   activeKingdoms,
   activeSites,
   activeTerritories,
   allKingdoms,
-  allSites,
-  events,
-  yearRange,
   onActivateTimeSeriesYear,
   onShowAllEras,
   onSelectKingdom,
 }) => {
-  // Exact chronological milestone years (founding years of kingdoms + built years of sites)
-  const milestoneYears = useMemo(() => {
-    const years = new Set<number>();
-    allKingdoms.forEach((k) => {
-      years.add(k.founded_year);
-      if (k.ended_year) years.add(k.ended_year);
-    });
-    allSites.forEach((s) => {
-      years.add(s.built_year);
-    });
-    events.forEach((e) => {
-      years.add(e.year);
-    });
-    return Array.from(years).sort((a, b) => a - b);
-  }, [allKingdoms, allSites, events]);
+  // Find the current step index (0..16) in KINGDOM_FOUNDING_YEARS closest to currentYear
+  const currentStepIndex = useMemo(() => {
+    let bestIdx = 0;
+    for (let i = 0; i < KINGDOM_FOUNDING_YEARS.length; i++) {
+      if (KINGDOM_FOUNDING_YEARS[i] <= currentYear) {
+        bestIdx = i;
+      }
+    }
+    return bestIdx;
+  }, [currentYear]);
 
-  // Handle Auto-Play interval with exact milestone snapping
+  // Handle Auto-Play: steps directly through each Kingdom Founding Year (Tahun Hadirnya Kerajaan)
   useEffect(() => {
     if (!isPlaying) return;
 
-    const intervalMs = playSpeed === 4 ? 180 : playSpeed === 2 ? 320 : 520;
+    const intervalMs = playSpeed === 4 ? 700 : playSpeed === 2 ? 1200 : 1900;
 
     const timer = window.setInterval(() => {
-      setCurrentYear((prev) => {
-        if (prev >= MAX_YEAR) {
-          setIsPlaying(false);
-          return MAX_YEAR;
-        }
-        // Fast-forward through the 870–1255 M gap where only Perlak is claimed before Samudera Pasai (1267 M)
-        const baseStep =
-          prev >= 868 && prev < 1260
-            ? 45
-            : playSpeed === 4
-            ? 6
-            : playSpeed === 2
-            ? 3
-            : 2;
-
-        const targetYear = Math.min(MAX_YEAR, prev + baseStep);
-
-        // Snap to exact founding/built milestone year if one falls within (prev, targetYear]
-        const nextMilestone = milestoneYears.find((m) => m > prev && m <= targetYear);
-        if (nextMilestone !== undefined) {
-          return nextMilestone;
-        }
-
-        return targetYear;
-      });
+      const nextIdx = currentStepIndex + 1;
+      if (nextIdx >= KINGDOM_FOUNDING_YEARS.length) {
+        setIsPlaying(false);
+        return;
+      }
+      onActivateTimeSeriesYear(KINGDOM_FOUNDING_YEARS[nextIdx]);
     }, intervalMs);
 
     return () => window.clearInterval(timer);
-  }, [isPlaying, playSpeed, milestoneYears, setCurrentYear, setIsPlaying]);
+  }, [isPlaying, playSpeed, currentStepIndex, onActivateTimeSeriesYear, setIsPlaying]);
 
   const handleTogglePlay = () => {
     if (!isTimeSeriesActive) {
-      // When starting Auto-Play from 'Semua Era' mode, start from earliest founding year or currentYear
-      const startYear = currentYear >= MAX_YEAR || currentYear === 1550 ? MIN_YEAR : currentYear;
-      onActivateTimeSeriesYear(startYear);
+      onActivateTimeSeriesYear(KINGDOM_FOUNDING_YEARS[0]);
       setIsPlaying(true);
       return;
     }
-    if (currentYear >= MAX_YEAR) {
-      onActivateTimeSeriesYear(MIN_YEAR);
+    if (currentStepIndex >= KINGDOM_FOUNDING_YEARS.length - 1) {
+      onActivateTimeSeriesYear(KINGDOM_FOUNDING_YEARS[0]);
       setIsPlaying(true);
     } else {
       setIsPlaying((prev) => !prev);
     }
   };
 
-  const handleStep = (delta: number) => {
+  const handleStepMilestone = (deltaSteps: number) => {
     setIsPlaying(false);
-    const nextY = Math.max(MIN_YEAR, Math.min(MAX_YEAR, currentYear + delta));
-    onActivateTimeSeriesYear(nextY);
+    const nextIdx = Math.max(
+      0,
+      Math.min(KINGDOM_FOUNDING_YEARS.length - 1, currentStepIndex + deltaSteps)
+    );
+    onActivateTimeSeriesYear(KINGDOM_FOUNDING_YEARS[nextIdx]);
   };
 
-  // Golden age kingdoms in currentYear
-  const goldenAgeKingdoms = activeKingdoms.filter(
-    (k) => currentYear >= k.golden_age_start && currentYear <= k.golden_age_end
-  );
+  // Kingdoms that newly appeared in currentYear
+  const newlyFoundedKingdoms = useMemo(() => {
+    return allKingdoms.filter((k) => k.founded_year === currentYear);
+  }, [allKingdoms, currentYear]);
 
-  // Kingdoms or Sites that newly appeared at or within 2 years of currentYear
-  const newlyAppearedItems = useMemo(() => {
-    if (!isTimeSeriesActive) return [];
-    const items: string[] = [];
-    allKingdoms.forEach((k) => {
-      if (Math.abs(k.founded_year - currentYear) <= 1) {
-        items.push(`${k.name} (${k.founded_year} M)`);
-      }
-    });
-    allSites.forEach((s) => {
-      if (Math.abs(s.built_year - currentYear) <= 1) {
-        items.push(`${s.name.split('&')[0].trim()} (${s.built_year} M)`);
-      }
-    });
-    return items;
-  }, [allKingdoms, allSites, currentYear, isTimeSeriesActive]);
-
-  // Closest historical event within +/- 15 years
-  const closestEvent = events
-    .filter((e) => Math.abs(e.year - currentYear) <= 15)
-    .sort((a, b) => Math.abs(a.year - currentYear) - Math.abs(b.year - currentYear))[0];
-
-  const progressPct = Math.max(
-    0,
-    Math.min(100, ((currentYear - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100)
-  );
-
-  const rangeStartPct = Math.max(
-    0,
-    Math.min(100, ((yearRange[0] - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100)
-  );
-  const rangeEndPct = Math.max(
-    0,
-    Math.min(100, ((yearRange[1] - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100)
-  );
+  const progressPct =
+    KINGDOM_FOUNDING_YEARS.length > 1
+      ? (currentStepIndex / (KINGDOM_FOUNDING_YEARS.length - 1)) * 100
+      : 100;
 
   return (
     <div className="bg-[#172B36] text-[#F4F0E6] border-t-2 border-[#B58B4D] px-3 sm:px-6 py-2.5 shadow-2xl z-20 shrink-0 select-none">
       <div className="max-w-7xl mx-auto flex flex-col gap-2">
-        {/* Top Row: Playback Controls + Year Status + Mode Toggle */}
+        {/* Top Row: Playback Controls + Year Hadir Status + Display Mode Toggle */}
         <div className="flex flex-wrap items-center justify-between gap-2">
-          {/* Left: Play / Pause / Step Controls */}
+          {/* Left: Play / Pause / Next-Prev Founding Year Controls */}
           <div className="flex items-center gap-1.5">
             <button
               type="button"
               onClick={handleTogglePlay}
               className={`px-3.5 py-1.5 rounded-lg font-bold text-xs flex items-center gap-1.5 transition-all shadow-md cursor-pointer ${
                 isPlaying
-                  ? 'bg-amber-500 text-[#172B36] hover:bg-amber-400'
+                  ? 'bg-amber-400 text-[#172B36] hover:bg-amber-300'
                   : 'bg-[#B58B4D] text-[#172B36] hover:bg-[#c99b56]'
               }`}
               title={
                 isPlaying
-                  ? 'Jeda animasi garis waktu'
-                  : 'Putar otomatis kemunculan kerajaan & situs sesuai tahun berdirinya (840–1960 M)'
+                  ? 'Jeda animasi urutan tahun hadirnya kerajaan'
+                  : 'Putar otomatis urutan tahun hadirnya 17 kerajaan Islam di Nusantara (840–1771 M)'
               }
             >
               {isPlaying ? (
@@ -224,27 +191,29 @@ export const MapTimeSeriesBar: React.FC<MapTimeSeriesBarProps> = ({
               ) : (
                 <>
                   <Play className="w-3.5 h-3.5 fill-current" />
-                  <span>Auto-Play Time Series</span>
+                  <span>Auto-Play Tahun Hadir</span>
                 </>
               )}
             </button>
 
             <button
               type="button"
-              onClick={() => handleStep(-10)}
-              className="p-1.5 rounded-md bg-[#12222b] hover:bg-[#1f3744] text-[#F4F0E6] border border-[#B58B4D]/30 transition-colors cursor-pointer"
-              title="Mundur 10 tahun"
-              aria-label="Mundur 10 tahun"
+              onClick={() => handleStepMilestone(-1)}
+              disabled={isTimeSeriesActive && currentStepIndex <= 0}
+              className="p-1.5 rounded-md bg-[#12222b] hover:bg-[#1f3744] disabled:opacity-40 text-[#F4F0E6] border border-[#B58B4D]/30 transition-colors cursor-pointer"
+              title="Tahun hadir kerajaan sebelumnya"
+              aria-label="Tahun hadir kerajaan sebelumnya"
             >
               <SkipBack className="w-3.5 h-3.5" />
             </button>
 
             <button
               type="button"
-              onClick={() => handleStep(10)}
-              className="p-1.5 rounded-md bg-[#12222b] hover:bg-[#1f3744] text-[#F4F0E6] border border-[#B58B4D]/30 transition-colors cursor-pointer"
-              title="Maju 10 tahun"
-              aria-label="Maju 10 tahun"
+              onClick={() => handleStepMilestone(1)}
+              disabled={isTimeSeriesActive && currentStepIndex >= KINGDOM_FOUNDING_YEARS.length - 1}
+              className="p-1.5 rounded-md bg-[#12222b] hover:bg-[#1f3744] disabled:opacity-40 text-[#F4F0E6] border border-[#B58B4D]/30 transition-colors cursor-pointer"
+              title="Tahun hadir kerajaan berikutnya"
+              aria-label="Tahun hadir kerajaan berikutnya"
             >
               <SkipForward className="w-3.5 h-3.5" />
             </button>
@@ -272,28 +241,46 @@ export const MapTimeSeriesBar: React.FC<MapTimeSeriesBarProps> = ({
               type="button"
               onClick={() => {
                 setIsPlaying(false);
-                onActivateTimeSeriesYear(1267);
+                onActivateTimeSeriesYear(KINGDOM_FOUNDING_YEARS[0]);
               }}
               className="p-1.5 rounded-md bg-[#12222b] hover:bg-[#1f3744] text-[#B58B4D] border border-[#B58B4D]/30 transition-colors cursor-pointer"
-              title="Mulai dari era Samudera Pasai (1267 M)"
-              aria-label="Mulai dari tahun 1267 M"
+              title="Ulangi dari kerajaan pertama (840 M • Kesultanan Perlak)"
+              aria-label="Ulangi dari 840 M"
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
+
+            {/* Auto-Follow Camera Toggle */}
+            <button
+              type="button"
+              onClick={() => setAutoFollowNewKingdom((prev) => !prev)}
+              className={`hidden md:flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-semibold border transition-colors cursor-pointer ${
+                autoFollowNewKingdom
+                  ? 'bg-emerald-900/80 text-emerald-200 border-emerald-400/50'
+                  : 'bg-[#12222b] text-[#F4F0E6]/70 border-[#B58B4D]/25 hover:text-white'
+              }`}
+              title="Arahkan kamera peta otomatis ke kerajaan yang baru hadir"
+            >
+              <Compass className="w-3 h-3 text-[#B58B4D]" />
+              <span>Fokus Peta: {autoFollowNewKingdom ? 'Aktif' : 'Mati'}</span>
+            </button>
           </div>
 
-          {/* Center: Synchronized Year & Active Data Counts */}
+          {/* Center: Synchronized Founding Year & Active Data Counts */}
           <div className="flex flex-wrap items-center gap-2.5 bg-[#12222b] px-3 py-1 rounded-lg border border-[#B58B4D]/40">
             <div className="flex items-center gap-1.5">
               <Clock className="w-4 h-4 text-[#B58B4D]" />
-              <span className="text-[11px] text-[#F4F0E6]/70 uppercase tracking-wider">
-                {isTimeSeriesActive ? 'Tahun Time-Series:' : 'Rentang Aktif:'}
+              <span className="text-[11px] text-[#F4F0E6]/75 uppercase tracking-wider">
+                {isTimeSeriesActive ? 'Tahun Hadir:' : 'Mode Peta:'}
               </span>
-              <span className="font-serif font-bold text-base sm:text-lg text-[#B58B4D]">
-                {isTimeSeriesActive
-                  ? `${currentYear} M`
-                  : `${yearRange[0]}–${yearRange[1]} M`}
+              <span className="font-serif font-bold text-base sm:text-lg text-[#fbbf24]">
+                {isTimeSeriesActive ? `${currentYear} M` : 'Semua Kerajaan (840–1771 M)'}
               </span>
+              {isTimeSeriesActive && (
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#B58B4D]/20 text-[#B58B4D] font-bold">
+                  Tahap {currentStepIndex + 1}/{KINGDOM_FOUNDING_YEARS.length}
+                </span>
+              )}
             </div>
 
             <span className="text-gray-600">|</span>
@@ -301,116 +288,141 @@ export const MapTimeSeriesBar: React.FC<MapTimeSeriesBarProps> = ({
             <div className="flex items-center gap-2.5 text-xs">
               <span className="font-semibold text-emerald-300 flex items-center gap-1">
                 <Crown className="w-3.5 h-3.5 text-[#B58B4D]" />
-                {activeKingdoms.length} Kesultanan
+                {activeKingdoms.length}/{allKingdoms.length} Kesultanan
               </span>
               <span className="font-semibold text-amber-200 flex items-center gap-1">
                 <Landmark className="w-3.5 h-3.5 text-[#426B60]" />
                 {activeSites.length} Situs
               </span>
-              {isTimeSeriesActive && goldenAgeKingdoms.length > 0 && (
-                <span className="hidden xl:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#B58B4D]/20 text-[#B58B4D] border border-[#B58B4D]/40 text-[10px] font-semibold">
-                  ★ {goldenAgeKingdoms.length} Masa Kejayaan ({activeTerritories.length} Wilayah)
-                </span>
-              )}
+              <span className="hidden xl:inline text-[11px] text-[#B58B4D] font-medium">
+                &bull; {activeTerritories.length} Wilayah
+              </span>
             </div>
           </div>
 
-          {/* Right: Mode Switch (Time-Series Per Tahun vs Semua Era) */}
-          <div className="flex items-center gap-1.5">
-            {isTimeSeriesActive ? (
-              <button
-                type="button"
-                onClick={onShowAllEras}
-                className="px-3 py-1.5 rounded-lg bg-[#426B60] hover:bg-[#35594f] text-white text-xs font-semibold flex items-center gap-1.5 border border-emerald-400/30 transition-colors cursor-pointer shadow-sm"
-                title="Tampilkan seluruh 17 kerajaan & 19 situs dari semua periode (840–1960 M)"
-              >
-                <Layers className="w-3.5 h-3.5" />
-                <span>Tampilkan Semua Era (840–1960 M)</span>
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={() => onActivateTimeSeriesYear(currentYear)}
-                className="px-3 py-1.5 rounded-lg bg-[#B58B4D]/20 hover:bg-[#B58B4D]/30 text-[#B58B4D] text-xs font-semibold flex items-center gap-1.5 border border-[#B58B4D]/50 transition-colors cursor-pointer"
-                title="Aktifkan filter sinkronisasi per tahun tunggal"
-              >
-                <Clock className="w-3.5 h-3.5" />
-                <span>Mode Tahun Tunggal ({currentYear} M)</span>
-              </button>
-            )}
+          {/* Right: Visualization Mode Selector (Kumulatif vs Hanya Tahun Ini vs Semua) */}
+          <div className="flex items-center gap-1 bg-[#12222b] p-1 rounded-lg border border-[#B58B4D]/35 text-[11px]">
+            <button
+              type="button"
+              onClick={() => {
+                setTimeSeriesDisplayMode('cumulative');
+                if (!isTimeSeriesActive) {
+                  onActivateTimeSeriesYear(currentYear);
+                }
+              }}
+              className={`px-2.5 py-1 rounded font-semibold transition-colors cursor-pointer ${
+                isTimeSeriesActive && timeSeriesDisplayMode === 'cumulative'
+                  ? 'bg-[#B58B4D] text-[#172B36] font-bold'
+                  : 'text-[#F4F0E6]/75 hover:text-white'
+              }`}
+              title="Tampilkan akumulasi kerajaan yang telah hadir dari 840 M hingga tahun terpilih"
+            >
+              Kumulatif (&le; {currentYear} M)
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setTimeSeriesDisplayMode('exact');
+                if (!isTimeSeriesActive) {
+                  onActivateTimeSeriesYear(currentYear);
+                }
+              }}
+              className={`px-2.5 py-1 rounded font-semibold transition-colors cursor-pointer ${
+                isTimeSeriesActive && timeSeriesDisplayMode === 'exact'
+                  ? 'bg-[#B58B4D] text-[#172B36] font-bold'
+                  : 'text-[#F4F0E6]/75 hover:text-white'
+              }`}
+              title="Hanya tampilkan kerajaan yang berdiri tepat pada tahun terpilih"
+            >
+              Hanya Tahun {currentYear} M
+            </button>
+            <button
+              type="button"
+              onClick={onShowAllEras}
+              className={`px-2.5 py-1 rounded font-semibold flex items-center gap-1 transition-colors cursor-pointer ${
+                !isTimeSeriesActive
+                  ? 'bg-[#426B60] text-white font-bold'
+                  : 'text-[#F4F0E6]/75 hover:text-white'
+              }`}
+              title="Tampilkan seluruh 17 kerajaan dari semua tahun hadir (840–1771 M)"
+            >
+              <Layers className="w-3 h-3" />
+              <span>Semua (17)</span>
+            </button>
           </div>
         </div>
 
-        {/* Middle Row: Scrubber Slider with Founding Year Ticks */}
+        {/* Middle Row: Stepped Founding-Year Scrubber (16 Exact Milestones: 840 M .. 1771 M) */}
         <div className="space-y-1">
           <div className="relative flex items-center">
-            <span className="text-[10px] font-bold text-[#B58B4D] w-12 shrink-0">
-              {MIN_YEAR} M
+            <span className="text-[10px] font-bold text-[#B58B4D] w-14 shrink-0">
+              840 M
             </span>
-            <div className="relative flex-1 mx-2 flex items-center h-5">
-              {/* Custom Progress Bar Background */}
-              <div className="w-full h-2 bg-[#12222b] rounded-full overflow-hidden border border-[#B58B4D]/30 pointer-events-none relative">
-                {isTimeSeriesActive ? (
-                  <div
-                    className="h-full bg-gradient-to-r from-[#426B60] via-[#B58B4D] to-amber-400 transition-all duration-100"
-                    style={{ width: `${progressPct}%` }}
-                  />
-                ) : (
-                  <div
-                    className="h-full bg-[#426B60]/60 absolute top-0 bottom-0"
-                    style={{
-                      left: `${rangeStartPct}%`,
-                      width: `${Math.max(2, rangeEndPct - rangeStartPct)}%`,
-                    }}
-                  />
-                )}
+            <div className="relative flex-1 mx-2 flex items-center h-6">
+              {/* Track Line */}
+              <div className="w-full h-2 bg-[#12222b] rounded-full overflow-hidden border border-[#B58B4D]/35 pointer-events-none relative">
+                <div
+                  className="h-full bg-gradient-to-r from-amber-600 via-emerald-500 to-[#B58B4D] transition-all duration-200"
+                  style={{ width: `${isTimeSeriesActive ? progressPct : 100}%` }}
+                />
               </div>
 
-              {/* Founding Year Tick Marks along the track */}
-              {allKingdoms.map((k) => {
-                const tickPct = ((k.founded_year - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100;
+              {/* 16 Evenly Spaced Founding Year Node Dots */}
+              {FOUNDING_MILESTONES.map((m, idx) => {
+                const pct =
+                  FOUNDING_MILESTONES.length > 1
+                    ? (idx / (FOUNDING_MILESTONES.length - 1)) * 100
+                    : 0;
+                const isPassed = isTimeSeriesActive
+                  ? idx <= currentStepIndex
+                  : true;
+                const isCurrent = isTimeSeriesActive && idx === currentStepIndex;
                 return (
                   <div
-                    key={k.id}
-                    style={{ left: `${tickPct}%` }}
-                    className="w-0.5 h-2.5 bg-[#B58B4D]/60 absolute top-1/2 -translate-y-1/2 pointer-events-none"
+                    key={m.year}
+                    style={{ left: `${pct}%` }}
+                    className={` -translate-x-1/2 pointer-events-none absolute rounded-full transition-all ${
+                      isCurrent
+                        ? 'w-4 h-4 bg-[#fbbf24] border-2 border-white shadow-lg z-10'
+                        : isPassed
+                        ? 'w-2 h-2 bg-[#B58B4D] border border-[#172B36]'
+                        : 'w-2 h-2 bg-gray-600 border border-[#172B36]'
+                    }`}
                   />
                 );
               })}
 
+              {/* Stepped Range Input (0..16 mapped 1:1 to KINGDOM_FOUNDING_YEARS) */}
               <input
                 type="range"
-                min={MIN_YEAR}
-                max={MAX_YEAR}
+                min={0}
+                max={KINGDOM_FOUNDING_YEARS.length - 1}
                 step={1}
-                value={Math.max(MIN_YEAR, Math.min(MAX_YEAR, currentYear))}
+                value={currentStepIndex}
                 onChange={(e) => {
                   setIsPlaying(false);
-                  onActivateTimeSeriesYear(Number(e.target.value));
+                  const idx = Number(e.target.value);
+                  onActivateTimeSeriesYear(KINGDOM_FOUNDING_YEARS[idx]);
                 }}
-                aria-label="Penggeser tahun time-series"
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                aria-label="Penggeser tahapan tahun hadirnya kerajaan"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
               />
-
-              {/* Thumb Indicator */}
-              {isTimeSeriesActive && (
-                <div
-                  className="w-4 h-4 rounded-full bg-[#B58B4D] border-2 border-white shadow-md pointer-events-none absolute -translate-x-1/2 transition-all duration-75"
-                  style={{ left: `${progressPct}%` }}
-                />
-              )}
             </div>
-            <span className="text-[10px] font-bold text-[#B58B4D] w-12 text-right shrink-0">
-              {MAX_YEAR} M
+            <span className="text-[10px] font-bold text-[#B58B4D] w-14 text-right shrink-0">
+              1771 M
             </span>
           </div>
 
-          {/* Quick Jump Founding Year Pills & Live Appearance Ticker */}
+          {/* Bottom Row: 16 Founding Year Quick-Jump Pills + Newly Founded Kingdom Badge */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-1.5 pt-0.5">
-            {/* Quick Moment Buttons */}
+            {/* All 16 Kingdom Founding Years */}
             <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-0.5">
-              {KEY_MOMENTS.map((m) => {
-                const isSelected = isTimeSeriesActive && Math.abs(currentYear - m.year) <= 2;
+              {FOUNDING_MILESTONES.map((m) => {
+                const isSelected = isTimeSeriesActive && currentYear === m.year;
+                const isAppeared =
+                  isTimeSeriesActive &&
+                  timeSeriesDisplayMode === 'cumulative' &&
+                  m.year < currentYear;
                 return (
                   <button
                     key={m.year}
@@ -419,55 +431,43 @@ export const MapTimeSeriesBar: React.FC<MapTimeSeriesBarProps> = ({
                       setIsPlaying(false);
                       onActivateTimeSeriesYear(m.year);
                     }}
-                    className={`px-2 py-0.5 rounded text-[10px] whitespace-nowrap transition-colors border cursor-pointer ${
+                    title={m.fullLabel}
+                    className={`px-2 py-0.5 rounded text-[10px] whitespace-nowrap transition-all border cursor-pointer ${
                       isSelected
-                        ? 'bg-[#B58B4D] text-[#172B36] font-bold border-[#B58B4D]'
-                        : 'bg-[#12222b]/90 text-[#F4F0E6]/75 border-[#B58B4D]/25 hover:border-[#B58B4D] hover:text-white'
+                        ? 'bg-[#fbbf24] text-[#172B36] font-extrabold border-white shadow-sm scale-105'
+                        : isAppeared
+                        ? 'bg-[#B58B4D]/25 text-[#fde68a] border-[#B58B4D]/50 hover:bg-[#B58B4D]/40'
+                        : 'bg-[#12222b]/90 text-[#F4F0E6]/70 border-[#B58B4D]/20 hover:border-[#B58B4D] hover:text-white'
                     }`}
                   >
-                    {m.label}
+                    {m.shortLabel}
                   </button>
                 );
               })}
             </div>
 
-            {/* Live Appearance / Event Ticker */}
-            <div className="flex items-center gap-2 text-[11px] truncate shrink-0 max-w-full lg:max-w-md">
-              {isTimeSeriesActive && newlyAppearedItems.length > 0 ? (
-                <div className="flex items-center gap-1.5 text-emerald-300 font-semibold truncate bg-emerald-950/80 px-2.5 py-0.5 rounded border border-emerald-500/40">
-                  <Sparkles className="w-3.5 h-3.5 text-[#B58B4D] shrink-0" />
-                  <span className="truncate">
-                    Muncul: {newlyAppearedItems.join(' • ')}
-                  </span>
-                </div>
-              ) : isTimeSeriesActive && closestEvent ? (
-                <div className="flex items-center gap-1.5 text-amber-200 truncate">
-                  <Sparkles className="w-3.5 h-3.5 text-[#B58B4D] shrink-0" />
-                  <span className="font-semibold text-[#B58B4D]">[{closestEvent.year} M]</span>
-                  <span className="truncate">{closestEvent.title}</span>
-                </div>
-              ) : isTimeSeriesActive && activeKingdoms.length > 0 ? (
-                <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
-                  <span className="text-[10px] text-[#F4F0E6]/60 shrink-0">Aktif:</span>
-                  {activeKingdoms.slice(0, 3).map((k) => (
-                    <button
-                      key={k.id}
-                      type="button"
-                      onClick={() => onSelectKingdom && onSelectKingdom(k)}
-                      className="px-1.5 py-0.5 rounded bg-[#12222b] hover:bg-[#B58B4D] hover:text-[#172B36] text-[#F4F0E6] text-[10px] border border-[#B58B4D]/30 whitespace-nowrap transition-colors cursor-pointer"
-                    >
-                      {k.name.replace('Kesultanan ', '')} ({k.founded_year}–{k.ended_year || 'kini'})
-                    </button>
-                  ))}
-                  {activeKingdoms.length > 3 && (
-                    <span className="text-[10px] text-[#B58B4D]">
-                      +{activeKingdoms.length - 3} lainnya
-                    </span>
-                  )}
+            {/* Newly Founded Kingdom Callout Button */}
+            <div className="flex items-center gap-2 text-[11px] truncate shrink-0">
+              {isTimeSeriesActive && newlyFoundedKingdoms.length > 0 ? (
+                <div className="flex items-center gap-1.5 bg-emerald-950/90 text-emerald-200 px-2.5 py-0.5 rounded-md border border-emerald-500/50">
+                  <Sparkles className="w-3.5 h-3.5 text-[#fbbf24] shrink-0" />
+                  <span className="font-bold text-[#fbbf24]">Hadir {currentYear} M:</span>
+                  <div className="flex items-center gap-1">
+                    {newlyFoundedKingdoms.map((kd) => (
+                      <button
+                        key={kd.id}
+                        type="button"
+                        onClick={() => onSelectKingdom && onSelectKingdom(kd)}
+                        className="underline hover:text-white font-semibold cursor-pointer"
+                      >
+                        {kd.name}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               ) : (
-                <div className="text-[10px] text-[#F4F0E6]/75 italic truncate">
-                  Geser slider atau klik tahun di kiri untuk melihat kemunculan kerajaan &amp; situs sesuai tahun berdirinya.
+                <div className="text-[10px] text-[#F4F0E6]/80 italic truncate">
+                  Menampilkan seluruh 17 kesultanan berdasarkan warna fase tahun hadirnya (840–1771 M).
                 </div>
               )}
             </div>

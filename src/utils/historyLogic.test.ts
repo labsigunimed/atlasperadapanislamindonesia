@@ -2,6 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   isKingdomActiveInYear,
+  isKingdomPresentByYear,
+  isKingdomFoundedInYear,
+  getKingdomFoundingPhase,
+  KINGDOM_FOUNDING_YEARS,
   isKingdomInYearRange,
   isSiteActiveInYear,
   isTerritoryActiveInYear,
@@ -285,4 +289,21 @@ test('time-series synchronization: kingdoms, sites, territories, and rulers appe
   // 4. Rulers synchronization check (e.g., Sultan Iskandar Muda in 1620)
   const acehRulers1620 = getActiveRulersInYear(rulersData, 'kgd_aceh', 1620);
   assert.ok(acehRulers1620.some((r) => r.name.includes('Iskandar Muda')));
+});
+
+test('kingdom founding years (tahun hadirnya kerajaan) match all 17 kingdoms chronologically', () => {
+  const uniqueFounded = Array.from(new Set(kingdomsData.map((k) => k.founded_year))).sort(
+    (a, b) => a - b
+  );
+  assert.deepEqual(Array.from(KINGDOM_FOUNDING_YEARS), uniqueFounded);
+
+  for (const k of kingdomsData) {
+    assert.equal(isKingdomPresentByYear(k, k.founded_year - 1), false);
+    assert.equal(isKingdomPresentByYear(k, k.founded_year), true);
+    assert.equal(isKingdomPresentByYear(k, 1771), true);
+    assert.equal(isKingdomFoundedInYear(k, k.founded_year), true);
+    assert.equal(isKingdomFoundedInYear(k, k.founded_year + 1), false);
+    const phase = getKingdomFoundingPhase(k.founded_year);
+    assert.ok(phase.bgColor.startsWith('#'));
+  }
 });

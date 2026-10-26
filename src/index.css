@@ -38,6 +38,31 @@
 }
 
 /* Leaflet custom map markers and popup styling */
+@keyframes kingdomAppearPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.85);
+    opacity: 0;
+  }
+}
+
+.kingdom-pulse-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 2.5px solid #fbbf24;
+  background: rgba(251, 191, 36, 0.25);
+  animation: kingdomAppearPulse 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
 .custom-kingdom-marker, .custom-site-marker {
   display: flex;
   align-items: center;
